@@ -1,0 +1,35 @@
+// Breadcrumb
+.breadcrumb-nav {
+  margin-bottom: 1rem;
+}
+
+.breadcrumb {
+  margin-bottom: 0;
+  padding: 1.25rem 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.breadcrumb-item {
+  text-transform: capitalize;
+  font: 400 1.3rem/1.4 $font-family;
+}
+
+.breadcrumb-item+.breadcrumb-item {
+  padding-left: 1rem;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  content: '\e81a';
+  font-family: 'porto';
+  padding-right: 1rem;
+  font-size: 1.4rem;
+  vertical-align: middle;
+  margin-top: -.3rem;
+  color: #000;
+}
+
+.breadcrumb-item a,
+.breadcrumb-item.active {
+  color: #000;
+}
