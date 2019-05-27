@@ -1,0 +1,125 @@
+﻿@model TopThreeProductViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 col-lg-3">
+            <div class="product-column">
+                <h3 class="h4 title">Tavsiye</h3>
+                @foreach (var item in Model.Featured)
+                {
+                    <div class="product product-sm">
+                        <figure class="product-image-container">
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="product-image">
+                                <img src="@item.Image" alt="product">
+                            </a>
+                        </figure>
+                        <div class="product-details">
+                            <h2 class="product-title" >
+                                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" style="font-size:12px;"> @item.ProductName</a>
+                            </h2>
+                            <div class="ratings-container">
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:80%"></span><!-- End .ratings -->
+                                </div><!-- End .product-ratings -->
+                            </div><!-- End .product-container -->
+                            <div class="price-box">
+                                <span class="product-price">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺</span>
+                            </div><!-- End .price-box -->
+                        </div><!-- End .product-details -->
+                    </div><!-- End .product -->
+
+                }
+
+            </div><!-- End .product-column -->
+        </div><!-- End .col-lg-3 -->
+        <div class="col-6 col-lg-3">
+            <div class="product-column">
+                <h3 class="h4 title"> Yeni </h3>
+                @foreach (var item in Model.New)
+                {
+                    <div class="product product-sm">
+                        <figure class="product-image-container">
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="product-image">
+                                <img src="@item.Image" alt="product">
+                            </a>
+                        </figure>
+                        <div class="product-details">
+                            <h2 class="product-title">
+                                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" style="font-size:12px;"> @item.ProductName</a>
+                            </h2>
+                            <div class="ratings-container">
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:80%"></span><!-- End .ratings -->
+                                </div><!-- End .product-ratings -->
+                            </div><!-- End .product-container -->
+                            <div class="price-box">
+                                <span class="product-price">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺</span>
+                            </div><!-- End .price-box -->
+                        </div><!-- End .product-details -->
+                    </div><!-- End .product -->
+
+                }
+            </div><!-- End .product-column -->
+        </div><!-- End .col-lg-3 -->
+        <div class="col-6 col-lg-3">
+            <div class="product-column">
+                <h3 class="h4 title"> Populer </h3>
+                @foreach (var item in Model.Hot)
+                {
+                    <div class="product product-sm">
+                        <figure class="product-image-container">
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="product-image">
+                                <img src="@item.Image" alt="product">
+                            </a>
+                        </figure>
+                        <div class="product-details">
+                            <h2 class="product-title">
+                                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" style="font-size:12px;"> @item.ProductName</a>
+                            </h2>
+                            <div class="ratings-container">
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:80%"></span><!-- End .ratings -->
+                                </div><!-- End .product-ratings -->
+                            </div><!-- End .product-container -->
+                            <div class="price-box">
+                                <span class="product-price">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺</span>
+                            </div><!-- End .price-box -->
+                        </div><!-- End .product-details -->
+                    </div><!-- End .product -->
+
+                }
+
+            </div><!-- End .product-column -->
+        </div><!-- End .col-lg-3 -->
+        <div class="col-6 col-lg-3">
+            <div class="product-column">
+                <h3 class="h4 title">İndirim </h3>
+                @foreach (var item in Model.Sale)
+                {
+                    <div class="product product-sm">
+                        <figure class="product-image-container">
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="product-image">
+                                <img src="@item.Image" alt="product">
+                            </a>
+                        </figure>
+                        <div class="product-details">
+                            <h2 class="product-title">
+                                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" style="font-size:12px;"> @item.ProductName</a>
+                            </h2>
+                            <div class="ratings-container">
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:80%"></span><!-- End .ratings -->
+                                </div><!-- End .product-ratings -->
+                            </div><!-- End .product-container -->
+                            <div class="price-box">
+                                <span class="product-price">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺</span>
+                            </div><!-- End .price-box -->
+                        </div><!-- End .product-details -->
+                    </div><!-- End .product -->
+
+                }
+
+            </div><!-- End .product-column -->
+        </div><!-- End .col-lg-3 -->
+    </div><!-- End .container -->
+</div>
