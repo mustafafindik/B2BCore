@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Category>
+
+
+
+<a href="category.html" class="sf-with-ul">Kategoriler</a>
+<div class="megamenu megamenu-fixed-width" style="width:auto !important;display:block">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <a asp-action="Index" asp-controller="Product" asp-route-categoryId="@item.Id">@item.CategoryName @(item.Id == 1 ? Html.Raw("<span class='tip tip-hot'>Populer!</span>"): Html.Raw(""))</a>
+                             </li>
+                        }
+                    </ul>
+                </div><!-- End .col-lg-6 -->
+            </div><!-- End .row -->
+        </div><!-- End .col-lg-8 -->
+    </div>
+</div><!-- End .megamenu -->

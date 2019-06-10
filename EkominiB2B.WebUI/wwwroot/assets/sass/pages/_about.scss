@@ -1,0 +1,167 @@
+// About
+.about-section {
+  padding-bottom: 6rem;
+
+  p {
+    line-height: 2;
+  }
+}
+
+.history-section {
+  padding: 0;
+
+  .lead {
+    font-size: 1.5rem;
+    line-height: 2;
+    font-weight: 400;
+       max-width: 660px;
+       margin-left: auto;
+       margin-right: auto;
+  }
+  
+  .title {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.history-row {
+  position: relative;
+  min-height: 515px;
+  background-color: #f1f1f1;
+  margin-top: 4rem;
+
+  .history-row-bg {
+    height: 360px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  [class*='col-'] {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .container {
+    position: relative;
+    z-index:2;
+  }
+}
+
+.history-header {
+  h5 {
+    font: 700 1.4rem/1 $second-font-family;
+    margin: 0;
+
+    a {
+      display: block;
+      position: relative;
+      padding: 1.5rem 0;
+      color: #282d3b;
+      border-bottom: 1px solid #e4e4e4;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+
+      &:not(.collapsed) {
+        color: $primary-color;
+        border-color: $primary-color;
+      }
+
+      &::before,
+      &::after {
+        content: '';
+          position: absolute;
+          display: inline-block;
+          right: 1rem;
+          top: 50%;
+          width: 10px;
+          height: 2px;
+          background-color: #7f8284;
+          margin-top: -1px;
+          transition: all .35s;
+        }
+
+        &.collapsed::after {
+          transform: rotate(-90deg);
+        }
+    }
+  }
+}
+
+.history-body {
+  font-size: 1.4rem;
+  line-height: 2;
+  padding: 2rem 0;
+
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.features-section {
+  padding: 5rem 0 1.5rem;
+}
+
+.team-section {
+  padding: 5rem 0 6rem;
+  background-color: #f3f3f3;
+}
+
+@include mq('md') {
+  .history-row {
+    [class*='col-'] {;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+  }
+}
+
+@include mq('lg') {
+  .history-section {
+    padding-top: 4rem;
+  }
+
+  .history-row {
+    margin-top: 6rem;
+
+    .history-row-bg {
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    [class*='col-'] {
+      padding-left: 3rem;
+    }
+
+  }
+
+  .features-section {
+    padding-top: 6rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .team-section {
+    padding-top: 6rem;
+    padding-bottom: 7.5rem;
+  }
+
+}
+
+@include mq('xl') {
+  .history-row {
+    [class*='col-'] {
+      padding-left: 4.5rem;
+    }
+
+  }
+}

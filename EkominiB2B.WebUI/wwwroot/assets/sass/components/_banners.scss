@@ -1,0 +1,66 @@
+// Banners
+.banner {
+  display: block;
+  position: relative;
+  margin-bottom: 0;
+  background-color: #edefec;
+
+  &.banner-cat {
+    display: flex;
+    align-items: center;
+    height: 300px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #edefec;
+  }
+
+  > a {
+    display: block;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+
+  .banner-content {
+    display: inline-block;
+  }
+
+  .banner-title {
+    color: #03050a;
+    font:800 3.2rem/1.1 $font-family;
+    margin-bottom: 4rem;
+    letter-spacing: -.02rem;
+    text-transform: uppercase;
+  }
+
+  .banner-subtitle {
+    color: #03050a;
+    font: 700 1.8rem/1.1 $font-family;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    margin-bottom: .4rem;
+
+    span {
+      font-size: 2.6rem;
+      font-family: $second-font-family;
+    }
+  }
+
+  .btn {
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
+    min-width: 100px;
+    border-radius: .2rem;
+  }
+}
+
+@include mq('md') {
+}
+
+@include mq('lg') {
+}

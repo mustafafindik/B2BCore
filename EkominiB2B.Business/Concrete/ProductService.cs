@@ -44,6 +44,11 @@ namespace EkominiB2B.Business.Concrete
             return productRepository.GetAll().ToList();
         }
 
+        public IList<Product> GetAll(params string[] navigations)
+        {
+            return productRepository.GetAll(navigations).ToList();
+        }
+
         public void Update(Product product)
         {
             productRepository.Update(product);

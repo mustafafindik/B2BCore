@@ -8,6 +8,7 @@ namespace EkominiB2B.Business.Abstract
     public interface IProductService
     {
         IList<Product> GetAll();
+        IList<Product> GetAll(params string[] navigations);
         Product Get(int id);
         void Add(Product product);
         void Update(Product product);

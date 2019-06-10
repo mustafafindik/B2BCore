@@ -19,8 +19,8 @@
                                 <span class="ratings" style="width:90%"></span><!-- End .ratings -->
                             </div><!-- End .product-ratings -->
                         </div><!-- End .product-container -->
-                        <h2 class="product-title">
-                            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id"> @item.ProductName</a>
+                        <h2 class="product-title" >
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" > @item.ProductName</a>
                         </h2>
                         <div class="price-box">
                             <span class="product-price"> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺ </span>

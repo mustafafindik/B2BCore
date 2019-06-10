@@ -38,7 +38,7 @@
                             }
                         </p>
                         <div class="header-dropdown dropdown-expanded">
-                            <a href="#">Links</a>
+                            <a href="#">Hoşgeldiniz </a>
                             <div class="header-menu">
                                 <ul>
                                     @{
@@ -69,41 +69,7 @@
             </div><!-- End .header-top -->
             <div class="header-middle">
                 <div class="container">
-                    <div class="header-left">
-                        <button class="mobile-menu-toggler" type="button">
-                            <i class="icon-menu"></i>
-                        </button>
-                        <div class="header-search">
-                            <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
-                            <form action="#" method="get">
-                                <div class="header-search-wrapper">
-                                    <input type="search" class="form-control" name="q" id="q" placeholder="Ara..." required>
-                                    <div class="select-custom">
-                                        <select id="cat" name="cat">
-                                            <option value="">Tüm Kategoeriler</option>
-                                            <option value="4">Fashion</option>
-                                            <option value="12">- Women</option>
-                                            <option value="13">- Men</option>
-                                            <option value="66">- Jewellery</option>
-                                            <option value="67">- Kids Fashion</option>
-                                            <option value="5">Electronics</option>
-                                            <option value="21">- Smart TVs</option>
-                                            <option value="22">- Cameras</option>
-                                            <option value="63">- Games</option>
-                                            <option value="7">Home &amp; Garden</option>
-                                            <option value="11">Motors</option>
-                                            <option value="31">- Cars and Trucks</option>
-                                            <option value="32">- Motorcycles &amp; Powersports</option>
-                                            <option value="33">- Parts &amp; Accessories</option>
-                                            <option value="34">- Boats</option>
-                                            <option value="57">- Auto Tools &amp; Supplies</option>
-                                        </select>
-                                    </div><!-- End .select-custom -->
-                                    <button class="btn" type="submit"><i class="icon-magnifier"></i></button>
-                                </div><!-- End .header-search-wrapper -->
-                            </form>
-                        </div><!-- End .header-search -->
-                    </div><!-- End .header-left -->
+                    @await Component.InvokeAsync("SearchBar")
                     <div class="header-center">
                         <a href="/" class="logo">
                             <img src="/porto/images/logo.png" alt="Porto Logo">
@@ -112,7 +78,7 @@
                     <div class="header-right">
                         <div class="header-contact">
                             <span>Bizi Arayın..</span>
-                            <a href="tel:#"><strong>+9(0216) 366 68 00</strong></a>
+                            <a href="tel:#"><strong>+90 (216) 366 68 00</strong></a>
                         </div><!-- End .header-contact -->
                         <div class="dropdown cart-dropdown">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
@@ -179,52 +145,7 @@
                         <ul class="menu sf-arrows">
                             <li class="active"><a href="/"> Anasayfa </a></li>
                             <li>
-                                <a href="category.html" class="sf-with-ul">Kategoriler</a>
-                                <div class="megamenu megamenu-fixed-width">
-                                    <div class="row">
-                                        <div class="col-lg-8">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="menu-title">
-                                                        <a href="#">Variations 1<span class="tip tip-new">New!</span></a>
-                                                    </div>
-                                                    <ul>
-                                                        <li><a href="category-banner-full-width.html">Fullwidth Banner<span class="tip tip-hot">Hot!</span></a></li>
-                                                        <li><a href="category-banner-boxed-slider.html">Boxed Slider Banner</a></li>
-                                                        <li><a href="category.html">Boxed Image Banner</a></li>
-                                                        <li><a href="category.html">Left Sidebar</a></li>
-                                                        <li><a href="category-sidebar-right.html">Right Sidebar</a></li>
-                                                        <li><a href="category-flex-grid.html">Product Flex Grid</a></li>
-                                                        <li><a href="category-horizontal-filter1.html">Horizontal Filter1</a></li>
-                                                        <li><a href="category-horizontal-filter2.html">Horizontal Filter2</a></li>
-                                                    </ul>
-                                                </div><!-- End .col-lg-6 -->
-                                                <div class="col-lg-6">
-                                                    <div class="menu-title">
-                                                        <a href="#">Variations 2</a>
-                                                    </div>
-                                                    <ul>
-                                                        <li><a href="#">Product List Item Types</a></li>
-                                                        <li><a href="category-infinite-scroll.html">Ajax Infinite Scroll</a></li>
-                                                        <li><a href="category-3col.html">3 Columns Products</a></li>
-                                                        <li><a href="category.html">4 Columns Products <span class="tip tip-new">New</span></a></li>
-                                                        <li><a href="category-5col.html">5 Columns Products</a></li>
-                                                        <li><a href="category-6col.html">6 Columns Products</a></li>
-                                                        <li><a href="category-7col.html">7 Columns Products</a></li>
-                                                        <li><a href="category-8col.html">8 Columns Products</a></li>
-                                                    </ul>
-                                                </div><!-- End .col-lg-6 -->
-                                            </div><!-- End .row -->
-                                        </div><!-- End .col-lg-8 -->
-                                        <div class="col-lg-4">
-                                            <div class="banner">
-                                                <a href="#">
-                                                    <img src="/porto/images/menu-banner-2.jpg" alt="Menu banner">
-                                                </a>
-                                            </div><!-- End .banner -->
-                                        </div><!-- End .col-lg-4 -->
-                                    </div>
-                                </div><!-- End .megamenu -->
+                                @await Component.InvokeAsync("CategoriesLayout")
                             </li>
                             <li class="float-right"><a asp-action="Index" asp-controller="Product">Ürünler</a></li>
                             <li class="float-right"><a asp-action="About">Hakkımızda</a></li>

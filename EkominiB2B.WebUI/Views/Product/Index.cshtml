@@ -1,0 +1,203 @@
+﻿@model ProdcuctViewModel
+@{
+    ViewData["Title"] = "Ürünler";
+}
+}
+
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-0">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <nav class="toolbox">
+                    <div class="toolbox-left">
+                        <div class="toolbox-item toolbox-sort">
+                            <label>Sıralama :</label>
+                            <div class="select-custom">
+                                <select name="orderby" class="form-control">
+                                    <option value="menu_order" selected="selected">Varsayılan</option>
+                                    <option value="popularity">Fiyat Artan</option>
+                                    <option value="rating">Fiyat Azalan</option>
+                                    <option value="date">İsim</option>
+                                    <option value="price">En Yeni</option>
+                                </select>
+                            </div><!-- End .select-custom -->
+                         </div><!-- End .toolbox-item -->
+                    </div><!-- End .toolbox-left -->
+                    <div class="toolbox-item toolbox-show">
+                        <label> Gösteriliyor :</label>
+                        <div class="select-custom">
+                            <select name="count" class="form-control">
+                                <option value="9">12 Ürün</option>
+                                <option value="18">18 Products</option>
+                                <option value="27">24 Products</option>
+                            </select>
+                        </div><!-- End .select-custom -->
+                    </div><!-- End .toolbox-item -->
+                    <div class="layout-modes">
+                        <a href="category.html" class="layout-btn btn-grid active" title="Grid">
+                            <i class="icon-mode-grid"></i>
+                        </a>
+                        
+                    </div><!-- End .layout-modes -->
+                </nav>
+                <div class="row row-sm">
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="col-6 col-md-4 col-xl-3">
+                            <div class="product">
+                                <figure class="product-image-container">
+                                    <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="product-image">
+                                        <img src="@item.Image" alt="product">
+                                    </a>
+                                    <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="btn-quickview"> Ürüne Bak</a>
+                                </figure>
+                                <div class="product-details">
+                                    <div class="ratings-container">
+                                        <div class="product-ratings">
+                                            <span class="ratings" style="width:90%"></span><!-- End .ratings -->
+                                        </div><!-- End .product-ratings -->
+                                    </div><!-- End .product-container -->
+                                    <h2 class="product-title">
+                                        <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id"> @item.ProductName</a>
+                                    </h2>
+                                    <div class="price-box">
+                                        <span class="product-price"> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺ </span>
+                                    </div><!-- End .price-box -->
+                                    <div class="product-action">
+                                        <a href="product.html" class="paction add-cart" title="Add to Cart">
+                                            <span>Sepete ekle</span>
+                                        </a>
+
+                                    </div><!-- End .product-action -->
+                                </div><!-- End .product-details -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-xl-3 -->
+                    }
+
+
+                </div><!-- End .row -->
+                <nav class="toolbox toolbox-pagination">
+             
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link page-link-btn" href="#"><i class="icon-angle-left"></i></a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item"><span class="page-link">...</span></li>
+                        <li class="page-item">
+                            <a class="page-link page-link-btn" href="#"><i class="icon-angle-right"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div><!-- End .col-lg-9 -->
+            <aside class="sidebar-shop col-lg-3 order-lg-first">
+                <div class="sidebar-wrapper">
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <a data-toggle="collapse" href="#widget-body-1" role="button" aria-expanded="true" aria-controls="widget-body-1">Kategoriler</a>
+                        </h3>
+                        <div class="collapse show" id="widget-body-1">
+                            <div class="widget-body">
+                                <ul class="cat-list">
+                                    <li><a asp-action="Index" asp-route-categoryId="@null">Tüm Kategoriler</a></li>
+                                    @foreach (var item in Model.Categories)
+                                    {
+                                        <li>
+                                            <a asp-action="Index" asp-route-categoryId="@item.Id"> @item.CategoryName</a>
+                                        </li>
+
+                                    }
+
+                                </ul>
+                            </div><!-- End .widget-body -->
+                        </div><!-- End .collapse -->
+                    </div><!-- End .widget -->
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <a data-toggle="collapse" href="#widget-body-2" role="button" aria-expanded="true" aria-controls="widget-body-2">Fiyat</a>
+                        </h3>
+                        <div class="collapse show" id="widget-body-2">
+                            <div class="widget-body">
+                                <div class="price-slider-wrapper">
+                                    <div id="price-sliderNew"></div><!-- End #price-slider -->
+                                </div><!-- End .price-slider-wrapper -->
+                                <div class="filter-price-action">
+                                    <a id="getPrice" class="btn btn-dark">Filtrele</a>
+                                    <div class="filter-price-text">
+                                        <span id="filter-price-range"></span>
+                                    </div><!-- End .filter-price-text -->
+                                </div><!-- End .filter-price-action -->
+                            </div><!-- End .widget-body -->
+                        </div><!-- End .collapse -->
+                    </div><!-- End .widget -->
+
+                    @await Component.InvokeAsync("FeaturedWidget")
+
+
+                </div><!-- End .sidebar-wrapper -->
+            </aside><!-- End .col-lg-3 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+    <div class="mb-5"></div><!-- margin -->
+</main><!-- End .main -->
+
+
+
+@section scripts {
+    <script src="~/assets/js/nouislider.min.js"></script>
+    <script>
+        var priceSlider = document.getElementById('price-sliderNew'),
+            currencyVar = ' ₺';
+
+        // Check if #price-slider elem is exists if not return
+        // to prevent error logs
+       
+
+        noUiSlider.create(priceSlider, {
+            start: [1, 200],
+            connect: true,
+            step: 1,
+            margin: 10,
+            range: {
+                'min': 0,
+                'max': 1000
+            },
+          
+        });
+
+        // Update Price Range
+        priceSlider.noUiSlider.on('update', function (values, handle) {
+            var values = values.map(function (value) {
+                return Math.round(value) + currencyVar ;
+            })
+            $('#filter-price-range').text(values.join(' - '));
+        });
+
+        $("#getPrice").click(function () {
+            var minPrice = priceSlider.noUiSlider.get()[0];
+            var maxPrice = priceSlider.noUiSlider.get()[1];
+            window.location.href = "/Product?minPrice=" + minPrice + "&maxPrice=" + maxPrice + "&categoryId=" + 0 + "&orderBy=" + 0 + "";
+        });
+
+        var minPrice = parseFloat(@ViewBag.minPrice).toFixed(2);     
+        var maxPrice = parseFloat(@ViewBag.maxPrice).toFixed(2);
+
+         priceSlider.noUiSlider.set([minPrice,maxPrice]);
+      
+    </script>
+}
+

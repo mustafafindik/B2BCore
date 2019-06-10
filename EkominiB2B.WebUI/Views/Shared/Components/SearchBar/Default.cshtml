@@ -1,0 +1,20 @@
+﻿
+<div class="header-left">
+    <button class="mobile-menu-toggler" type="button">
+        <i class="icon-menu"></i>
+    </button>
+    <div class="header-search">
+        <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
+        <form asp-controller="Product" asp-action="query" as  method="post">
+            <div class="header-search-wrapper">
+                <input type="search" class="form-control" name="q" id="q" placeholder="Ara..." required>
+                <div class="select-custom">
+                    <select id="cat" name="cat" asp-items="@ViewBag.Category"> 
+                         <option value="0" >Tüm Kategoriler</option>
+                    </select>
+                </div><!-- End .select-custom -->
+                <button class="btn" type="submit"><i class="icon-magnifier"></i></button>
+            </div><!-- End .header-search-wrapper -->
+        </form>
+    </div><!-- End .header-search -->
+</div><!-- End .header-left -->
