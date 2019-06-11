@@ -353,7 +353,7 @@
                   zoomWindowFadeIn: 350,
                   zoomWindowFadeOut: 200,
                   borderSize: 0,
-                  zoomContainer: $this.parent(),
+                  //zoomContainer: $this.parent(),
                   zoomType: 'inner',
                   cursor: 'grab'
                 };

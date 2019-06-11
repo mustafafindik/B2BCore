@@ -19,7 +19,7 @@ namespace EkominiB2B.WebUI.Controllers
         public HomeController(IProductService productService, ICategoryService categoryService)
         {
             this.productService = productService;
-             this.categoryService = categoryService;
+            this.categoryService = categoryService;
         }
 
         public IActionResult Index()
@@ -28,8 +28,6 @@ namespace EkominiB2B.WebUI.Controllers
 
             return View();
         }
-
-
 
         public IActionResult About()
         {
@@ -44,6 +42,28 @@ namespace EkominiB2B.WebUI.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Query(string q,int categoryId)
+        {
+            List<Product> result = new List<Product>();
+            if (categoryId == 0)
+            {
+                result = productService.GetAll("Category").ToList();
+            }
+            else
+            {
+                result = productService.GetAll("Category").Where(d=>d.CategoryId==categoryId).ToList();
+            }
+            q = q.ToLower();
+            string[] terms = q.Split(' ');
+            foreach (var term in terms)
+            {
+                result = result.Where(r =>r.ProductName.ToLower().Contains(term) || r.Category.CategoryName.ToLower().Contains(term)).ToList();
+            }
+            ViewBag.Query = q;
+            return View(result);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

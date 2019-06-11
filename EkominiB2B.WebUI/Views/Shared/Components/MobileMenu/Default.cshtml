@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Category>
+
+
+<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+<div class="mobile-menu-container">
+    <div class="mobile-menu-wrapper">
+        <span class="mobile-menu-close"><i class="icon-cancel"></i></span>
+        <nav class="mobile-nav">
+            <ul class="mobile-menu">
+                <li class="active"><a href="/"> Anasayfa </a></li>
+                <li>
+                    <a asp-action="Index" asp-controller="Product"> Kategoriler</a>
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <a asp-action="Index" asp-controller="Product" asp-route-categoryId="@item.Id">@item.CategoryName @(item.Id == 1 ? Html.Raw("<span class='tip tip-hot'>Populer!</span>") : Html.Raw(""))</a>
+                            </li>
+
+                        }
+
+                    </ul>
+                </li>
+
+                <li><a asp-action="Index" asp-controller="Product">Ürünler</a></li>
+                <li><a asp-action="About" asp-controller="Home">Hakkımızda</a></li>
+                <li><a asp-action="Contact" asp-controller="Home">İletişim</a></li>
+            </ul>
+        </nav><!-- End .mobile-nav -->
+        <div class="social-icons">
+            <a href="#" class="social-icon" target="_blank"><i class="icon-facebook"></i></a>
+            <a href="#" class="social-icon" target="_blank"><i class="icon-twitter"></i></a>
+            <a href="#" class="social-icon" target="_blank"><i class="icon-instagram"></i></a>
+        </div><!-- End .social-icons -->
+    </div><!-- End .mobile-menu-wrapper -->
+</div><!-- End .mobile-menu-container -->

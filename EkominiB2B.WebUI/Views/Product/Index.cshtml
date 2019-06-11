@@ -48,16 +48,17 @@
                         
                     </div><!-- End .layout-modes -->
                 </nav>
-                <div class="row row-sm">
+                <div class="row row-sm category-grid">
                     @foreach (var item in Model.Products)
                     {
-                        <div class="col-6 col-md-4 col-xl-3">
-                            <div class="product">
+                        <div class="col-6 col-md-4 col-xl-4">
+                            <div class="grid-product">
                                 <figure class="product-image-container">
                                     <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="product-image">
                                         <img src="@item.Image" alt="product">
                                     </a>
-                                    <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="btn-quickview"> Ürüne Bak</a>
+                                    <a href="ajax/product-quick-view.html" class="btn-quickview">Ürüne Bak</a>
+                                  @*<span class="product-label label-hot">Hot</span>*@
                                 </figure>
                                 <div class="product-details">
                                     <div class="ratings-container">
@@ -69,16 +70,15 @@
                                         <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id"> @item.ProductName</a>
                                     </h2>
                                     <div class="price-box">
-                                        <span class="product-price"> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺ </span>
+                                        <span class="product-price">  @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺</span>
                                     </div><!-- End .price-box -->
-                                    <div class="product-action">
-                                        <a href="product.html" class="paction add-cart" title="Add to Cart">
+                                    <div class="product-grid-action">                                  
+                                        <a href="/" class="paction add-cart" title="Add to Cart">
                                             <span>Sepete ekle</span>
-                                        </a>
-
-                                    </div><!-- End .product-action -->
+                                        </a>                                        
+                                    </div><!-- End .product-grid-action -->
                                 </div><!-- End .product-details -->
-                            </div><!-- End .product -->
+                            </div><!-- End .grid-product -->
                         </div><!-- End .col-xl-3 -->
                     }
 
@@ -113,11 +113,11 @@
                         <div class="collapse show" id="widget-body-1">
                             <div class="widget-body">
                                 <ul class="cat-list">
-                                    <li><a asp-action="Index" asp-route-categoryId="@null">Tüm Kategoriler</a></li>
+                                    <li><a asp-action="Index" class='@(ViewBag.categoryId == 0 ? "font-weight-bold" : "")' asp-route-categoryId="@null">Tüm Kategoriler</a></li>
                                     @foreach (var item in Model.Categories)
                                     {
                                         <li>
-                                            <a asp-action="Index" asp-route-categoryId="@item.Id"> @item.CategoryName</a>
+                                            <a asp-action="Index" class='@(ViewBag.categoryId == item.Id ? "font-weight-bold" : "")' asp-route-categoryId="@item.Id"> @item.CategoryName</a>
                                         </li>
 
                                     }

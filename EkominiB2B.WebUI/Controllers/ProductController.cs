@@ -31,5 +31,11 @@ namespace EkominiB2B.WebUI.Controllers
             model.Products = productService.GetAll("Category").ToList();
             return View(model);
         }
+
+        public IActionResult Details(int Id)
+        {
+            var product = productService.Get(Id);
+            return View(product);
+        }
     }
 }
