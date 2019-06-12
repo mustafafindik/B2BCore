@@ -4,14 +4,16 @@ using EkominiB2B.DataAccess.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EkominiB2B.WebUI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190612103201_NewDesc")]
+    partial class NewDesc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,7 +56,7 @@ namespace EkominiB2B.WebUI.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<double?>("DiscountRatio");
+                    b.Property<decimal?>("DiscountRatio");
 
                     b.Property<string>("Image");
 

@@ -10,13 +10,15 @@ namespace EkominiB2B.Entities
 
         public string ProductName { get; set; }
 
+        public string ShortDescription { get; set; }
+
         public string Description { get; set; }
 
         public double? Price { get; set; }
 
         public string Image { get; set; }
 
-        public decimal? DiscountRatio { get; set; }
+        public double? DiscountRatio { get; set; }
 
         public bool IsActive { get; set; } = true;
 

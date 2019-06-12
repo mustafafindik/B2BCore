@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<Product>
 
 
-<div class="tab-pane fade show active" id="featured-products" role="tabpanel" aria-labelledby="featured-products-tab">
+<div class="featured-section pt-sm bg-white">
     <div class="container">
-        <div class="tab-products-carousel owl-carousel owl-theme">
+        <h3 class="carousel-title">Tavsiye Ürünler</h3>
+        <div class="tab-products-carousel owl-carousel owl-dots-top ">
+
             @foreach (var item in Model)
             {
                 <div class="grid-product">
@@ -32,8 +34,10 @@
                         </div><!-- End .product-grid-action -->
                     </div><!-- End .product-details -->
                 </div><!-- End .grid-product -->
+
             }
 
-        </div><!-- End .products-carousel -->
+
+        </div><!-- End .partners-carousel -->
     </div><!-- End .container -->
-</div><!-- End .tab-pane -->
+</div><!-- End .featured-section -->

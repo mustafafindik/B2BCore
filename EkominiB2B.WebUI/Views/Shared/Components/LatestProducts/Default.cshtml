@@ -5,12 +5,12 @@
         <div class="tab-products-carousel owl-carousel owl-theme">
             @foreach (var item in Model)
             {
-                <div class="product">
+                <div class="grid-product">
                     <figure class="product-image-container">
                         <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id" class="product-image">
                             <img src="@item.Image" alt="product">
                         </a>
-                        <a href="/ajax/product-quick-view.html"  class="btn-quickview"> Ürüne Bak</a>
+                        <a href="/ajax/product-quick-view.html" class="btn-quickview">Quick View</a>
                     </figure>
                     <div class="product-details">
                         <div class="ratings-container">
@@ -24,14 +24,13 @@
                         <div class="price-box">
                             <span class="product-price"> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺ </span>
                         </div><!-- End .price-box -->
-                        <div class="product-action">
+                        <div class="product-grid-action">
                             <a href="product.html" class="paction add-cart" title="Add to Cart">
                                 <span>Sepete ekle</span>
                             </a>
-
-                        </div><!-- End .product-action -->
+                        </div><!-- End .product-grid-action -->
                     </div><!-- End .product-details -->
-                </div><!-- End .product -->
+                </div><!-- End .grid-product -->
             }
 
 
