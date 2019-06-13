@@ -19,16 +19,18 @@ namespace EkominiB2B.WebUI.Controllers
             this.categoryService = categoryService;
         }
 
-        public IActionResult Index(decimal? minPrice,decimal? maxPrice,string OrderBy, int? categoryId = 0)
+        public IActionResult Index(decimal? minPrice,decimal? maxPrice,string OrderBy, int? categoryId = 0, int page = 1, int PageSize = 1)
         {
             ViewBag.minPrice = minPrice;
             ViewBag.maxPrice = maxPrice;
             ViewBag.categoryId = categoryId;
             ViewBag.OrderBy = OrderBy;
+            ViewBag.page = page;
+            ViewBag.PageSize = PageSize;
 
             ProdcuctViewModel model = new ProdcuctViewModel();
             model.Categories = categoryService.GetAll().ToList();
-            model.Products = productService.GetAll("Category").ToList();
+            model.Products = productService.GetAll("Category").ToList();    
             return View(model);
         }
 

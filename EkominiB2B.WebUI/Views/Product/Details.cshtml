@@ -38,11 +38,11 @@
                             </div><!-- End .product-ratings -->
                         </div><!-- End .product-container -->
                         <div class="price-box">
-                            <span class="old-price">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", Model.Price)  ₺</span>
-                            <span class="product-price"> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", Model.Price - (Model.Price * Convert.ToDouble(Model.DiscountRatio)))  ₺</span>
+                            <span class="old-price" style="@(Model.DiscountRatio <=0 ?"display:none":"")">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", Model.Price)  ₺</span>
+                            <span class="product-price" style="@(Model.DiscountRatio <=0 ?" margin-left: 0px !important;":"")" > @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", Model.Price - (Model.Price * Convert.ToDouble(Model.DiscountRatio)))  ₺</span>
                         </div><!-- End .price-box -->
                         <div class="product-desc">
-                            <p>@(String.IsNullOrEmpty(Model.ShortDescription) ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis nulla odio. Mauris ligula leo, rutrum sit amet diam id, mollis mattis ex. Nam non erat nibh." : Model.Description)</p>
+                            <p>@(String.IsNullOrEmpty(Model.ShortDescription) ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis nulla odio. Mauris ligula leo, rutrum sit amet diam id, mollis mattis ex. Nam non erat nibh." : Model.ShortDescription)</p>
                         </div><!-- End .product-desc -->
 
                         <div class="product-action">
