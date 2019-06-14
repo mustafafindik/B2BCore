@@ -8,6 +8,7 @@ using EkominiB2B.WebUI.Models;
 using EkominiB2B.Business.Abstract;
 using EkominiB2B.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Sakura.AspNetCore;
 
 namespace EkominiB2B.WebUI.Controllers
 {
@@ -44,25 +45,26 @@ namespace EkominiB2B.WebUI.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Query(string q,int categoryId)
+     
+        public IActionResult Query(string q, int categoryId=0, int page = 1, int PageSize = 8)
         {
-            List<Product> result = new List<Product>();
-            if (categoryId == 0)
-            {
-                result = productService.GetAll("Category").ToList();
-            }
-            else
-            {
-                result = productService.GetAll("Category").Where(d=>d.CategoryId==categoryId).ToList();
-            }
-            q = q.ToLower();
-            string[] terms = q.Split(' ');
+            var products = productService.GetAll("Category").Where(d => categoryId == 0 ? true : d.CategoryId == categoryId).ToList();
+     
+
+            var qq = q.ToLower();
+            string[] terms = qq.Split(' ');
             foreach (var term in terms)
             {
-                result = result.Where(r =>r.ProductName.ToLower().Contains(term) || r.Category.CategoryName.ToLower().Contains(term)).ToList();
+                products = products.Where(r => r.ProductName.ToLower().Contains(term) || r.Category.CategoryName.ToLower().Contains(term)).ToList();
             }
             ViewBag.Query = q;
+            ViewBag.Total = products.Count();
+            ViewBag.categoryId = categoryId;
+            ViewBag.page = page;
+            ViewBag.PageSize = PageSize;
+
+            var result = products.ToPagedList(PageSize, page);
+
             return View(result);
         }
 

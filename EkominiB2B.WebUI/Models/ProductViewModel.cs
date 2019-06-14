@@ -1,4 +1,5 @@
 ﻿using EkominiB2B.Entities;
+using Sakura.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace EkominiB2B.WebUI.Models
 
     public class ProdcuctViewModel
     {
-        public IEnumerable<Product> Products { get; set; }
+        public IPagedList<Product> Products { get; set; }
         public IEnumerable<Category> Categories { get; set; }
 
     }

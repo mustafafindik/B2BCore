@@ -21,23 +21,24 @@
                         <div class="toolbox-item toolbox-sort">
                             <label>Sıralama :</label>
                             <div class="select-custom">
-                                <select name="orderby" class="form-control">
-                                    <option value="menu_order" selected="selected">Varsayılan</option>
-                                    <option value="popularity">Fiyat Artan</option>
-                                    <option value="rating">Fiyat Azalan</option>
-                                    <option value="date">İsim</option>
-                                    <option value="price">En Yeni</option>
+                                <select name="orderby" id="orderby" class="form-control">
+                                    <option value="default">Varsayılan</option>
+                                    <option value="increase">Fiyat Artan</option>
+                                    <option value="decrease">Fiyat Azalan</option>
+                                    <option value="Name">İsim</option>
+                                    <option value="new">En Yeni</option>
                                 </select>
                             </div><!-- End .select-custom -->
-                         </div><!-- End .toolbox-item -->
+                        </div><!-- End .toolbox-item -->
                     </div><!-- End .toolbox-left -->
                     <div class="toolbox-item toolbox-show">
                         <label> Gösteriliyor :</label>
                         <div class="select-custom">
-                            <select name="count" class="form-control">
+                            <select name="productSize" id="productSize" class="form-control">
                                 <option value="9">12 Ürün</option>
-                                <option value="18">18 Products</option>
-                                <option value="27">24 Products</option>
+                                <option value="18">18 Ürün</option>
+                                <option value="24">24 Ürün</option>
+                                <option value="@ViewBag.ProductCount">Hepsi</option>
                             </select>
                         </div><!-- End .select-custom -->
                     </div><!-- End .toolbox-item -->
@@ -45,7 +46,7 @@
                         <a href="category.html" class="layout-btn btn-grid active" title="Grid">
                             <i class="icon-mode-grid"></i>
                         </a>
-                        
+
                     </div><!-- End .layout-modes -->
                 </nav>
                 <div class="row row-sm category-grid">
@@ -58,7 +59,7 @@
                                         <img src="@item.Image" alt="product">
                                     </a>
                                     <a href="ajax/product-quick-view.html" class="btn-quickview">Ürüne Bak</a>
-                                  @*<span class="product-label label-hot">Hot</span>*@
+                                    @*<span class="product-label label-hot">Hot</span>*@
                                 </figure>
                                 <div class="product-details">
                                     <div class="ratings-container">
@@ -70,12 +71,13 @@
                                         <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id"> @item.ProductName</a>
                                     </h2>
                                     <div class="price-box">
-                                        <span class="product-price">  @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺</span>
+                                        <span class="old-price" style="@(item.DiscountRatio <=0 ?"display:none":"")">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺</span>
+                                        <span class="product-price" style="@(item.DiscountRatio <=0 ?" margin-left: 0px !important;":"")"> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price - (item.Price * Convert.ToDouble(item.DiscountRatio)))  ₺</span>
                                     </div><!-- End .price-box -->
-                                    <div class="product-grid-action">                                  
+                                    <div class="product-grid-action">
                                         <a href="/" class="paction add-cart" title="Add to Cart">
                                             <span>Sepete ekle</span>
-                                        </a>                                        
+                                        </a>
                                     </div><!-- End .product-grid-action -->
                                 </div><!-- End .product-details -->
                             </div><!-- End .grid-product -->
@@ -84,10 +86,13 @@
 
 
                 </div><!-- End .row -->
-               
-
-                 <nav class="toolbox toolbox-pagination" page-model="@Model.PagingInfo" page-action="Index"></nav>
-              
+                <nav class="toolbox toolbox-pagination">
+                    <ul class="pagination" style="display:block;margin-bottom:40px;">
+                        <li class="pull-right">
+                            <pager source="@Model.Products" />
+                        </li>
+                    </ul>
+                </nav>
             </div><!-- End .col-lg-9 -->
             <aside class="sidebar-shop col-lg-3 order-lg-first">
                 <div class="sidebar-wrapper">
@@ -98,11 +103,11 @@
                         <div class="collapse show" id="widget-body-1">
                             <div class="widget-body">
                                 <ul class="cat-list">
-                                    <li><a asp-action="Index" class='@(ViewBag.categoryId == 0 ? "font-weight-bold" : "")' asp-route-categoryId="@null">Tüm Kategoriler</a></li>
+                                    <li><a asp-action="Index" class='@(ViewBag.categoryId == 0 ? "font-weight-bold" : "")' asp-route-minPrice="@ViewBag.minPrice" asp-route-maxPrice="@ViewBag.maxPrice" asp-route-OrderBy="@ViewBag.OrderBy" asp-route-categoryId="@null">Tüm Kategoriler</a></li>
                                     @foreach (var item in Model.Categories)
                                     {
                                         <li>
-                                            <a asp-action="Index" class='@(ViewBag.categoryId == item.Id ? "font-weight-bold" : "")' asp-route-categoryId="@item.Id"> @item.CategoryName</a>
+                                            <a asp-action="Index" class='@(ViewBag.categoryId == item.Id ? "font-weight-bold" : "")' asp-route-minPrice="@ViewBag.minPrice" asp-route-maxPrice="@ViewBag.maxPrice" asp-route-OrderBy="@ViewBag.OrderBy" asp-route-categoryId="@item.Id"> @item.CategoryName</a>
                                         </li>
 
                                     }
@@ -150,24 +155,24 @@
 
         // Check if #price-slider elem is exists if not return
         // to prevent error logs
-       
+
 
         noUiSlider.create(priceSlider, {
-            start: [1, 200],
+            start: [ @((int)ViewBag.Min),  @((int)ViewBag.Max)],
             connect: true,
             step: 1,
-            margin: 10,
+            margin: 1,
             range: {
                 'min': 0,
-                'max': 1000
+                'max': @((int)ViewBag.Max+ (int)ViewBag.Max)
             },
-          
+
         });
 
         // Update Price Range
         priceSlider.noUiSlider.on('update', function (values, handle) {
             var values = values.map(function (value) {
-                return Math.round(value) + currencyVar ;
+                return value + currencyVar ;
             })
             $('#filter-price-range').text(values.join(' - '));
         });
@@ -175,14 +180,33 @@
         $("#getPrice").click(function () {
             var minPrice = priceSlider.noUiSlider.get()[0];
             var maxPrice = priceSlider.noUiSlider.get()[1];
-            window.location.href = "/Product?minPrice=" + minPrice + "&maxPrice=" + maxPrice + "&categoryId=" + 0 + "&orderBy=" + 0 + "";
+            window.location.href = "/Product?minPrice=" + minPrice + "&maxPrice=" + maxPrice + "&OrderBy=" + '@((string)ViewBag.OrderBy)' + "&categoryId=" + @ViewBag.categoryId + "";
         });
 
-        var minPrice = parseFloat(@ViewBag.minPrice).toFixed(2);     
+        var minPrice = parseFloat(@ViewBag.minPrice).toFixed(2);
         var maxPrice = parseFloat(@ViewBag.maxPrice).toFixed(2);
 
-         priceSlider.noUiSlider.set([minPrice,maxPrice]);
-      
+        priceSlider.noUiSlider.set([minPrice, maxPrice]);
+
+
+
+        $('#productSize').change(function () {
+            var size = $(this).val();
+            window.location.href = "/Product?minPrice=" + minPrice + "&maxPrice=" + maxPrice + "&OrderBy=" + '@((string)ViewBag.OrderBy)' + "&categoryId=" + @ViewBag.categoryId + "&page=" + @ViewBag.page + "&PageSize=" + size + "";
+        });
+
+        $('#orderby').change(function () {
+            var order = $(this).val();
+           window.location.href = "/Product?minPrice=" + minPrice + "&maxPrice=" + maxPrice + "&OrderBy=" + order + "&categoryId=" + @ViewBag.categoryId + "&page=" + @ViewBag.page + "&PageSize=" + @ViewBag.PageSize + "";
+        });
+
+        $(document).ready(function () {
+            $("#productSize option[value='" +@ViewBag.PageSize+"']").prop('selected', true);
+            $("#orderby option[value='"+"@ViewBag.OrderBy"+"']").prop('selected', true);
+            // you need to specify id of combo to set right combo, if more than one combo
+        });
+
+
     </script>
 }
 

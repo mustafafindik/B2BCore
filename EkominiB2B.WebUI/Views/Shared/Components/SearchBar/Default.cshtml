@@ -5,9 +5,9 @@
     </button>
     <div class="header-search">
         <a href="#" class="search-toggle" role="button"><i class="icon-magnifier"></i></a>
-        <form asp-controller="Home" asp-action="Query" as  method="post">
+        <form asp-controller="Home" asp-action="Query" role="form" method="get" id="Query">
             <div class="header-search-wrapper">
-                <input type="search" class="form-control" name="q" id="q" placeholder="Ara..." required value="@ViewBag.Query">
+                <input type="text" class="form-control" name="q" id="q" placeholder="Ara..." required value="@ViewBag.Query">
                 <div class="select-custom">
                     <select id="cat" name="categoryId" asp-items="@ViewBag.Category"> 
                          <option value="0" >Tüm Kategoriler</option>

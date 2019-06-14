@@ -17,9 +17,9 @@ namespace EkominiB2B.WebUI.Components
             this.categoryService = categoryService;
         }
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(int? selected)
         {
-            ViewData["Category"] = new SelectList(categoryService.GetAll(), "Id", "CategoryName");
+            ViewData["Category"] = new SelectList(categoryService.GetAll(), "Id", "CategoryName", selected);
             return View();
         }
     }

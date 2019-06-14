@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Product>
+﻿@model Sakura.AspNetCore.IPagedList<Product>
 @{
     ViewData["Title"] = "Arama Sonuçları";
 }
@@ -55,16 +55,17 @@
         {<nav class="toolbox">
                 <div class="toolbox-left">
                     <div class="toolbox-item toolbox-sort">
-                        <label style="font-weight:600"> "@ViewBag.Query" Arama Sonuçları Aşağıdadır. Toplam <span style="font-weight:bold">@Model.Count() </span> sonuç bulundu.</label>
+                        <label style="font-weight:600"> "@ViewBag.Query" Arama Sonuçları Aşağıdadır. Toplam <span style="font-weight:bold">@ViewBag.Total </span> sonuç bulundu.</label>
                     </div><!-- End .toolbox-item -->
                 </div><!-- End .toolbox-left -->
                 <div class="toolbox-item toolbox-show">
                     <label>Gösteriliyor : </label>
                     <div class="select-custom">
-                        <select name="count" class="form-control">
-                            <option value="9">6 Ürün</option>
-                            <option value="18">12 Ürün</option>
-                            <option value="27">18 Ürün</option>
+                        <select name="productSize" id="productSize" class="form-control">
+                            <option value="8">8 Ürün</option>
+                            <option value="16">16 Ürün</option>
+                            <option value="32">32 Ürün</option>
+                            <option value="@ViewBag.Total">Hepsi</option>
                         </select>
                     </div><!-- End .select-custom -->
                 </div><!-- End .toolbox-item -->
@@ -103,7 +104,8 @@
                                         <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Id"> @item.ProductName</a>
                                     </h2>
                                     <div class="price-box">
-                                        <span class="product-price">  @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺</span>
+                                        <span class="old-price" style="@(item.DiscountRatio <=0 ?"display:none":"")">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺</span>
+                                        <span class="product-price" style="@(item.DiscountRatio <=0 ?" margin-left: 0px !important;":"")"> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price - (item.Price * Convert.ToDouble(item.DiscountRatio)))  ₺</span>
                                     </div><!-- End .price-box -->
                                     <div class="product-grid-action">
                                         <a href="/" class="paction add-cart" title="Add to Cart">
@@ -125,7 +127,7 @@
                     <div class="row">
                         <div class="col-sm-12 ">
                             <div class="col-sm-1"></div>
-                                <div class="col-sm-10 text-center">
+                            <div class="col-sm-10 text-center">
                                 <div class="four_zero_four_bg m--margin-left-10">
                                     <h3 style="font-size:40px" class="text-center ">Sonuç Bulunamadı</h3>
                                 </div>
@@ -138,23 +140,10 @@
 
 
         @if (Model.Count() > 0)
-        {
-            <nav class="toolbox toolbox-pagination">
-
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a class="page-link page-link-btn" href="#"><i class="icon-angle-left"></i></a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><span class="page-link">...</span></li>
-                    <li class="page-item">
-                        <a class="page-link page-link-btn" href="#"><i class="icon-angle-right"></i></a>
+        {<nav class="toolbox toolbox-pagination">
+                <ul class="pagination" style="display:block;margin-bottom:40px;">
+                    <li class="pull-right">
+                        <pager source="@Model" />
                     </li>
                 </ul>
             </nav>
@@ -162,3 +151,23 @@
     </div><!-- End .container -->
     <div class="mb-5"></div><!-- margin -->
 </main><!-- End .main -->>
+
+
+@section scripts {
+    <script>
+      
+
+        $('#productSize').change(function () {
+            var size = $(this).val();
+            window.location.href = "/Home/Query?q=" + '@ViewBag.Query'+ "&categoryId=" + @ViewBag.categoryId + "&page=" + @ViewBag.page + "&PageSize=" + size + "";
+
+        });
+        
+        $(document).ready(function () {
+            $("#productSize option[value='" +@ViewBag.PageSize+"']").prop('selected', true);
+            // you need to specify id of combo to set right combo, if more than one combo
+        });
+
+
+    </script>
+    }

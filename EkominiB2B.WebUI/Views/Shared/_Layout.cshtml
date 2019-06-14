@@ -69,7 +69,7 @@
             </div><!-- End .header-top -->
             <div class="header-middle">
                 <div class="container">
-                    @await Component.InvokeAsync("SearchBar")
+                    @await Component.InvokeAsync("SearchBar", ViewBag.categoryId==null?0:(int)ViewBag.categoryId)
                     <div class="header-center">
                         <a href="/" class="logo">
                             <img src="/porto/images/logo.png" alt="Porto Logo">
