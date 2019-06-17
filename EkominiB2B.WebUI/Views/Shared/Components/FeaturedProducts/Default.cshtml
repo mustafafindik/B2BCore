@@ -26,7 +26,7 @@
                             <span class="product-price"> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price)  ₺ </span>
                         </div><!-- End .price-box -->
                         <div class="product-grid-action">
-                            <a href="product.html" class="paction add-cart" title="Add to Cart">
+                            <a  asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@item.Id" class="paction add-cart" title="Add to Cart">
                                 <span>Sepete ekle</span>
                             </a>
                         </div><!-- End .product-grid-action -->

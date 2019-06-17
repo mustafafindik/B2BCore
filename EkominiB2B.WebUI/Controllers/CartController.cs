@@ -25,7 +25,7 @@ namespace EkominiB2B.WebUI.Controllers
             _productService = productService;
         }
 
-        public ActionResult AddToCart(int productId,int quantity)
+        public ActionResult AddToCart(int productId,int quantity=1)
         {
             var productToBeAdded = _productService.Get(productId);
 

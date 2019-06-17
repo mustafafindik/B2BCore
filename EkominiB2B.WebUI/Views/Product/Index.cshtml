@@ -75,7 +75,7 @@
                                         <span class="product-price" style="@(item.DiscountRatio <=0 ?" margin-left: 0px !important;":"")"> @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Price - (item.Price * Convert.ToDouble(item.DiscountRatio)))  ₺</span>
                                     </div><!-- End .price-box -->
                                     <div class="product-grid-action">
-                                        <a href="/" class="paction add-cart" title="Add to Cart">
+                                        <a  asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@item.Id" class="paction add-cart" title="Add to Cart">
                                             <span>Sepete ekle</span>
                                         </a>
                                     </div><!-- End .product-grid-action -->
