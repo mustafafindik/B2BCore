@@ -8,6 +8,7 @@ using EkominiB2B.Business.Concrete;
 using EkominiB2B.DataAccess.Abstract;
 using EkominiB2B.DataAccess.Concrete.EntityFramework;
 using EkominiB2B.Services;
+using EkominiB2B.WebUI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -59,12 +60,18 @@ namespace EkominiB2B.WebUI
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddSingleton<ICartSessionService, CartSessionService>();
+            services.AddScoped<ICartService, CartService>();
+
 
             services.AddTransient<ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("EkominiB2B.WebUI")));
 
-
+           
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddSession();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddDistributedMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,6 +91,7 @@ namespace EkominiB2B.WebUI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
 
             var supportedCultures = new List<CultureInfo>
                         {

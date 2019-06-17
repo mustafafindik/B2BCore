@@ -44,15 +44,17 @@
                         <div class="product-desc">
                             <p>@(String.IsNullOrEmpty(Model.ShortDescription) ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis nulla odio. Mauris ligula leo, rutrum sit amet diam id, mollis mattis ex. Nam non erat nibh." : Model.ShortDescription)</p>
                         </div><!-- End .product-desc -->
-
-                        <div class="product-action">
-                            <div class="product-single-qty">
-                                <input class="horizontal-quantity form-control" type="text">
-                            </div><!-- End .product-single-qty -->
-                            <a href="cart.html" class="paction add-cart" title="Add to Cart">
-                                <span>Sepete Ekle</span>
-                            </a>
-                        </div><!-- End .product-action -->
+                        <form asp-controller="Cart" asp-action="AddToCart">
+                            <div class="product-action">
+                                <div class="product-single-qty">
+                                    <input class="horizontal-quantity form-control" type="text" name="quantity">
+                                    <input  type="hidden" name="productId" value="@Model.Id">
+                                </div><!-- End .product-single-qty -->
+                                <button type="submit" class="paction add-cart" title="Add to Cart">
+                                    <span>Sepete Ekle</span>
+                                </button>
+                            </div><!-- End .product-action -->
+                        </form>
                     </div><!-- End .product-single-details -->
                 </div><!-- End .col-md-6 -->
             </div><!-- End .row -->

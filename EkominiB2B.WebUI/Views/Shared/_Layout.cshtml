@@ -80,62 +80,8 @@
                             <span>Bizi Arayın..</span>
                             <a href="tel:#"><strong>+90 (216) 366 68 00</strong></a>
                         </div><!-- End .header-contact -->
-                        <div class="dropdown cart-dropdown">
-                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                                <span class="cart-count">2</span>
-                            </a>
-                            <div class="dropdown-menu">
-                                <div class="dropdownmenu-wrapper">
-                                    <div class="dropdown-cart-header">
-                                        <span>2 Ürün</span>
-                                        <a href="cart.html">Sepet</a>
-                                    </div><!-- End .dropdown-cart-header -->
-                                    <div class="dropdown-cart-products">
-                                        <div class="product">
-                                            <div class="product-details">
-                                                <h4 class="product-title">
-                                                    <a href="product.html">Woman Ring</a>
-                                                </h4>
-                                                <span class="cart-product-info">
-                                                    <span class="cart-product-qty">1</span>
-                                                    x $99.00
-                                                </span>
-                                            </div><!-- End .product-details -->
-                                            <figure class="product-image-container">
-                                                <a href="product.html" class="product-image">
-                                                    <img src="/porto/images/products/cart/product-1.jpg" alt="product">
-                                                </a>
-                                                <a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
-                                            </figure>
-                                        </div><!-- End .product -->
-                                        <div class="product">
-                                            <div class="product-details">
-                                                <h4 class="product-title">
-                                                    <a href="product.html">Woman Necklace</a>
-                                                </h4>
-                                                <span class="cart-product-info">
-                                                    <span class="cart-product-qty">1</span>
-                                                    x $35.00
-                                                </span>
-                                            </div><!-- End .product-details -->
-                                            <figure class="product-image-container">
-                                                <a href="product.html" class="product-image">
-                                                    <img src="/porto/images/products/cart/product-2.jpg" alt="product">
-                                                </a>
-                                                <a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
-                                            </figure>
-                                        </div><!-- End .product -->
-                                    </div><!-- End .cart-product -->
-                                    <div class="dropdown-cart-total">
-                                        <span>Toplam </span>
-                                        <span class="cart-total-price">$134.00</span>
-                                    </div><!-- End .dropdown-cart-total -->
-                                    <div class="dropdown-cart-action">
-                                        <a href="checkout-shipping.html" class="btn btn-block">Ödeme</a>
-                                    </div><!-- End .dropdown-cart-total -->
-                                </div><!-- End .dropdownmenu-wrapper -->
-                            </div><!-- End .dropdown-menu -->
-                        </div><!-- End .dropdown -->
+
+                        @await Component.InvokeAsync("CartSummary")
                     </div><!-- End .header-right -->
                 </div><!-- End .container -->
             </div><!-- End .header-middle -->
@@ -210,8 +156,8 @@
                         </div><!-- End .col-lg-8 -->
                         <div class="col-lg-4">
                             <div class="widget widget-newsletter">
-                                <h4 class="widget-title">Buraya Bir Başlık Gelsin</h4>
-                                <p>Get all the latest information on Events,Sales and Offers. Sign up for newsletter today</p>
+                                <h4 class="widget-title">Orderbox </h4>
+                                <p>7 Gün 24 Saat Sipariş verebilirsiniz..</p>
                            
                             </div><!-- End .widget -->
                         </div><!-- End .col-lg-4 -->

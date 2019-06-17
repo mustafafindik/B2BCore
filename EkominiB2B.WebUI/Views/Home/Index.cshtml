@@ -1,29 +1,35 @@
 ﻿@{
     ViewData["Title"] = "Anasayfa";
 }
+
+<style>
+.feature-box p {
+       
+         max-width: none !important;
+    }
+
+</style>
 <main class="main">
     <div class="home-slider-container">
         <div class="home-slider owl-carousel">
             <div class="home-slide">
-                <div class="slide-bg owl-lazy" data-src="/porto/images/slider/slide-1.jpg"></div><!-- End .slide-bg -->
+                <div class="slide-bg owl-lazy" data-src="/images/slider/slider1.png"></div><!-- End .slide-bg -->
                 <div class="home-slide-content container">
                     <div class="row">
                         <div class="col-md-6 offset-md-6 col-lg-5 offset-lg-7">
-                            <h4>Premium</h4>
-                            <h1>Headphones</h1>
-                            <h3>Only <strong>199 USD</strong></h3>
-                            <a href="category.html" class="btn btn-primary">Shop Now</a>
+                            <h4>İnanılmaz</h4>
+                            <h1 style="font-size:50px">Ürünler</h1>
+                            <h3><strong>2 ₺</strong> 'den Başyalan Fiyatlarla</h3>
+                            <a href="category.html" class="btn btn-primary">Alışverişe Başla</a>
                         </div><!-- End .col-lg-5 -->
                     </div><!-- End .row -->
                 </div><!-- End .home-slide-content -->
             </div><!-- End .home-slide -->
             <div class="home-slide">
-                <div class="slide-bg owl-lazy" data-src="/porto/images/slider/slide-2.jpg"></div><!-- End .slide-bg -->
-                <div class="home-slide-content container">
-                    <h4>Amazing</h4>
-                    <h1>Micro Drones</h1>
-                    <h3>Only <strong>399 USD</strong></h3>
-                    <a href="category.html" class="btn btn-primary">Shop Now</a>
+                <div class="slide-bg owl-lazy" data-src="/images/slider/slider2.png"></div><!-- End .slide-bg -->
+                <div class="home-slide-content container">                   
+                    <h1 style="font-size:40px">Ürünlerimizi Gördünüz mü! </h1>
+                    <a  asp-controller="Product" asp-action="Index" class="btn btn-warning">Git</a>
                 </div><!-- End .home-slide-content -->
             </div><!-- End .home-slide -->
         </div><!-- End .home-slider -->
@@ -33,22 +39,22 @@
             <div class="info-box">
                 <i class="icon-shipping"></i>
                 <div class="info-box-content">
-                    <h4>FREE SHIPPING & RETURN</h4>
-                    <p>Free shipping on all orders over $99.</p>
+                    <h4>ÜCRETSİZ KARGO VE İADE</h4>
+                    <p>Tüm Siparişlerinizde ücretsiz kargo</p>
                 </div><!-- End .info-box-content -->
             </div><!-- End .info-box -->
             <div class="info-box">
                 <i class="icon-us-dollar"></i>
                 <div class="info-box-content">
-                    <h4>MONEY BACK GUARANTEE</h4>
-                    <p>100% money back guarantee</p>
+                    <h4>PARA İADE GARANTİSİ</h4>
+                    <p>%100 Para iade garantisi</p>
                 </div><!-- End .info-box-content -->
             </div><!-- End .info-box -->
             <div class="info-box">
                 <i class="icon-support"></i>
                 <div class="info-box-content">
-                    <h4>ONLINE SUPPORT 24/7</h4>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <h4>24/7 Online destek</h4>
+                    <p>7 gün 24 saat bize ulaşabilir ve destek alabilirsiniz</p>
                 </div><!-- End .info-box-content -->
             </div><!-- End .info-box -->
         </div><!-- End .container -->
@@ -75,45 +81,35 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="feature-box">
                     <i class="icon-star"></i>
                     <div class="feature-box-content">
-                        <h3>Dedicated Service</h3>
-                        <p>Consult our specialists for help with an order, customization, or design advice</p>
-                        <a href="#" class="btn btn-sm btn-outline-dark">Get in touch</a>
+                        <h3>Özenli Hizmet </h3>
+                        <p>Sipariş,Öneri ve Sorunlarınız konusunda yardım için uzmanlarımıza danışın.</p>
+                        <a asp-controller="Home" asp-action="Contact" class="btn btn-sm btn-outline-dark">İletişime geçin</a>
                     </div><!-- End .feature-box-content -->
                 </div><!-- End .feature-box -->
             </div><!-- End .col-md-4 -->
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="feature-box">
                     <i class="icon-reply"></i>
                     <div class="feature-box-content">
-                        <h3>Free returns</h3>
-                        <p>We stand behind our goods and services and want you to be satisfied with them.</p>
-                        <a href="#" class="btn btn-sm btn-outline-dark">Return Policy</a>
+                        <h3>Ücretsiz iade</h3>
+                        <p>Mal ve hizmetlerimizin arkasında duruyoruz ve onlardan memnun olmanızı istiyoruz.</p>
+                        <a asp-controller="Home" asp-action="ReturnPolicy"class="btn btn-sm btn-outline-dark">İade Politikası</a>
                     </div><!-- End .feature-box-content -->
                 </div><!-- End .feature-box -->
-            </div><!-- End .col-md-4 -->
-            <div class="col-md-4">
-                <div class="feature-box">
-                    <i class="icon-paper-plane"></i>
-                    <div class="feature-box-content">
-                        <h3>international shipping</h3>
-                        <p>Currently over 50 countries qualify for express international shipping.</p>
-                        <a href="#" class="btn btn-sm btn-outline-dark">Learn More</a>
-                    </div><!-- End .feature-box-content -->
-                </div><!-- End .feature-box -->
-            </div><!-- End .col-md-4 -->
+            </div><!-- End .col-md-4 -->    
         </div><!-- End .row -->
     </div><!-- End .container -->
     <div class="mb-1"></div><!-- margin -->
-    <div class="promo-section" style="background-image: url(/porto/images/promo-bg.jpg)">
+    <div class="promo-section" style="background-image:none"> @*url(/images/slider/ss.png)*@
         <div class="container">
-            <h3>the perfect gift</h3>
-            <h4>Check off your list with our best gifts</h4>
-            <a href="#" class="btn btn-primary">Shop Now</a>
+            <h3>Alışveriş Zamanı</h3>
+            <h4>Şimdi Alışveriş yapmanın tam zamanı</h4>
+            <a href="#" class="btn btn-primary"> Ürünler </a>
         </div><!-- End .container -->
     </div><!-- End .promo-section -->
     <div class="partners-container">

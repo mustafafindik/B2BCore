@@ -1,0 +1,54 @@
+﻿@model Cart
+
+<div class="dropdown cart-dropdown">
+    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+        <span class="cart-count">@Model.CartLines.Count()</span>
+    </a>
+    <div class="dropdown-menu">
+        <div class="dropdownmenu-wrapper">
+            <div class="dropdown-cart-header">
+                <span>@Model.CartLines.Count() Ürün</span>
+                <a asp-controller="Cart">Sepet</a>
+            </div><!-- End .dropdown-cart-header -->
+
+            @if (@Model.CartLines.Count() > 0)
+            {
+                <div class="dropdown-cart-products">
+                    @foreach (var item in Model.CartLines)
+                    {
+                        <div class="product">
+                            <div class="product-details">
+                                <h2 class="product-title" style="font-size:10px !important;">
+                                    <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.Id"> @item.Product.ProductName</a>
+                                </h2>
+                                <span class="cart-product-info">
+                                    <span class="cart-product-qty">@item.Quantity</span>
+                                    x @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Product.Price - (item.Product.Price * item.Product.DiscountRatio))  ₺
+                                </span>
+                            </div><!-- End .product-details -->
+                            <figure class="product-image-container">
+                                <a href="product.html" class="product-image">
+                                    <img src="@item.Product.Image" alt="product">
+                                </a>
+                                <a asp-controller="Cart" asp-action="Remove" asp-route-productId="@item.Product.Id" class="btn-remove" title="Ürünü Sil"><i class="icon-cancel"></i></a>
+                            </figure>
+                        </div><!-- End .product -->
+                    }
+
+
+                </div><!-- End .cart-product -->
+                <div class="dropdown-cart-total">
+                    <span>Toplam </span>
+                    <span class="cart-total-price">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", Model.Total)  ₺ </span>
+                </div><!-- End .dropdown-cart-total -->
+                <div class="dropdown-cart-action">
+                    <a href="checkout-shipping.html" class="btn btn-block">Ödeme</a>
+                </div><!-- End .dropdown-cart-total -->
+            }
+            <p style="margin:10px;">
+                Sepetiniz Boş
+            </p>
+
+        </div><!-- End .dropdownmenu-wrapper -->
+    </div><!-- End .dropdown-menu -->
+</div><!-- End .dropdown -->
