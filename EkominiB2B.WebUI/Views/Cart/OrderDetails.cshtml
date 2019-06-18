@@ -1,0 +1,145 @@
+﻿@model Cart
+@{
+    ViewData["Title"] = "Sepetim";
+}
+<style>
+    .btn-delete {
+        font-weight: 700;
+        color: #919191 !important;
+        padding: 5px 9px;
+        display: inline-block;
+        margin-top: 5px;
+        background-color: #e2e2e2;
+        border-radius: 3px;
+    }
+
+    .empty-Cart {
+        margin-top: 80px;
+        margin-bottom: 100px;
+    }
+</style>
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-1">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+    @if (Model.CartLines.Count > 0)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="cart-table-container cart-summary">
+                        <table class="table table-cart">
+                            <thead>
+                                <tr>
+                                    <th class="product-col">Ürün</th>
+                                    <th class="price-col">Fiyat</th>
+                                    <th class="qty-col">Adet</th>
+                                    <th>Tutar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.CartLines)
+                                {
+                                    <tr class="product-row">
+                                        <td class="product-col">
+                                            <figure class="product-image-container" style="flex:none;">
+                                                <a href="product.html" class="product-image img-responsive img-thumbnail img-rounded" style="max-width:80px;">
+                                                    <img src="@item.Product.Image" alt="product">
+                                                </a>
+                                            </figure>
+                                            <h2 class="product-title" style="font-size:12px;font-weight:600">
+                                                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.Id" style="display:block;">@item.Product.ProductName</a>
+                                                <a asp-controller="Cart" asp-action="Remove" asp-route-productId="@item.Product.Id" title="Remove product" class="btn-delete"><span>Sil</span></a>
+                                            </h2>
+
+
+                                        </td>
+                                        <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Product.Price - (item.Product.Price * Convert.ToDouble(item.Product.DiscountRatio)))  ₺</td>
+                                        <td>
+                                            <input class="vertical-quantity form-control" type="text" id="quantity" name="quantity" data-id="@item.Product.Id" value="@item.Quantity">
+                                        </td>
+                                        <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", (item.Product.Price - (item.Product.Price * Convert.ToDouble(item.Product.DiscountRatio))) * item.Quantity)  ₺</td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4" class="clearfix">
+                                        <div class="float-left">
+                                            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary">Alışverişe Devam et</a>
+                                        </div><!-- End .float-left -->
+                                        <div class="float-right">
+                                            <a asp-controller="Cart" asp-action="RemoveCart" class="btn btn-outline-secondary btn-clear-cart">Sepeti Temizle</a>
+                                        </div><!-- End .float-right -->
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div><!-- End .cart-table-container -->
+                </div><!-- End .col-lg-8 -->
+                <div class="col-lg-3">
+                    <div class="cart-summary">
+                        <h3 style="color:#7aa93c;font-weight:500">Sipariş Özeti</h3>
+                        <table class="table table-totals">
+                            <tbody>
+                                <tr>
+                                    <td>Ödenecek Tutar</td>
+                                    <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", Model.Total)  ₺ </td>
+                                </tr>
+                                <tr>
+                                    <td>Kargo</td>
+                                    <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", 0)  ₺ </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Sipariş Toplamı</td>
+                                    <td><span style="font-size:1.9rem;font-weight:600;">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", Model.Total)  ₺</span> </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="checkout-methods">
+                            <a asp-controller="Cart" asp-action="Checkout" class="btn btn-block btn-sm btn-primary">Alışverişi Tamamla</a>
+                        </div><!-- End .checkout-methods -->
+                    </div><!-- End .cart-summary -->
+                </div><!-- End .col-lg-4 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    }
+    else
+    {
+        <section class="empty-Cart">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <div class="col-sm-12 text-center">
+                            <h3 style="font-size:20px" class="text-center ">Sepetiniz şuan boş.</h3>
+                            <p> Hemen Sepetinize Ürün ekleyerek Sipariş verebilirsiniz. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    <div class="mb-6"></div><!-- margin -->
+</main><!-- End .main -->
+
+
+@section scripts {
+    <script>
+        $("input[name='quantity']").change(function () {
+            var quantity = $(this).val();
+            var productId = $(this).attr("data-id");
+            window.location.href = "/Cart/AddToCart?productId=" + productId + "&quantityUp=" + quantity +"";
+    });
+
+    </script>
+}
+

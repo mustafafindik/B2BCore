@@ -8,8 +8,9 @@ namespace EkominiB2B.Business.Abstract
 {
     public interface ICartService
     {
-        void AddToCart(Cart cart, Product product, int quantity);
+        void AddToCart(Cart cart, Product product, int quantity, int quantityUp);
         void RemoveFromCart(Cart cart, int productId);
+        void RemoveCart(Cart cart);
         List<CartLine> List(Cart cart);
     }
 }

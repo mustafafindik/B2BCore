@@ -25,21 +25,21 @@ namespace EkominiB2B.WebUI.Controllers
             _productService = productService;
         }
 
-        public ActionResult AddToCart(int productId,int quantity=1)
+        public ActionResult AddToCart(int productId, int quantity = 1, int quantityUp = 0, string currentContreller = "Cart", string currentAction = "OrderDetails")
         {
             var productToBeAdded = _productService.Get(productId);
 
             var cart = _cartSessionService.GetCart();
 
-            _cartService.AddToCart(cart, productToBeAdded,quantity);
+            _cartService.AddToCart(cart, productToBeAdded, quantity, quantityUp);
 
             _cartSessionService.SetCart(cart);
 
 
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction(currentAction, currentContreller);
         }
 
-        public ActionResult List()
+        public ActionResult OrderDetails()
         {
             var cart = _cartSessionService.GetCart();
             Cart newCard = new Cart();
@@ -47,15 +47,22 @@ namespace EkominiB2B.WebUI.Controllers
             return View(newCard);
         }
 
-        public ActionResult Remove(int productId)
+        public ActionResult Remove(int productId, string currentContreller = "Cart", string currentAction = "OrderDetails")
         {
             var cart = _cartSessionService.GetCart();
             _cartService.RemoveFromCart(cart, productId);
             _cartSessionService.SetCart(cart);
 
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction(currentAction, currentContreller);
         }
 
+        public ActionResult RemoveCart()
+        {
+            var cart = _cartSessionService.GetCart();
+            _cartService.RemoveCart(cart);
+            _cartSessionService.SetCart(cart);
+            return RedirectToAction("OrderDetails", "Cart");
+        }
 
     }
 }
