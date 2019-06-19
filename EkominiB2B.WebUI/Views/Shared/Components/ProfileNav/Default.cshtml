@@ -1,0 +1,118 @@
+﻿@model ApplicationUser
+<style>
+    .m-nav__item-active {
+        background-color: #f8f8fb !important;
+    }
+
+        .m-nav__item-active i {
+            color: #5867dd !important;
+        }
+
+        .m-nav__item-active span {
+            color: #5867dd !important;
+        }
+</style>
+<div class="col-xl-3 col-lg-4 m--margin-bottom-10-mobile">
+    <div class="m-portlet m-portlet--full-height  ">
+        <div class="m-portlet__body">
+            <div class="m-card-profile">
+                <div class="m-card-profile__title m--hide">
+                    Profilim
+                </div>
+                <div class="m-card-profile__pic">
+                    <div class="m-card-profile__pic-wrapper">
+                        @if (Model.UserImage != null)
+                        {
+                            <img src="~/UserImages/@Model.UserImage" style="object-fit:cover;width:130px;height:130px;" alt="" />
+                        }
+                        else
+                        {
+                            <img src="~/img/default.png" style="object-fit:cover;width:130px;height:130px;" alt="" />
+                        }
+
+
+                    </div>
+                </div>
+                <div class="m-card-profile__details">
+                    @if (Model.Name == null)
+                    {
+                        <span class="m-card-profile__name"> @Model.UserName </span>
+                    }
+                    else
+                    {
+                        <span class="m-card-profile__name">  @Model.Name @Model.Surname </span>
+                    }
+
+                    <a href="" class="m-card-profile__email m-link">
+                        @Model.Email
+                    </a>
+                </div>
+            </div>
+            <ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
+                <li class="m-nav__separator m-nav__separator--fit"></li>
+                <li class="m-nav__section m--hide">
+                    <span class="m-nav__section-text">
+                        Navigasyon
+                    </span>
+                </li>
+                <li class="m-nav__item
+                    @(ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant() == "index" ? "m-nav__item-active" : string.Empty)">
+                    <a asp-controller="Manage" asp-action="Index" class="m-nav__link">
+                        <i class="m-nav__link-icon flaticon-profile-1"></i>
+                        <span class="m-nav__link-title">
+                            <span class="m-nav__link-wrap">
+                                <span class="m-nav__link-text">
+                                    Profilim
+                                </span>
+
+                            </span>
+                        </span>
+                    </a>
+                </li>
+                <li class="m-nav__item  @(ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant() == "editprofile" ? "m-nav__item-active" : string.Empty)">
+                    <a asp-controller="Manage" asp-action="EditProfile" class="m-nav__link">
+                        <i class="m-nav__link-icon flaticon-user-settings"></i>
+                        <span class="m-nav__link-text">
+                            Profil Düzenle
+                        </span>
+                    </a>
+                </li>
+                <li class="m-nav__item @(ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant() == "changepassword" ? "m-nav__item-active" : string.Empty)">
+                    <a asp-controller="Manage" asp-action="ChangePassword" class="m-nav__link">
+                        <i class="m-nav__link-icon flaticon-time-3"></i>
+                        <span class="m-nav__link-text">
+                            Şifre Değiştir
+                        </span>
+                    </a>
+                </li>
+
+                <li class="m-nav__item">
+                    <a asp-controller="Message" asp-action="Index" class="m-nav__link">
+                        <i class="m-nav__link-icon flaticon-chat-1"></i>
+                        <span class="m-nav__link-title">
+                            <span class="m-nav__link-wrap">
+                                <span class="m-nav__link-text">
+                                    Mesajlar
+                                </span>
+                                <span class="m-nav__link-badge">
+                                    <span class="m-badge m-badge--success">
+                                        2
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <li class="m-nav__item">
+                    <a asp-controller="Home" asp-action="faq" class="m-nav__link">
+                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                        <span class="m-nav__link-text">
+                            Yardım
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+﻿@model ApplicationUser
+@{
+    Layout = "_LayoutUser";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="row">
+            @await Component.InvokeAsync("ProfileNav")
+
+            <div class="col-xl-9 col-lg-7 m--margin-bottom-10-mobile" style="margin-top:-50px">
+                <div class="m-portlet m-portlet--creative m-portlet--bordered-semi">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h2 class="m-portlet__head-label m-portlet__head-label--primary">
+                                    <span>
+                                        Profilim
+                                    </span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+
+                        <div class="m-form m-form--fit m-form--label-align-right">
+                            <div class="m-portlet__body">
+                                <div class="form-group m-form__group row">
+                                    <div class="col-10 ml-auto">
+                                        <h3 class="m-form__section">
+                                            1. Kişisel Bigiler
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <label class="col-2 col-form-label">
+                                        İsim Soyisim
+                                    </label>
+                                    <div class="col-7">
+                                        <input disabled class="form-control m-input" type="text" value="@Model.Name @Model.Surname">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <label for="example-text-input" class="col-2 col-form-label">
+                                        Mail Adresi
+                                    </label>
+                                    <div class="col-7">
+                                        <input disabled class="form-control m-input" type="text" value="@Model.Email">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <label class="col-2 col-form-label "> Mail Dogrulandı mı? </label>
+                                    <label class="m-checkbox m-checkbox--disabled m--margin-top-5 m--margin-left-15">
+                                        <input type="checkbox" checked @(Model.EmailConfirmed == true ? "checked" : String.Empty) disabled="">
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <label for="example-text-input" class="col-2 col-form-label">
+                                        Telefon Numarası
+                                    </label>
+                                    <div class="col-7">
+                                        <input disabled class="form-control m-input" type="text" value="@Model.PhoneNumber">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <label for="example-text-input" class="col-2 col-form-label "> Telefon Dogrulandı mı? </label>
+                                    <label class="m-checkbox m-checkbox--disabled m--margin-top-5 m--margin-left-15">
+                                        <input @(Model.PhoneNumberConfirmed == true ? "checked" : String.Empty) type="checkbox" disabled="">
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-10 ml-auto">
+                                        <h3 class="m-form__section">
+                                            2. Sosyal Meyda
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <label for="example-text-input" class="col-2 col-form-label">
+                                        Linkedin
+                                    </label>
+                                    <div class="col-7">
+                                        <input disabled class="form-control m-input" type="text" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <label for="example-text-input" class="col-2 col-form-label">
+                                        Twitter
+                                    </label>
+                                    <div class="col-7">
+                                        <input disabled class="form-control m-input" type="text" value="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@section scripts {
+
+}
