@@ -45,13 +45,13 @@
                                         if (User.Identity.Name == null || User.Identity.Name == "")
                                         {
 
-                                            <li><a href="/Account/Login">GİRİŞ YAP</a></li>
-                                            <li><a href="/Account/Register"> KAYIT OL</a></li>
+                                            <li><a asp-controller="Account" asp-action="Login">GİRİŞ YAP</a></li>
+                                            <li><a asp-controller="Account" asp-action="Register"> KAYIT OL</a></li>
 
                                         }
                                         else
                                         {
-                                            <li><a href="@Url.Action("Index", "Manage")"> HESABIM </a></li>
+                                            <li><a asp-controller="Manage" asp-action="Index"> HESABIM </a></li>
                                             <li><a href="/Supplier"> TEDARİKÇİ PANELİ </a></li>
                                             <li><a href="/Admin"> ADMİN PANELİ </a></li>
                                             <li><a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit();"> ÇIKIŞ YAP</a></li>

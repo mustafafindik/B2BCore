@@ -7,12 +7,14 @@ using EkominiB2B.Business.Abstract;
 using EkominiB2B.Business.Concrete;
 using EkominiB2B.DataAccess.Abstract;
 using EkominiB2B.DataAccess.Concrete.EntityFramework;
+using EkominiB2B.Entities.Concrete;
 using EkominiB2B.Services;
 using EkominiB2B.WebUI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -63,11 +65,16 @@ namespace EkominiB2B.WebUI
             services.AddSingleton<ICartSessionService, CartSessionService>();
             services.AddScoped<ICartService, CartService>();
 
-
             services.AddTransient<ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("EkominiB2B.WebUI")));
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            {
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
-           
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSession(opts =>
             {
@@ -95,6 +102,7 @@ namespace EkominiB2B.WebUI
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
+            app.UseAuthentication();
 
             var supportedCultures = new List<CultureInfo>
                         {
@@ -126,6 +134,7 @@ namespace EkominiB2B.WebUI
             });
 
             ApplicationDbContextSeed.Seed(app); // Test verileri oluşturmak için kullanılır.
+            ApplicationDbContextSeed.CreateRootAdmin(app.ApplicationServices, Configuration, app).Wait(); // User yaratmak için kullanılır
         }
     }
 }

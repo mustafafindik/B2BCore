@@ -1,4 +1,5 @@
 ﻿using EkominiB2B.Entities;
+using EkominiB2B.Entities.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -154,71 +155,53 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
             }
 
         }
-        //public static async Task CreateRootAdmin(IServiceProvider serviceProvider, IConfiguration configuration, IApplicationBuilder app)
-        //{
-        //    var context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
+        public static async Task CreateRootAdmin(IServiceProvider serviceProvider, IConfiguration configuration, IApplicationBuilder app)
+        {
+            var context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
 
-        //    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-        //    var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
 
-        //    var username = configuration["Data:RootUser:username"];
-        //    var email = configuration["Data:RootUser:email"];
-        //    var password = configuration["Data:RootUser:password"];
-        //    var role = configuration["Data:RootUser:role"];
+            var username = configuration["Data:RootUser:username"];
+            var email = configuration["Data:RootUser:email"];
+            var password = configuration["Data:RootUser:password"];
+            var role = configuration["Data:RootUser:role"];
 
-        //    if (!context.RoleGroups.Any())
-        //    {
-        //        var RolesGroup = new[]
-        //    {
-        //            new RoleGroup(){RoleName="Admin" },
-        //            new RoleGroup(){RoleName="User" },
+         
+            if (await userManager.FindByNameAsync(username) == null)
+            {
+                if (await roleManager.FindByNameAsync(role) == null)
+                {
+                    ApplicationRole adminrole = new ApplicationRole()
+                    {
+                        Name = role
+                    };
+                    await roleManager.CreateAsync(adminrole);
+                }
 
-        //        };
-        //        context.RoleGroups.AddRange(RolesGroup);
-        //        context.SaveChanges();
-        //    }
+                ApplicationUser user = new ApplicationUser()
+                {
+                    UserName = username,
+                    Email = email,
+                    Name = "Mustafa",
+                    Surname = "Fındık",
+                };
 
-        //    if (await userManager.FindByNameAsync(username) == null)
-        //    {
-        //        if (await roleManager.FindByNameAsync(role) == null)
-        //        {
-        //            ApplicationRole adminrole = new ApplicationRole()
-        //            {
-        //                Name = role
-        //            };
-        //            await roleManager.CreateAsync(adminrole);
-        //        }
+                IdentityResult result = await userManager.CreateAsync(user, password);
 
-        //        ApplicationUser user = new ApplicationUser()
-        //        {
-        //            UserName = username,
-        //            Email = email,
-        //            Name = "Mustafa",
-        //            Surname = "Fındık",
-        //            RoleGroupId = 1
+                if (result.Succeeded)
+                {
+                    var x = await userManager.AddToRoleAsync(user, role);
+                    
+                }
+
+            }
+
+        }
 
 
-        //        };
 
-        //        IdentityResult result = await userManager.CreateAsync(user, password);
 
-        //        if (result.Succeeded)
-        //        {
-        //            var x = await userManager.AddToRoleAsync(user, role);
-        //            if (x.Succeeded)
-        //            {
-        //                RoleGroupRole roleGroup = new RoleGroupRole();
-        //                roleGroup.RoleGroupId = 1;
-        //                roleGroup.ApplicationRoleId = context.Roles.Where(d => d.Name == role).Select(d => d.Id).FirstOrDefault();
-        //                context.Add(roleGroup);
-        //                context.SaveChanges();
-        //            }
-
-        //        }
-
-        //    }
-
-        //}
 
     }
 }
