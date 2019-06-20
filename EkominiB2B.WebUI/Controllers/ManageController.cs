@@ -29,6 +29,16 @@ namespace EkominiB2B.WebUI.Controllers
             return View(user);
         }
 
+        public async Task<IActionResult> MyAdresses()
+        {           
+            return View();
+        }
+
+        public async Task<IActionResult> MyOrders()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> EditProfile()
         {
             var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);

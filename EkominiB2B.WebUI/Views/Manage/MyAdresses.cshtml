@@ -1,0 +1,101 @@
+﻿@model ApplicationUser
+@{
+    Layout = "_LayoutUser";
+    ViewData["Title"] = "Adreslerim";
+}
+<style>
+    .m-option .m-option__label .m-option__head .m-option__title {
+        width: auto !important;
+        font-weight: 500;
+    }
+
+    .m-option .m-option__label .m-option__head .m-option__focus {
+        font-size: 0.8rem;
+        font-weight: 400;
+        float:right;
+        color:#509057
+    }
+
+    .m-option .m-option__label .m-option__body {
+        font-size: 1rem !important;
+    }
+</style>
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="row">
+            @await Component.InvokeAsync("ProfileNav")
+
+
+            <div class="col-xl-9 col-lg-7 m--margin-bottom-10-mobile" style="margin-top:-50px">
+                <div class="m-portlet m-portlet--creative m-portlet--bordered-semi">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h2 class="m-portlet__head-label m-portlet__head-label--focus">
+                                    <span>
+                                        Adreslerim
+                                    </span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!--begin::Form-->
+                        <div class="m-portlet__body">
+                            <div class="m-form__section m-form__section--first">
+                                <div class="form-group m-form__group">                                
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="m-option">
+
+                                                <div class="m-option__label">
+                                                    <span class="m-option__head">
+                                                        <span class="m-option__title">
+                                                            Cenasis Yazılım Hiz.
+                                                        </span>
+                                                        <span class="m-option__focus">
+                                                            Altıntepe Şubesi
+                                                        </span>
+                                                    </span>
+                                                    <span class="m-option__body">
+                                                        Altintepe Mah. Bagdat Cad Tipi Çıkmazı Sok A Block No:1/21
+                                                    </span>
+                                                    <span class="m-option__focus">
+                                                        Maltepe / İstanbul
+                                                    </span>
+                                                    <div class="m--margin-top-10">
+                                                        <button type="button" class="btn btn-outline-danger btn-sm">
+                                                            Sil
+                                                        </button>
+                                                        <button type="button" class="btn btn-outline-info btn-sm">
+                                                            Düzenle
+                                                        </button>
+                                                        <button type="button" class="pull-right btn btn-outline-primary btn-sm">
+                                                            Varsayılan yap
+                                                        </button>
+                                                    </div>
+                                                    
+                                                </div>
+                                               
+                                            </div>
+                                            
+                                        </div>                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>           
+                    <!--end::Form-->
+                </div>
+                <!--end::Portlet-->
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+@section scripts {
+
+}

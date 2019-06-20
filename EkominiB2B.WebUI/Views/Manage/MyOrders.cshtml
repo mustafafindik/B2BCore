@@ -1,0 +1,41 @@
+﻿@model ApplicationUser
+@{
+    Layout = "_LayoutUser";
+    ViewData["Title"] = "Siparişlerim";
+}
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <!-- END: Subheader -->
+    <div class="m-content">
+        <div class="row">
+            @await Component.InvokeAsync("ProfileNav")
+
+            <div class="col-xl-9 col-lg-7 m--margin-bottom-10-mobile" style="margin-top:-50px">
+                <div class="m-portlet m-portlet--creative m-portlet--bordered-semi">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h2 class="m-portlet__head-label m-portlet__head-label--primary">
+                                    <span>
+                                        Siparişlerim
+                                    </span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+
+                        Buraya Siparişler gelsin
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@section scripts {
+
+}

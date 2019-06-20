@@ -5,12 +5,16 @@
     }
 
         .m-nav__item-active i {
-            color: #5867dd !important;
+            color: #7eab42 !important;
         }
 
         .m-nav__item-active span {
-            color: #5867dd !important;
+            color: #7eab42 !important;
         }
+
+    .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-arrow, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-icon, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-text, .m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-arrow, .m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-icon, .m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-text {
+        color: #7eab42;
+    }
 </style>
 <div class="col-xl-3 col-lg-4 m--margin-bottom-10-mobile">
     <div class="m-portlet m-portlet--full-height  ">
@@ -27,7 +31,7 @@
                         }
                         else
                         {
-                            <img src="~/img/default.png" style="object-fit:cover;width:130px;height:130px;" alt="" />
+                            <img src="~/images/default.png" style="object-fit:cover;width:130px;height:130px;" alt="" />
                         }
 
 
@@ -74,6 +78,34 @@
                         <i class="m-nav__link-icon flaticon-user-settings"></i>
                         <span class="m-nav__link-text">
                             Profil Düzenle
+                        </span>
+                    </a>
+                </li>
+                <li class="m-nav__item
+                    @(ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant() == "myorders" ? "m-nav__item-active" : string.Empty)">
+                    <a asp-controller="Manage" asp-action="MyOrders" class="m-nav__link">
+                        <i class="m-nav__link-icon flaticon-cart"></i>
+                        <span class="m-nav__link-title">
+                            <span class="m-nav__link-wrap">
+                                <span class="m-nav__link-text">
+                                    Siparişlerim
+                                </span>
+
+                            </span>
+                        </span>
+                    </a>
+                </li>
+                <li class="m-nav__item
+                    @(ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant() == "myadresses" ? "m-nav__item-active" : string.Empty)">
+                    <a asp-controller="Manage" asp-action="MyAdresses" class="m-nav__link">
+                        <i class="m-nav__link-icon flaticon-map-location"></i>
+                        <span class="m-nav__link-title">
+                            <span class="m-nav__link-wrap">
+                                <span class="m-nav__link-text">
+                                    Adreslerim
+                                </span>
+
+                            </span>
                         </span>
                     </a>
                 </li>
