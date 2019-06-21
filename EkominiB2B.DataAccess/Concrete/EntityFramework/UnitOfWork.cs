@@ -15,6 +15,7 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
 
         private IProductRepository _products;
         private ICategoryRepository _categories;
+        private IAddressRepository _addresses;
 
         public IProductRepository Products
         {
@@ -32,6 +33,13 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
             }
         }
 
+        public IAddressRepository Addresses
+        {
+            get
+            {
+                return _addresses ?? (_addresses = new AddressRepositor(_context));
+            }
+        }
         public void Dispose()
         {
             _context.Dispose();

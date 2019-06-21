@@ -19,6 +19,7 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

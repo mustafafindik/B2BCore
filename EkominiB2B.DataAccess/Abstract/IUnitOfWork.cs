@@ -8,6 +8,7 @@ namespace EkominiB2B.DataAccess.Abstract
     {
         IProductRepository Products { get; }
         ICategoryRepository Categories { get; }
+        IAddressRepository Addresses { get; }
         int SaveChanges();
     }
 }

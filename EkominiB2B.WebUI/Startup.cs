@@ -66,6 +66,7 @@ namespace EkominiB2B.WebUI
             services.AddScoped<ICartService, CartService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IAddressService, AddressService>();
 
             services.AddTransient<ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("EkominiB2B.WebUI")));

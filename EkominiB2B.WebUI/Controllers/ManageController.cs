@@ -29,12 +29,12 @@ namespace EkominiB2B.WebUI.Controllers
             return View(user);
         }
 
-        public async Task<IActionResult> MyAdresses()
+        public IActionResult MyAdresses()
         {           
             return View();
         }
 
-        public async Task<IActionResult> MyOrders()
+        public IActionResult MyOrders()
         {
             return View();
         }
