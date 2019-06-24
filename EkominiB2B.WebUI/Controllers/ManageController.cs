@@ -14,13 +14,15 @@ namespace EkominiB2B.WebUI.Controllers
     public class ManageController : Controller
     {
         private readonly IUserService userService;
+        private readonly IAddressService addressService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        public ManageController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IUserService userService)
+        public ManageController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IUserService userService, IAddressService addressService)
         {
             _userManager = userManager;
             this.userService = userService;
             _signInManager = signInManager;
+            this.addressService = addressService;
         }
 
         public async Task<IActionResult> Index()
@@ -29,14 +31,86 @@ namespace EkominiB2B.WebUI.Controllers
             return View(user);
         }
 
-        public IActionResult MyAdresses()
-        {           
-            return View();
-        }
-
         public IActionResult MyOrders()
         {
             return View();
+        }
+
+        public async Task<IActionResult> MyAdresses()
+        {
+            var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
+            var result = addressService.GetByUserId(user.Id);
+            return View(result);
+        }
+
+        public IActionResult NewAddress()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> NewAddress(Address address)
+        {
+            var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
+            address.IsDefault = addressService.ThereIsDefault(user.Id) == true ? false : true ;
+            address.ApplicationUserId = user.Id;
+            address.CreatedAt = DateTime.Now;
+            address.CreatedBy = user.Email;
+            address.UpdatedAt = DateTime.Now;
+            address.UpdatedBy = user.Email;
+
+            if (ModelState.IsValid)
+            {
+                addressService.Add(address);
+                return RedirectToAction("MyAdresses");
+            }
+
+            return RedirectToAction("NewAddress");
+
+        }
+
+        public IActionResult EditAddress(int Id)
+        {           
+            return View(addressService.GetById(Id));
+        }
+
+        [HttpPost]
+        public IActionResult EditAddress(Address address)
+        {
+             address.UpdatedAt = DateTime.Now;
+            address.UpdatedBy = User.Identity.Name;
+
+            if (ModelState.IsValid)
+            {
+                addressService.Update(address);
+                return RedirectToAction("MyAdresses");
+            }
+
+            return RedirectToAction("EditAddress");
+
+        }
+
+        public IActionResult MakeDefault(int Id)
+        {
+            addressService.MakeDefault(Id);
+            return RedirectToAction("MyAdresses");
+        }
+
+        public JsonResult DeleteAdreess(int Id)
+        {           
+            var result = "";
+            try
+            {            
+                addressService.Delete(Id);            
+                result = "ok";
+
+            }
+            catch
+            {
+                result = "error";
+
+            }
+            return Json(result);
         }
 
         public async Task<IActionResult> EditProfile()

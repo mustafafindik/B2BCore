@@ -1,4 +1,4 @@
-﻿@model ApplicationUser
+﻿@model IEnumerable<Address>
 @{
     Layout = "_LayoutUser";
     ViewData["Title"] = "Adreslerim";
@@ -12,14 +12,16 @@
     .m-option .m-option__label .m-option__head .m-option__focus {
         font-size: 0.8rem;
         font-weight: 400;
-        float:right;
-        color:#509057
+        float: right;
+        color: #509057
     }
 
     .m-option .m-option__label .m-option__body {
         font-size: 1rem !important;
     }
 </style>
+<link href="~/assets/css/sweetalert.css" rel="stylesheet" />
+
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <!-- END: Subheader -->
     <div class="m-content">
@@ -39,85 +41,63 @@
                                 </h2>
                             </div>
                         </div>
-                        <button type="button" class="pull-right btn btn-outline-success btn-sm">
+                        <a asp-action="NewAddress" class="pull-right btn btn-outline-success btn-sm">
                             Yeni Ekle
-                        </button>
-                    </div>                  
+                        </a>
+                    </div>
                     <!--begin::Form-->
                     <div class="m-portlet__body">
                         <div class="m-form__section m-form__section--first">
                             <div class="form-group m-form__group">
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="m-option">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div id="address_@item.Id" class="col-lg-6 m--margin-top-20">
+                                            <div class="m-option" style="@(item.IsDefault==false?"border: 1px solid #cecece;":"border: 1px solid #9816f4")">
 
-                                            <div class="m-option__label">
-                                                <span class="m-option__head">
-                                                    <span class="m-option__title">
-                                                        Cenasis Yazılım Hiz.
+                                                <div class="m-option__label">
+                                                    <span class="m-option__head">
+                                                        <span class="m-option__title">
+                                                            @item.AddressName
+                                                        </span>
+                                                        <span class="m-option__focus">
+                                                            @item.Branch
+                                                        </span>
+                                                    </span>
+                                                    <span class="m-option__body">
+                                                        @item.AddressDefination
                                                     </span>
                                                     <span class="m-option__focus">
-                                                        Altıntepe Şubesi
+                                                        @item.District / @item.City @item.Country
                                                     </span>
-                                                </span>
-                                                <span class="m-option__body">
-                                                    Altintepe Mah. Bagdat Cad Tipi Çıkmazı Sok A Block No:1/21
-                                                </span>
-                                                <span class="m-option__focus">
-                                                    Maltepe / İstanbul
-                                                </span>
-                                                <div class="m--margin-top-10">
-                                                    <button type="button" class="btn btn-outline-danger btn-sm">
-                                                        Sil
-                                                    </button>
-                                                    <button type="button" class="btn btn-outline-info btn-sm">
-                                                        Düzenle
-                                                    </button>
-                                                    <button type="button" class="pull-right btn btn-outline-primary btn-sm">
-                                                        Varsayılan yap
-                                                    </button>
+                                                    <div class="m--margin-top-10">
+                                                        <a id="deleteAddress" data-id="@item.Id" class="btn btn-outline-danger btn-sm">
+                                                            Sil
+                                                        </a>
+                                                        <a asp-action="EditAddress" asp-route-Id="@item.Id" class="btn btn-outline-info btn-sm">
+                                                            Düzenle
+                                                        </a>
+                                                        @if (item.IsDefault == false)
+                                                        {
+                                                            <a asp-action="MakeDefault" asp-route-Id="@item.Id" class="pull-right btn btn-outline-primary btn-sm">
+                                                                Varsayılan yap
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+
+                                                        }
+
+                                                    </div>
+
                                                 </div>
 
                                             </div>
 
                                         </div>
+                                    }
 
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="m-option">
 
-                                            <div class="m-option__label">
-                                                <span class="m-option__head">
-                                                    <span class="m-option__title">
-                                                        Cenasis Yazılım Hiz.
-                                                    </span>
-                                                    <span class="m-option__focus">
-                                                        Altıntepe Şubesi
-                                                    </span>
-                                                </span>
-                                                <span class="m-option__body">
-                                                    Altintepe Mah. Bagdat Cad Tipi Çıkmazı Sok A Block No:1/21
-                                                </span>
-                                                <span class="m-option__focus">
-                                                    Maltepe / İstanbul
-                                                </span>
-                                                <div class="m--margin-top-10">
-                                                    <button type="button" class="btn btn-outline-danger btn-sm">
-                                                        Sil
-                                                    </button>
-                                                    <button type="button" class="btn btn-outline-info btn-sm">
-                                                        Düzenle
-                                                    </button>
-                                                    <button type="button" class="pull-right btn btn-outline-primary btn-sm">
-                                                        Varsayılan yap
-                                                    </button>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,4 +116,51 @@
 
 @section scripts {
 
+    <script src="~/assets/js/jquery.validate.min.js"></script>
+    <script src="~/assets/js/sweetalert.min.js"></script>
+    <script src="~/assets/js/ui-sweetalert.min.js"></script>
+    <script>
+
+        $(document).on("click", "#deleteAddress", function () {
+
+            var addressId = $(this).attr("data-id");
+            swal({
+                title: "Silmek İstediğinizden Emin Misiniz ? ",
+                text: "Eğer Onaylarsanız, Ürün Silinecektir!",
+                type: "error",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet, Sil',
+                closeOnConfirm: false,
+                cancelButtonText: 'Vazgeç',
+
+            },
+                function (isConfirm) {
+
+                    if (isConfirm) {
+                        $.ajax({
+                            type: "GET",
+                            url: "/Manage/DeleteAdreess",
+                            data: { Id: addressId },
+                            dataType: 'json',
+                            success: function (data) {
+                                console.log("Başarılı");
+                                if (data == "ok") {
+                                    $('#address_' + addressId + '').css("display", "none");
+                                    swal("Silindi !", "Ürün Başarıyla Silindi !", "success");
+                                } else {
+                                    swal("Silinemedi !", "Silinirken Bir Hata Oluştu !", "error");
+                                }
+
+                            }
+                        });
+
+
+                    }
+
+                });
+
+        });
+    </script>
 }

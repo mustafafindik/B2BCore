@@ -54,6 +54,33 @@ namespace EkominiB2B.Business.Concrete
             return addressRepository.Find(d => d.ApplicationUserId == UserId).ToList(); ;
         }
 
+        public void MakeDefault(int id)
+        {
+            var old = addressRepository.GetAll().Where(d => d.IsDefault == true).FirstOrDefault();          
+            if (old != null)
+            {
+                old.IsDefault = false;
+                addressRepository.Update(old);
+            }
+
+            var new_ = addressRepository.Get(id);
+            new_.IsDefault = true;
+            addressRepository.Update(new_);
+        }
+
+        public bool ThereIsDefault(string UserId)
+        {
+            var result = addressRepository.Find(d => d.ApplicationUserId == UserId).Where(d => d.IsDefault == true).Count();
+            if (result > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void Update(Address address)
         {
             addressRepository.Update(address);
