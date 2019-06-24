@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using EkominiB2B.Business.Abstract;
 using EkominiB2B.Entities.Concrete;
 using EkominiB2B.WebUI.Models.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EkominiB2B.WebUI.Controllers
 {
+    [Authorize]
     public class ManageController : Controller
     {
         private readonly IUserService userService;

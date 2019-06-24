@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EkominiB2B.WebUI.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

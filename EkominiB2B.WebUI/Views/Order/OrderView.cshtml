@@ -1,0 +1,148 @@
+﻿@model OrderViewModel
+@{
+    ViewData["Title"] = "Sipariş Özeti";
+}
+
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+    <div class="container">
+        <ul class="checkout-progress-bar">
+            <li class="active">
+                <span>Kargo</span>
+            </li>
+            <li>
+                <span> ödeme </span>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-lg-8">
+                <ul class="checkout-steps">
+                    <li>
+                        <h2 class="step-title"> Kargo Adresi</h2>
+                        <div class="shipping-step-addresses">
+                            @foreach (var item in Model.Addresses)
+                            {
+                                <div class="shipping-address-box @(item.IsDefault==true?"active":"")">
+                                    <address>
+                                        <span style="font-weight:600">@item.AddressName </span> <br>
+                                        <span style="font-size:10px;">@item.Branch</span><br>
+                                        <span>@item.AddressDefination</span> <br>
+                                        <span>@item.District / @item.City</span><br>
+                                        <span>@item.Country</span> <br>
+                                    </address>
+                                    <div class="address-box-action clearfix">
+                                        <a href="#" class="btn btn-sm btn-link">
+                                            Düzenle
+                                        </a>
+                                        <a href="#" class="btn btn-sm btn-outline-secondary float-right">
+                                            Buraya Gönder
+                                        </a>
+                                    </div><!-- End .address-box-action -->
+                                </div><!-- End .shipping-address-box -->
+                            }
+
+
+                        </div><!-- End .shipping-step-addresses -->
+                        <a href="#" class="btn btn-sm btn-outline-secondary btn-new-address" data-toggle="modal" data-target="#addressModal">+ Yeni Adress</a>
+                    </li>
+
+                    <li>
+                        <div class="checkout-step-shipping">
+                            <h2 class="step-title">Kargo Yöntemi</h2>
+                            <table class="table table-step-shipping">
+                                <tbody>
+                                    <tr>
+                                        <td><input type="radio"  checked name="shipping-method" value="flat"></td>
+                                        <td><strong>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", 0) ₺  </strong></td>
+                                        <td>Tedarikçi</td>
+                                        <td>Orta Hız</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="radio" name="shipping-method" value="best"></td>
+                                        <td><strong>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", 5 ) ₺  </strong></td>
+                                        <td>Kurye</td>
+                                        <td>En Hızlı</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- End .checkout-step-shipping -->
+                    </li>
+                </ul>
+            </div><!-- End .col-lg-8 -->
+            <div class="col-lg-4">
+                <div class="order-summary">
+                    <h3>özet</h3>
+                    <h4>
+                        <a data-toggle="collapse" href="#order-cart-section" class="collapsed" role="button" aria-expanded="false" aria-controls="order-cart-section">Sepette @Model.Cart.CartLines.Count() Ürün Var </a>
+                    </h4>
+                    <div class="collapse" id="order-cart-section">
+                        <table class="table table-mini-cart">
+                            <tbody>
+                                @foreach (var item in Model.Cart.CartLines)
+                                {
+                                    <tr>
+                                        <td class="product-col">
+                                            <figure class="product-image-container">
+                                                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.Id" class="product-image">
+                                                    <img src="@item.Product.Image" alt="product">
+                                                </a>
+                                            </figure>
+                                            <div>
+                                                <h2 class="product-title">
+                                                    <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.Id"> @item.Product.ProductName</a>
+                                                </h2>
+                                                <span class="product-qty">Adet : @item.Quantity</span>
+                                            </div>
+                                        </td>
+                                        <td class="price-col">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", (item.Product.Price - (item.Product.Price * item.Product.DiscountRatio)) * item.Quantity)  ₺</td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div><!-- End #order-cart-section -->
+                    <table class="table table-totals">
+                        <tbody>
+                            <tr>
+                                <td>Ödenecek Tutar</td>
+                                <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", Model.Cart.Total)  ₺ </td>
+                            </tr>
+                            <tr>
+                                <td>Kargo</td>
+                                <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", 0)  ₺ </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>Sipariş Toplamı</td>
+                                <td><span style="font-size:1.9rem;font-weight:600;">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", Model.Cart.Total)  ₺</span> </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div><!-- End .order-summary -->
+            </div><!-- End .col-lg-4 -->
+        </div><!-- End .row -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="checkout-steps-action">
+                    <a href="checkout-review.html" class="btn btn-primary float-right">Sonraki</a>
+                </div><!-- End .checkout-steps-action -->
+            </div><!-- End .col-lg-8 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+    <div class="mb-6"></div><!-- margin -->
+</main><!-- End .main -->
+
+@section scripts {
+    <script>
+
+    </script>
+}
