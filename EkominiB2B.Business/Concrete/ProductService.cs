@@ -10,18 +10,17 @@ namespace EkominiB2B.Business.Concrete
 {
     public class ProductService : IProductService
     {
-        private readonly IBaseRepository<Product> productRepository;
-        private readonly IUnitOfWork unitOfWork;
-        public ProductService(IBaseRepository<Product> productRepository, IUnitOfWork unitOfWork)
+        private readonly IProductRepository productRepository;
+        public ProductService(IProductRepository productRepository)
         {
             this.productRepository = productRepository;
-            this.unitOfWork = unitOfWork;
+
         }
 
         public void Add(Product product)
         {
             productRepository.Add(product);
-            unitOfWork.SaveChanges();
+
         }
 
         public void Delete(int id)
@@ -30,7 +29,6 @@ namespace EkominiB2B.Business.Concrete
             if (entity != null)
             {
                 productRepository.Delete(entity);
-                unitOfWork.SaveChanges();
             }
         }
 
@@ -52,7 +50,6 @@ namespace EkominiB2B.Business.Concrete
         public void Update(Product product)
         {
             productRepository.Update(product);
-            unitOfWork.SaveChanges();
         }
     }
 }

@@ -6,26 +6,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Threading.Tasks;
+
 namespace EkominiB2B.Business.Concrete
 {
     public class OrderService : IOrderService
     {
-        private readonly IBaseRepository<Order> orderRepository;
+        private readonly IOrderRepository orderRepository;
         private readonly IOrderLineRepository orderLineRepository;
-        private readonly IUnitOfWork unitOfWork;
-        public OrderService(IBaseRepository<Order> orderRepository, IOrderLineRepository orderLineRepository, IUnitOfWork unitOfWork)
+        private readonly IAddressService addressService;
+      
+
+        public OrderService(IOrderRepository orderRepository, IAddressService addressService, IOrderLineRepository orderLineRepository)
         {
             this.orderRepository = orderRepository;
             this.orderLineRepository = orderLineRepository;
-            this.unitOfWork = unitOfWork;
+            this.addressService = addressService;
+
+
         }
 
 
-        public void Add(Order order, OrderLine orderLine)
+        public void Add(Order order)
         {
             orderRepository.Add(order);
-            orderLineRepository.Add(orderLine);
-            unitOfWork.SaveChanges();
+            List<OrderLine> orderLines = new List<OrderLine>();
+            orderLines = order.orderLine;
+            foreach (var item in orderLines)
+            {
+                item.Id = 0;
+                item.Order = null;
+                orderLineRepository.Add(item);
+              
+            }
+
         }
 
         public void Delete(int id)
@@ -34,9 +48,13 @@ namespace EkominiB2B.Business.Concrete
             if (entity != null)
             {
                 orderRepository.Delete(entity);
-                unitOfWork.SaveChanges();
+           
                 var lines = orderLineRepository.Find(d => d.OrderId == id).ToList();
-                orderLineRepository.DeleteAll(lines);
+                foreach (var item in lines)
+                {
+                    orderLineRepository.Delete(item);
+               
+                }
             }
         }
 
@@ -55,11 +73,41 @@ namespace EkominiB2B.Business.Concrete
             return orderRepository.GetAll(navigations).ToList();
         }
 
-        public void Update(Order order, OrderLine orderLine)
+        public void Update(Order order, List<OrderLine> orderLines)
         {
             orderRepository.Update(order);
-            orderLineRepository.Update(orderLine);
-            unitOfWork.SaveChanges();
+
+        }
+
+        public Order CartToOrder(Cart cart,double ship,ApplicationUser user)
+        {
+           
+            Order order = new Order();                   
+            order.OrderDate = DateTime.Now;
+            order.Total = cart.Total??0 + ship;
+            order.Shipping = ship;
+            order.AddressId = addressService.GetDefault(user.Id).Id;
+            order.ApplicationUserId = user.Id;
+            order.CreatedAt = DateTime.Now;
+            order.CreatedBy = user.Email;
+            order.UpdatedAt = DateTime.Now;
+            order.UpdatedBy = user.Email;
+
+            foreach (var item in cart.CartLines)
+            {
+                OrderLine orderLine = new OrderLine();
+                orderLine.CreatedAt = DateTime.Now;
+                orderLine.CreatedBy = user.Email;
+                orderLine.UpdatedAt = DateTime.Now;
+                orderLine.UpdatedBy = user.Email;
+                orderLine.OrderId = order.Id;
+                orderLine.ProductId = item.Product.Id;
+                orderLine.Quantity = item.Quantity;
+                order.orderLine.Add(orderLine);
+            }
+          
+            return order;
+           
         }
     }
 }

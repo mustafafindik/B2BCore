@@ -10,18 +10,17 @@ namespace EkominiB2B.Business.Concrete
 {
     public class AddressService : IAddressService
     {
-        private readonly IBaseRepository<Address> addressRepository;
-        private readonly IUnitOfWork unitOfWork;
-        public AddressService(IBaseRepository<Address> addressRepository, IUnitOfWork unitOfWork)
+        private readonly IAddressRepository addressRepository;
+        public AddressService(IAddressRepository addressRepository)
         {
             this.addressRepository = addressRepository;
-            this.unitOfWork = unitOfWork;
+          
         }
 
         public void Add(Address address)
         {
             addressRepository.Add(address);
-            unitOfWork.SaveChanges();
+           
         }
 
         public void Delete(int id)
@@ -29,8 +28,7 @@ namespace EkominiB2B.Business.Concrete
             var entity = addressRepository.Get(id);
             if (entity != null)
             {
-                addressRepository.Delete(entity);
-                unitOfWork.SaveChanges();
+                addressRepository.Delete(entity);           
             }
         }
 
@@ -54,6 +52,11 @@ namespace EkominiB2B.Business.Concrete
             return addressRepository.Find(d => d.ApplicationUserId == UserId).ToList(); ;
         }
 
+        public Address GetDefault(string UserId)
+        {
+            return addressRepository.Find(d => d.ApplicationUserId == UserId).Where(d => d.IsDefault == true).FirstOrDefault();
+        }
+
         public void MakeDefault(int id)
         {
             var old = addressRepository.GetAll().Where(d => d.IsDefault == true).FirstOrDefault();          
@@ -68,23 +71,11 @@ namespace EkominiB2B.Business.Concrete
             addressRepository.Update(new_);
         }
 
-        public bool ThereIsDefault(string UserId)
-        {
-            var result = addressRepository.Find(d => d.ApplicationUserId == UserId).Where(d => d.IsDefault == true).Count();
-            if (result > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+   
 
         public void Update(Address address)
         {
             addressRepository.Update(address);
-            unitOfWork.SaveChanges();
         }
     }
 }

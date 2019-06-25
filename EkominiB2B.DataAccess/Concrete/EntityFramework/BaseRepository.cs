@@ -20,8 +20,11 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
 
         public void Add(T entity)
         {
+            
             _context.Set<T>().Add(entity);
             _context.SaveChanges();
+           
+
         }
 
         public void Delete(T entity)

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EkominiB2B.DataAccess.Concrete.EntityFramework
 {
-    class OrderRepository : BaseRepository<Order>, IOrderRepository
+    public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
         public OrderRepository(ApplicationDbContext context) : base(context)
         {

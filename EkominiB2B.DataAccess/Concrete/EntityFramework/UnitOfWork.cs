@@ -37,9 +37,14 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
         {
             get
             {
-                return _addresses ?? (_addresses = new AddressRepositor(_context));
+                return _addresses ?? (_addresses = new AddressRepository(_context));
             }
         }
+
+        public IOrderRepository Orders => throw new NotImplementedException();
+
+        public IOrderLineRepository OrderLines => throw new NotImplementedException();
+
         public void Dispose()
         {
             _context.Dispose();

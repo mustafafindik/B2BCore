@@ -59,14 +59,23 @@ namespace EkominiB2B.WebUI
             });
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddTransient<IProductService, ProductService>();
+
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddTransient<ICategoryService, CategoryService>();
+
             services.AddSingleton<ICartSessionService, CartSessionService>();
             services.AddScoped<ICartService, CartService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
+
+            services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddTransient<IAddressService, AddressService>();
+
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderLineRepository, OrderLineRepository>();
             services.AddTransient<IOrderService, OrderService>();
 
             services.AddTransient<ApplicationDbContext>();

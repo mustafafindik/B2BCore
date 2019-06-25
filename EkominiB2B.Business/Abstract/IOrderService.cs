@@ -10,8 +10,9 @@ namespace EkominiB2B.Business.Abstract
         IList<Order> GetAll();
         IList<Order> GetAll(params string[] navigations);
         Order Get(int id);
-        void Add(Order order,OrderLine orderLine);
-        void Update(Order order, OrderLine orderLine);
+        Order CartToOrder(Cart cart, double ship, ApplicationUser user);
+        void Add(Order order);
+        void Update(Order order, List<OrderLine> orderLine);
         void Delete(int id);
     }
 }

@@ -1,6 +1,9 @@
 ﻿@model OrderViewModel
 @{
     ViewData["Title"] = "Sipariş Özeti";
+
+    double shipping = 0;
+    double bestShipping = 5;
 }
 
 <main class="main">
@@ -13,14 +16,7 @@
         </div><!-- End .container -->
     </nav>
     <div class="container">
-        <ul class="checkout-progress-bar">
-            <li class="active">
-                <span>Kargo</span>
-            </li>
-            <li>
-                <span> ödeme </span>
-            </li>
-        </ul>
+
         <div class="row">
             <div class="col-lg-8">
                 <ul class="checkout-steps">
@@ -38,10 +34,10 @@
                                         <span>@item.Country</span> <br>
                                     </address>
                                     <div class="address-box-action clearfix">
-                                        <a href="#" class="btn btn-sm btn-link">
+                                        <a asp-controller="Manage" asp-action="EditAddress" asp-route-Id="@item.Id" class="btn btn-sm btn-link">
                                             Düzenle
                                         </a>
-                                        <a href="#" class="btn btn-sm btn-outline-secondary float-right">
+                                        <a asp-action="MakeDefault" asp-route-Id="@item.Id" class="btn btn-sm btn-outline-secondary float-right">
                                             Buraya Gönder
                                         </a>
                                     </div><!-- End .address-box-action -->
@@ -50,7 +46,7 @@
 
 
                         </div><!-- End .shipping-step-addresses -->
-                        <a href="#" class="btn btn-sm btn-outline-secondary btn-new-address" data-toggle="modal" data-target="#addressModal">+ Yeni Adress</a>
+                        <a asp-controller="Manage" asp-action="NewAddress" class="btn btn-sm btn-outline-secondary btn-new-address">+ Yeni Adress</a>
                     </li>
 
                     <li>
@@ -59,14 +55,14 @@
                             <table class="table table-step-shipping">
                                 <tbody>
                                     <tr>
-                                        <td><input type="radio"  checked name="shipping-method" value="flat"></td>
-                                        <td><strong>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", 0) ₺  </strong></td>
+                                        <td><input type="radio" checked="checked" name="shipping" value="supplier"></td>
+                                        <td><strong id="supplier">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", shipping) ₺  </strong></td>
                                         <td>Tedarikçi</td>
                                         <td>Orta Hız</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="radio" name="shipping-method" value="best"></td>
-                                        <td><strong>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", 5 ) ₺  </strong></td>
+                                        <td><input type="radio" name="shipping" value="best"></td>
+                                        <td><strong id="best">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", bestShipping) ₺  </strong></td>
                                         <td>Kurye</td>
                                         <td>En Hızlı</td>
                                     </tr>
@@ -95,7 +91,7 @@
                                                 </a>
                                             </figure>
                                             <div>
-                                                <h2 class="product-title">
+                                                <h2 class="product-title" style="font-size: 10px;">
                                                     <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.Id"> @item.Product.ProductName</a>
                                                 </h2>
                                                 <span class="product-qty">Adet : @item.Quantity</span>
@@ -117,13 +113,13 @@
                             </tr>
                             <tr>
                                 <td>Kargo</td>
-                                <td>@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", 0)  ₺ </td>
+                                <td id="shipping">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", 0)  ₺ </td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td>Sipariş Toplamı</td>
-                                <td><span style="font-size:1.9rem;font-weight:600;">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", Model.Cart.Total)  ₺</span> </td>
+                                <td><span style="font-size:1.9rem;font-weight:600;" id="totalCost">@String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", Model.Cart.Total + shipping)  ₺</span> </td>
                             </tr>
                         </tfoot>
                     </table>
@@ -133,7 +129,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="checkout-steps-action">
-                    <a href="checkout-review.html" class="btn btn-primary float-right">Sonraki</a>
+                    <a asp-action="Checkout" asp-route-ship="@shipping" class="btn btn-primary float-right"> Sipariş Ver</a>
                 </div><!-- End .checkout-steps-action -->
             </div><!-- End .col-lg-8 -->
         </div><!-- End .row -->
@@ -142,7 +138,32 @@
 </main><!-- End .main -->
 
 @section scripts {
+
     <script>
 
+        const formatter = new Intl.NumberFormat('tr-TR', {
+            style: 'decimal',
+           
+            maximumFractionDigits: 2
+        })
+
+        $(document).ready(function () {
+            $('input[type=radio][name=shipping]').change(function () {
+                if (this.value == 'supplier') {
+                    var value = $('#supplier').text();
+                    $('#shipping').text(value);
+                    var totalcost = formatter.format(@Model.Cart.Total + @shipping);
+                    $('#totalCost').text(totalcost + " ₺");
+                }
+                else if (this.value == 'best') {
+                    @{shipping = 5; }
+                    var value = $('#best').text();
+                    $('#shipping').text(value);
+                        var totalcost = formatter.format(@Model.Cart.Total + @shipping);
+                    $('#totalCost').text(totalcost + " ₺");
+                }
+            });
+        });
     </script>
+
 }

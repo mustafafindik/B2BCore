@@ -6,9 +6,9 @@ using System.Text;
 
 namespace EkominiB2B.DataAccess.Concrete.EntityFramework
 {
-    class AddressRepositor :BaseRepository<Address>, IAddressRepository
+    public class AddressRepository :BaseRepository<Address>, IAddressRepository
     {
-        public AddressRepositor(ApplicationDbContext context) : base(context)
+        public AddressRepository(ApplicationDbContext context) : base(context)
         {
         }
 

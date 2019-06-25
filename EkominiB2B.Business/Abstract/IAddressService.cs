@@ -11,7 +11,7 @@ namespace EkominiB2B.Business.Abstract
         IList<Address> GetAll(params string[] navigations);
         Address GetById(int id);
         IList<Address> GetByUserId(string UserId);
-        bool ThereIsDefault(string UserId);
+        Address GetDefault(string UserId);
         void MakeDefault(int id);
         void Add(Address address);
         void Update(Address address);

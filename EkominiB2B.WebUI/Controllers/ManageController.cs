@@ -54,7 +54,7 @@ namespace EkominiB2B.WebUI.Controllers
         public async Task<IActionResult> NewAddress(Address address)
         {
             var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
-            address.IsDefault = addressService.ThereIsDefault(user.Id) == true ? false : true ;
+            address.IsDefault = addressService.GetDefault(user.Id) == null ? true : false ;
             address.ApplicationUserId = user.Id;
             address.CreatedAt = DateTime.Now;
             address.CreatedBy = user.Email;

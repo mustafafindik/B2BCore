@@ -7,6 +7,6 @@ namespace EkominiB2B.DataAccess.Abstract
 {
     public interface IOrderLineRepository : IBaseRepository<OrderLine>
     {
-        void DeleteAll(List<OrderLine> entities);
+         void DeleteAll(List<OrderLine> entities);
     }
 }

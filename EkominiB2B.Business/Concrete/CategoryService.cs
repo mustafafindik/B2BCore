@@ -11,12 +11,10 @@ namespace EkominiB2B.Business.Concrete
     public class CategoryService : ICategoryService
     {
 
-        private readonly IBaseRepository<Category> categoryRepository;
-        private readonly IUnitOfWork unitOfWork;
-        public CategoryService(IBaseRepository<Category> categoryRepository, IUnitOfWork unitOfWork)
+        private readonly ICategoryRepository categoryRepository;
+        public CategoryService(ICategoryRepository categoryRepository)
         {
             this.categoryRepository = categoryRepository;
-            this.unitOfWork = unitOfWork;
         }
 
 
@@ -26,7 +24,6 @@ namespace EkominiB2B.Business.Concrete
             if (entity != null)
             {
                 categoryRepository.Delete(entity);
-                unitOfWork.SaveChanges();
             }
         }
 
@@ -43,13 +40,11 @@ namespace EkominiB2B.Business.Concrete
         public void Add(Category category)
         {
             categoryRepository.Add(category);
-            unitOfWork.SaveChanges();
         }
 
         public void Update(Category category)
         {
             categoryRepository.Update(category);
-            unitOfWork.SaveChanges();
         }
 
         
