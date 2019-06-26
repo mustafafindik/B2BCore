@@ -176,6 +176,8 @@ namespace EkominiB2B.WebUI.Migrations
 
                     b.Property<DateTime>("OrderDate");
 
+                    b.Property<int?>("OrderStatusId");
+
                     b.Property<double>("Shipping");
 
                     b.Property<double>("Total");
@@ -189,6 +191,8 @@ namespace EkominiB2B.WebUI.Migrations
                     b.HasIndex("AddressId");
 
                     b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("OrderStatusId");
 
                     b.ToTable("Orders");
                 });
@@ -205,6 +209,8 @@ namespace EkominiB2B.WebUI.Migrations
 
                     b.Property<int>("OrderId");
 
+                    b.Property<double?>("Price");
+
                     b.Property<int>("ProductId");
 
                     b.Property<int>("Quantity");
@@ -220,6 +226,19 @@ namespace EkominiB2B.WebUI.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderLines");
+                });
+
+            modelBuilder.Entity("EkominiB2B.Entities.Concrete.OrderStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("StatusName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("orderStatuses");
                 });
 
             modelBuilder.Entity("EkominiB2B.Entities.Product", b =>
@@ -366,6 +385,10 @@ namespace EkominiB2B.WebUI.Migrations
                     b.HasOne("EkominiB2B.Entities.Concrete.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("EkominiB2B.Entities.Concrete.OrderStatus", "OrderStatus")
+                        .WithMany()
+                        .HasForeignKey("OrderStatusId");
                 });
 
             modelBuilder.Entity("EkominiB2B.Entities.Concrete.OrderLine", b =>
