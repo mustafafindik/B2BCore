@@ -36,6 +36,20 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
                 context.SaveChanges();
             }
 
+            if (!context.orderStatuses.Any())
+            {
+                var orderstatusess = new[] {
+                 new OrderStatus() { StatusName = "Hazırlanıyor" },
+                 new OrderStatus() { StatusName = "Kargoya Verildi" },
+                 new OrderStatus() { StatusName = "Yolda" },
+                 new OrderStatus() { StatusName = "Teslim Edildi" },
+                 new OrderStatus() { StatusName = "İade Edildi" },
+                 new OrderStatus() { StatusName = "İptal Edildi" },
+
+                };
+                context.orderStatuses.AddRange(orderstatusess);
+                context.SaveChanges();
+            }
 
 
             if (!context.Products.Any())
@@ -126,7 +140,7 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
                           ShortDescription ="Migros Çikolata Kaplamalı Sandviç çikolata arası bisküviyi sevenlerin tercihidir.",
                         Description ="Migros Çikolata Kaplamalı Sandviç çikolata arası bisküviyi sevenlerin tercihidir.Bisküvilerin tazeliğini koruması için nemden uzak ağzı sıkı kapatılmış bir şekilde serin ve kuru bir yerde saklamalısınız. "
                     },
-               
+
                     new Product(){ ProductName="MİGROS RİZE ÇAY 1000 G	", CategoryId =4 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/18.jpg"  ,
                          ShortDescription ="Migros Rize Çay Rize'nin en taze ve en güzel çay filizlerinden elde edilir. Tamamen doğal olan bu ürün, hoş bir kokuya sahiptir ve damakta güzel bir lezzet bırakır. ",
                         Description ="Migros Rize Çay Rize'nin en taze ve en güzel çay filizlerinden elde edilir. Tamamen doğal olan bu ürün, hoş bir kokuya sahiptir ve damakta güzel bir lezzet bırakır.Demlemede taze, kireçsiz su ve porselen demlik tercih edin. Demleyeceğiniz miktara göre her bardak çay için bir çay kaşığı Migros Çay koyun. Demliği kaynayan su üzerinde ısıttıktan sonra taze kaynamış suyu ilave edin. Demini alması için kaynayan suyun üzerinde 10-15 dakika bekletin. Demlenen çayınızı lezzetini kaybetmeden için."
@@ -167,7 +181,7 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
             var password = configuration["Data:RootUser:password"];
             var role = configuration["Data:RootUser:role"];
 
-         
+
             if (await userManager.FindByNameAsync(username) == null)
             {
                 if (await roleManager.FindByNameAsync(role) == null)
@@ -192,7 +206,7 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
                 if (result.Succeeded)
                 {
                     var x = await userManager.AddToRoleAsync(user, role);
-                    
+
                 }
 
             }

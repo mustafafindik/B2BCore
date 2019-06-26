@@ -25,6 +25,9 @@ namespace EkominiB2B.Entities.Concrete
         public double Total { get; set; }
         public double Shipping { get; set; }
 
+        public int? OrderStatusId { get; set; }
+        public OrderStatus OrderStatus { get; set; }
+
 
 
     }

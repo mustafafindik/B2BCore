@@ -38,6 +38,8 @@ namespace EkominiB2B.WebUI.Controllers
             Cart newCard = _cartSessionService.GetCart();
             model.Cart = newCard;
             model.Addresses = _addressService.GetByUserId(user.Id);
+            model.Shipping = 0;
+            ViewBag.BestShipping = 5;
             return View(model);
 
         }
@@ -48,17 +50,37 @@ namespace EkominiB2B.WebUI.Controllers
             return RedirectToAction("OrderView");
         }
 
-        public async Task<IActionResult> Checkout(double ship)
+        public async Task<IActionResult> Checkout(double? ship)
         {
-            var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
-            Cart newCard = _cartSessionService.GetCart();
-            var order = _orderService.CartToOrder(newCard, ship, user);
-            _orderService.Add(order);
+            try
+            {
+                var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
+                Cart newCard = _cartSessionService.GetCart();
+                var order = _orderService.CartToOrder(newCard, ship ?? 0, user);
+                _orderService.Add(order);
+                int orderid = order.Id;
+                var cart = _cartSessionService.GetCart();
+                _cartService.RemoveCart(cart);
+                _cartSessionService.SetCart(cart);
+                 Guid token = Guid.NewGuid();
+                return RedirectToAction("OrderSuccess","Order", new { token = token , Id = orderid });
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("OrderError", "Order", new { message = e.Message});
+            }                      
+        }
 
-            var cart = _cartSessionService.GetCart();
-            _cartService.RemoveCart(cart);
-            _cartSessionService.SetCart(cart);
+        public IActionResult OrderSuccess(Guid token, int Id)
+        {
+            var order = _orderService.Get(Id);
+            return View(order);
+        }
 
+
+        public IActionResult OrderError(string message)
+        {
+            ViewBag.message = message;
             return View();
         }
     }

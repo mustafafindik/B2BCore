@@ -30,15 +30,15 @@ namespace EkominiB2B.Business.Concrete
         public void Add(Order order)
         {
             orderRepository.Add(order);
-            List<OrderLine> orderLines = new List<OrderLine>();
-            orderLines = order.orderLine;
-            foreach (var item in orderLines)
-            {
-                item.Id = 0;
-                item.Order = null;
-                orderLineRepository.Add(item);
+            //List<OrderLine> orderLines = new List<OrderLine>();
+            //orderLines = order.orderLine;
+            //foreach (var item in orderLines)
+            //{
+            //    item.Id = 0;
+            //    item.Order = null;
+            //    orderLineRepository.Add(item);
               
-            }
+            //}
 
         }
 
@@ -60,7 +60,7 @@ namespace EkominiB2B.Business.Concrete
 
         public Order Get(int id)
         {         
-            return orderRepository.Get(id, "OrderLine");
+            return orderRepository.Get(id, "orderLine");
         }
 
         public IList<Order> GetAll()
@@ -84,7 +84,7 @@ namespace EkominiB2B.Business.Concrete
            
             Order order = new Order();                   
             order.OrderDate = DateTime.Now;
-            order.Total = cart.Total??0 + ship;
+            order.Total = (cart.Total??0) + Convert.ToDouble(ship);
             order.Shipping = ship;
             order.AddressId = addressService.GetDefault(user.Id).Id;
             order.ApplicationUserId = user.Id;
@@ -92,6 +92,7 @@ namespace EkominiB2B.Business.Concrete
             order.CreatedBy = user.Email;
             order.UpdatedAt = DateTime.Now;
             order.UpdatedBy = user.Email;
+            order.OrderStatusId = 1;
 
             foreach (var item in cart.CartLines)
             {
@@ -103,6 +104,7 @@ namespace EkominiB2B.Business.Concrete
                 orderLine.OrderId = order.Id;
                 orderLine.ProductId = item.Product.Id;
                 orderLine.Quantity = item.Quantity;
+                orderLine.Price = (item.Product.Price - (item.Product.Price * item.Product.DiscountRatio));
                 order.orderLine.Add(orderLine);
             }
           

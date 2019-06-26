@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Sipariş Hatası";
+}
+
+<main class="main" style="margin-top:30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 order-lg-last dashboard-content">
+                <div class="alert alert-danger alert-intro" role="alert">
+                    <span style="font-weight:600;font-size:20px;">  Siparişiniz Onaylanmadı</span>
+                </div><!-- End .alert -->
+                <div class="alert alert-info" role="alert">
+                    @((string)ViewBag.message);
+                </div><!-- End .alert -->
+                <div class="mb-4"></div><!-- margin -->
+            </div><!-- End .col-lg-9 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+    <div class="mb-5"></div><!-- margin -->
+</main><!-- End .main -->

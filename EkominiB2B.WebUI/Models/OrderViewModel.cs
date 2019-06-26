@@ -10,5 +10,6 @@ namespace EkominiB2B.WebUI.Models
     {
         public IEnumerable<Address> Addresses { get; set; }
         public Cart Cart { get; set; }
+        public double Shipping { get; set; }
     }
 }

@@ -52,6 +52,7 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
         public IQueryable<T> GetAll()
         {
             return _context.Set<T>();
+      
         }
 
         public IQueryable<T> GetAll(params string[] navigations)
