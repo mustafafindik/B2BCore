@@ -119,17 +119,23 @@ namespace EkominiB2B.WebUI
 
             var supportedCultures = new List<CultureInfo>
                         {
-                        new CultureInfo("en-US")
+                        new CultureInfo("en-EN")
+                        { NumberFormat = { CurrencySymbol = CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol + " " } }
+                       };
+
+            var supportedCultures2 = new List<CultureInfo>
+                        {
+                        new CultureInfo("tr-TR")
                         { NumberFormat = { CurrencySymbol = CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol + " " } }
                        };
 
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture("en-US"),
+                DefaultRequestCulture = new RequestCulture("tr-TR"),
                 // Formatting numbers, dates, etc.
                 SupportedCultures = supportedCultures,
                 // UI strings that we have localized.
-                SupportedUICultures = supportedCultures
+                SupportedUICultures = supportedCultures2
             });
 
             app.UseMvc(routes =>

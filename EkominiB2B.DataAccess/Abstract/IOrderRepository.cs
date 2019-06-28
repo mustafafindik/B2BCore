@@ -7,5 +7,6 @@ namespace EkominiB2B.DataAccess.Abstract
 {
     public interface IOrderRepository : IBaseRepository<Order>
     {
+        List<Order> GetAllforUser(string id, params string[] navigations);
     }
 }

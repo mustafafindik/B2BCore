@@ -30,16 +30,7 @@ namespace EkominiB2B.Business.Concrete
         public void Add(Order order)
         {
             orderRepository.Add(order);
-            //List<OrderLine> orderLines = new List<OrderLine>();
-            //orderLines = order.orderLine;
-            //foreach (var item in orderLines)
-            //{
-            //    item.Id = 0;
-            //    item.Order = null;
-            //    orderLineRepository.Add(item);
-              
-            //}
-
+ 
         }
 
         public void Delete(int id)
@@ -60,7 +51,12 @@ namespace EkominiB2B.Business.Concrete
 
         public Order Get(int id)
         {         
-            return orderRepository.Get(id, "orderLine");
+            return orderRepository.Get(id, "orderLine", "OrderStatus");
+        }
+
+        public List<Order> GetByUserId(string UserId)
+        {
+            return orderRepository.GetAllforUser(UserId, "orderLine", "OrderStatus");
         }
 
         public IList<Order> GetAll()
@@ -110,6 +106,11 @@ namespace EkominiB2B.Business.Concrete
           
             return order;
            
+        }
+
+        public IList<OrderLine> GetAllOrderLines(string Id)
+        {
+            return orderLineRepository.GetAllById(Id);
         }
     }
 }

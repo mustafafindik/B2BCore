@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using EkominiB2B.Business.Abstract;
 using EkominiB2B.Entities.Concrete;
+using EkominiB2B.WebUI.Models;
 using EkominiB2B.WebUI.Models.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -17,14 +19,19 @@ namespace EkominiB2B.WebUI.Controllers
     {
         private readonly IUserService userService;
         private readonly IAddressService addressService;
+        private IOrderService orderService;
+        private IProductService productService;
+
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        public ManageController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IUserService userService, IAddressService addressService)
+        public ManageController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IUserService userService, IAddressService addressService, IOrderService _orderService, IProductService productService)
         {
             _userManager = userManager;
             this.userService = userService;
             _signInManager = signInManager;
             this.addressService = addressService;
+            this.orderService = _orderService;
+            this.productService = productService;
         }
 
         public async Task<IActionResult> Index()
@@ -33,9 +40,15 @@ namespace EkominiB2B.WebUI.Controllers
             return View(user);
         }
 
-        public IActionResult MyOrders()
+        public async Task<IActionResult> MyOrders()
         {
-            return View();
+
+            var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
+            var myorders = orderService.GetByUserId(user.Id);
+            var x = orderService.GetAllOrderLines(user.Id);
+
+          
+            return View(x.OrderByDescending(d => d.Order.OrderDate).ToList());
         }
 
         public async Task<IActionResult> MyAdresses()
@@ -54,7 +67,7 @@ namespace EkominiB2B.WebUI.Controllers
         public async Task<IActionResult> NewAddress(Address address)
         {
             var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
-            address.IsDefault = addressService.GetDefault(user.Id) == null ? true : false ;
+            address.IsDefault = addressService.GetDefault(user.Id) == null ? true : false;
             address.ApplicationUserId = user.Id;
             address.CreatedAt = DateTime.Now;
             address.CreatedBy = user.Email;
@@ -72,14 +85,14 @@ namespace EkominiB2B.WebUI.Controllers
         }
 
         public IActionResult EditAddress(int Id)
-        {           
+        {
             return View(addressService.GetById(Id));
         }
 
         [HttpPost]
         public IActionResult EditAddress(Address address)
         {
-             address.UpdatedAt = DateTime.Now;
+            address.UpdatedAt = DateTime.Now;
             address.UpdatedBy = User.Identity.Name;
 
             if (ModelState.IsValid)
@@ -99,11 +112,11 @@ namespace EkominiB2B.WebUI.Controllers
         }
 
         public JsonResult DeleteAdreess(int Id)
-        {           
+        {
             var result = "";
             try
-            {            
-                addressService.Delete(Id);            
+            {
+                addressService.Delete(Id);
                 result = "ok";
 
             }

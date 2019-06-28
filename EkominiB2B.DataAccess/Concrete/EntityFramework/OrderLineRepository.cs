@@ -1,7 +1,9 @@
 ﻿using EkominiB2B.DataAccess.Abstract;
 using EkominiB2B.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace EkominiB2B.DataAccess.Concrete.EntityFramework
@@ -21,6 +23,11 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
         {
             _context.RemoveRange(entities);
             _context.SaveChanges();
+        }
+
+        public List<OrderLine> GetAllById(string Id)
+        {
+            return _context.OrderLines.Include(d => d.Product).Include(d => d.Order).ThenInclude(d => d.OrderStatus).Include(d=>d.Order).ThenInclude(d=>d.Address).Where(d => d.Order.ApplicationUserId == Id).ToList();
         }
     }
 }

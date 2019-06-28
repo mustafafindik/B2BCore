@@ -151,7 +151,7 @@
                 if (this.value == 'supplier') {
                     var value = $('#supplier').text();
                     $('#shipping').text(value);
-                    var totalcost = formatter.format(@Model.Cart.Total + @Model.Shipping );
+                    var totalcost = formatter.format(@Model.Cart.Total.ToString().Replace(",",".") + @Model.Shipping );
                     $('#totalCost').text(totalcost + " ₺");
 
                     $("#Checkout").attr("href", "/Order/Checkout?ship=" +@Model.Shipping);
@@ -160,7 +160,7 @@
                     @{Model.Shipping = bestShipping; }
                     var value = $('#best').text();
                     $('#shipping').text(value);
-                    var totalcost = formatter.format(@Model.Cart.Total + @Model.Shipping );
+                    var totalcost = formatter.format(@Model.Cart.Total.ToString().Replace(",",".") + @Model.Shipping );
                     $('#totalCost').text(totalcost + " ₺");
 
                     $("#Checkout").attr("href", "/Order/Checkout?ship=" +@Model.Shipping);

@@ -1,9 +1,19 @@
-﻿@model ApplicationUser
+﻿@model List<OrderLine>
 @{
     Layout = "_LayoutUser";
     ViewData["Title"] = "Siparişlerim";
-}
+    IFormatProvider theCultureInfo = new System.Globalization.CultureInfo("tr-TR", true);
 
+
+
+}
+<style>
+    .m-card-profile .m-card-profile__pic .m-card-profile__pic-wrapper {
+        padding: 0px;
+        display: inline-block;
+        margin: 0.1rem auto;
+    }
+</style>
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <!-- END: Subheader -->
     <div class="m-content">
@@ -24,9 +34,121 @@
                         </div>
                     </div>
                     <div class="m-portlet__body">
+                        @foreach (var item in Model.Select(d => d.Order).Distinct().ToList())
+                        {
+                            <div class="m-portlet m-portlet--collapsed m-portlet--head-sm" m-portlet="true" id="m_portlet_tools_7" style="box-shadow: 0 1px 15px 1px rgba(138, 138, 138, 0.49);">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
 
-                        Buraya Siparişler gelsin
-                        
+                                        <div class="row m--margin-bottom-15 m--margin-top-15">
+                                            <div class="col-md-4">
+                                                <div style="font-weight:500;font-size:12px;padding:3px;color:#969696">Sipariş No <span style="font-size:14px;color:#5867dd">  @item.Id</span></div>
+                                                <div style="font-weight:500;font-size:12px;padding:3px;color:#969696">
+
+
+
+                                                    @String.Format("{0:dd MMMM yyyy,ddd HH:mm}", item.OrderDate, theCultureInfo)
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pull-right">
+                                                <div class="m--padding-top-10" style="font-weight:500;font-size:15px;text-align: center;">
+                                                    <i class="flaticon-interface-9"></i>  @item.OrderStatus.StatusName
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div style="font-weight:500;font-size:12px;padding:3px;text-align:end;color:#969696"><span style="font-size:14px;color:#5867dd">   @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", item.Total) ₺ </span></div>
+                                                <div style="font-weight:500;font-size:12px;padding:3px;text-align:end;color:#969696">
+                                                    @item.orderLine.Count Ürün
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="m-portlet__head-tools">
+                                        <ul class="m-portlet__nav">
+
+                                            <li class="m-portlet__nav-item">
+                                                <a href="#" m-portlet-tool="toggle" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                                    <i class="la la-angle-down"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    @foreach (var orders in item.orderLine)
+                                    {
+                                        <div class="m--margin-bottom-10">
+                                            <div class="m-option" style="display:inline-flex;padding:0.7em;">
+                                                <div class="m-card-profile" style="display:inline-block">
+                                                    <div class="m-card-profile__pic">
+                                                        <div class="m-card-profile__pic-wrapper">
+                                                            <img src="@orders.Product.Image" style="object-fit:cover;;height:50px;" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-option__label" style="display:table-cell;padding:10px;width: 100%;">
+                                                    <span class="m-option__head">
+                                                        <span class="m-option__title capitalize" style="display: inline;font-size:13px;">
+                                                            @orders.Product.ProductName
+                                                        </span>
+                                                        <span class="m-option__focus pull-right" style="font-size:14px;">
+                                                            @String.Format(System.Globalization.CultureInfo.GetCultureInfo("tr-TR"), "{0:N2}", orders.Price) ₺
+                                                        </span>
+                                                    </span>
+                                                    <span class="m-option__body" style="padding-top: .3rem;">
+                                                        @orders.Quantity Adet
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div class="row">
+                                        <div class="col-lg-6 m--margin-top-20">
+                                            <span style="font-size:15px;color :#949494;font-weight:400">Teslimat Adresi</span>
+                                            <div class="m-option" style="background-color:#eaeaea; height: 150px;">
+
+                                                <div class="m-option__label">
+
+                                                    <span class="m-option__head">
+                                                        <span class="m-option__title" style="width: auto !important; font-weight: 500;">
+                                                            @item.Address.AddressName
+                                                        </span>
+                                                        <span class="m-option__focus" style=" font-size: 0.8rem; font-weight: 400;float: right; color: #509057">
+                                                            @item.Address.Branch
+                                                        </span>
+                                                    </span>
+                                                    <span class="m-option__body" style="font-size: 1rem !important;">
+                                                        @item.Address.AddressDefination
+                                                    </span>
+                                                    <span class="m-option__focus">
+                                                        @item.Address.District / @item.Address.City @item.Address.Country
+                                                    </span>
+
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-6 m--margin-top-20">
+                                            <span style="font-size:15px;color :#949494;font-weight:400">Ödeme Bilgileri</span>
+                                            <div class="m-option" style="background-color:#eaeaea;    height: 150px;">
+                                          
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
                     </div>
                 </div>
             </div>
@@ -37,5 +159,8 @@
 </div>
 
 @section scripts {
+    <script>
 
+
+    </script>
 }
