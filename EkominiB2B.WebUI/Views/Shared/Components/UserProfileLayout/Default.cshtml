@@ -1,0 +1,149 @@
+﻿@model ApplicationUser
+<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
+    <a href="#" class="m-nav__link m-dropdown__toggle">
+        <span class="m-topbar__userpic m--padding-right-10">
+            @if (Model.UserImage != null)
+            {
+                <img src="~/UserImages/@Model.UserImage" style="object-fit:cover;width:31px;height:31px;" class="m--img-rounded m--marginless m--img-centered" alt="" />
+            }
+            else
+            {
+                <img src="~/img/default.png" style="object-fit:cover;width:31px;height:31px;" class="m--img-rounded m--marginless m--img-centered" alt="" />
+            }
+        </span>
+        <span class="m-nav__link-icon m-topbar__usericon  m--hide">
+            <span class="m-nav__link-icon-wrapper">
+                <i class="flaticon-user-ok"></i>
+            </span>
+        </span>
+        <span class="m-topbar__username m--hide">
+            @Model.Email
+        </span>
+    </a>
+    <div class="m-dropdown__wrapper">
+        <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+        <div class="m-dropdown__inner">
+            <div class="m-dropdown__header m--align-center">
+                <div class="m-card-user m-card-user--skin-light">
+                    <div class="m-card-user__pic">
+                        @if (Model.UserImage != null)
+                        {
+                            <img src="~/UserImages/@Model.UserImage" style="object-fit:cover;width:70px;height:70px;" class="m--img-rounded m--marginless" alt="" />
+                        }
+                        else
+                        {
+                            <img src="~/images/default.png" style="object-fit:cover;width:70px;height:70px;" class="m--img-rounded m--marginless" alt="" />
+                        }
+                    </div>
+                    <div class="m-card-user__details">
+                        @if (Model.Name == null)
+                        {
+                            <span class="m-card-user__name m--font-weight-500"> @Model.UserName</span>
+                        }
+                        else
+                        {
+                            <span class="m-card-user__name m--font-weight-500"> @Model.Name @Model.Surname</span>
+                        }
+
+                        <a href="" class="m-card-user__email m--font-weight-300 m-link">
+                            @Model.Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="m-dropdown__body">
+                <div class="m-dropdown__content">
+                    <ul class="m-nav m-nav--skin-light">
+                        <li class="m-nav__section m--hide">
+                            <span class="m-nav__section-text">
+                                Sekmeler
+                            </span>
+                        </li>
+                        <li class="m-nav__item">
+                            <a asp-action="Index" asp-controller="Manage" class="m-nav__link">
+                                <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">
+                                            Profilim
+                                        </span>
+
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="m-nav__item">
+                            <a asp-action="MyOrders" asp-controller="Manage" class="m-nav__link">
+                                <i class="m-nav__link-icon flaticon-cart"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">
+                                            Siparişlerim
+                                        </span>
+
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="m-nav__item">
+                            <a asp-action="MyAdresses" asp-controller="Manage" class="m-nav__link">
+                                <i class="m-nav__link-icon flaticon-map-location"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">
+                                            Adreslerim
+                                        </span>
+
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="m-nav__item">
+                            <a asp-action="EditProfile" asp-controller="Manage" class="m-nav__link">
+                                <i class="m-nav__link-icon flaticon-user-settings"></i>
+                                <span class="m-nav__link-text">
+                                    Üyelik Yönetimi
+                                </span>
+                            </a>
+                        </li>
+                        <li class="m-nav__item">
+                            <a asp-action="Index" asp-controller="Massage" class="m-nav__link">
+                                <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">
+                                            Mesajlar
+                                        </span>
+                                        <span class="m-nav__link-badge">
+                                            <span class="m-badge m-badge--success">
+                                                2
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="m-nav__separator m-nav__separator--fit"></li>
+                        <li class="m-nav__item">
+                            <a asp-action="faq" asp-controller="Home" class="m-nav__link">
+                                <i class="m-nav__link-icon flaticon-info"></i>
+                                <span class="m-nav__link-text">
+                                    Yardım
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="m-nav__separator m-nav__separator--fit"></li>
+                        <li class="m-nav__item">
+                            <form asp-controller="Account" asp-action="Logout" method="post">
+                                <button type="submit" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Çıkış Yap
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
