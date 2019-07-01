@@ -112,5 +112,10 @@ namespace EkominiB2B.Business.Concrete
         {
             return orderLineRepository.GetAllById(Id);
         }
+
+        public IList<OrderLine> GetAllOrderLines()
+        {
+            return orderLineRepository.GetAll().ToList();
+        }
     }
 }

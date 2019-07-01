@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EkominiB2B.Business.Abstract;
 using EkominiB2B.Entities;
+using EkominiB2B.Entities.Concrete;
 using EkominiB2B.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Sakura.AspNetCore;

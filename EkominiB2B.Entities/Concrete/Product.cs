@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EkominiB2B.Entities
+namespace EkominiB2B.Entities.Concrete
 {
     public class Product:BaseEntity
     {

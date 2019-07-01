@@ -29,5 +29,7 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
         {
             return _context.OrderLines.Include(d => d.Product).Include(d => d.Order).ThenInclude(d => d.OrderStatus).Include(d=>d.Order).ThenInclude(d=>d.Address).Where(d => d.Order.ApplicationUserId == Id).ToList();
         }
+
+  
     }
 }

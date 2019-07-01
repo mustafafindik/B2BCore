@@ -119,10 +119,9 @@ namespace EkominiB2B.WebUI
 
             var supportedCultures = new List<CultureInfo>
                         {
-                        new CultureInfo("en-EN")
+                        new CultureInfo("en-US")
                         { NumberFormat = { CurrencySymbol = CultureInfo.CurrentCulture.NumberFormat.CurrencySymbol + " " } }
                        };
-
             var supportedCultures2 = new List<CultureInfo>
                         {
                         new CultureInfo("tr-TR")
@@ -131,7 +130,7 @@ namespace EkominiB2B.WebUI
 
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture("tr-TR"),
+                DefaultRequestCulture = new RequestCulture("en-US"),
                 // Formatting numbers, dates, etc.
                 SupportedCultures = supportedCultures,
                 // UI strings that we have localized.

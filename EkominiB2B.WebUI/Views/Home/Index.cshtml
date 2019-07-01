@@ -8,6 +8,9 @@
          max-width: none !important;
     }
 
+    .promo-section::before {
+        background-color: rgba(0, 0, 0, 0.65);
+    }
 </style>
 <main class="main">
     <div class="home-slider-container">
@@ -64,55 +67,33 @@
         <div class="container">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="featured-products-tab" data-toggle="tab" href="#featured-products" role="tab" aria-controls="featured-products" aria-selected="true">Tavsiye Ürünler</a>
+                    <a class="nav-link active" id="featured-products-tab" data-toggle="tab" href="#featured-products" role="tab" aria-controls="featured-products" aria-selected="true">Tavsiye Edilen Ürünler</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="latest-products-tab" data-toggle="tab" href="#latest-products" role="tab" aria-controls="latest-products" aria-selected="false">Son Ürünler</a>
+                    <a class="nav-link" id="latest-products-tab" data-toggle="tab" href="#latest-products" role="tab" aria-controls="latest-products" aria-selected="false">Son Eklenen Ürünler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="top-products-tab" data-toggle="tab" href="#top-products" role="tab" aria-controls="top-products" aria-selected="false">En Çok Satılan Ürünler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="campaign-products-tab" data-toggle="tab" href="#campaign-products" role="tab" aria-controls="campaign-products" aria-selected="false">Kampanyalı Ürünler</a>
                 </li>
             </ul>
         </div><!-- End .container -->
-        <div class="tab-content">
+        <div class="tab-content" style="border-bottom:0px">
             @await Component.InvokeAsync("FeaturedProducts")
             @await Component.InvokeAsync("LatestProducts")
+            @await Component.InvokeAsync("TopProducts",10)
         </div><!-- End .tab-content -->
     </div><!-- End .home-product-tabs -->
-
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="feature-box">
-                    <i class="icon-star"></i>
-                    <div class="feature-box-content">
-                        <h3>Özenli Hizmet </h3>
-                        <p>Sipariş,Öneri ve Sorunlarınız konusunda yardım için uzmanlarımıza danışın.</p>
-                        <a asp-controller="Home" asp-action="Contact" class="btn btn-sm btn-outline-dark">İletişime geçin</a>
-                    </div><!-- End .feature-box-content -->
-                </div><!-- End .feature-box -->
-            </div><!-- End .col-md-4 -->
-
-            <div class="col-md-6">
-                <div class="feature-box">
-                    <i class="icon-reply"></i>
-                    <div class="feature-box-content">
-                        <h3>Ücretsiz iade</h3>
-                        <p>Mal ve hizmetlerimizin arkasında duruyoruz ve onlardan memnun olmanızı istiyoruz.</p>
-                        <a asp-controller="Home" asp-action="ReturnPolicy"class="btn btn-sm btn-outline-dark">İade Politikası</a>
-                    </div><!-- End .feature-box-content -->
-                </div><!-- End .feature-box -->
-            </div><!-- End .col-md-4 -->    
-        </div><!-- End .row -->
-    </div><!-- End .container -->
-    <div class="mb-1"></div><!-- margin -->
-    <div class="promo-section" style="background-image:none"> @*url(/images/slider/ss.png)*@
+    <div class="promo-section" style="background-image: linear-gradient(to right, rgb(0, 196, 255), rgb(143, 228, 30));background-color: none"> @*url(/images/slider/ss.png)*@
         <div class="container">
             <h3>Alışveriş Zamanı</h3>
             <h4>Şimdi Alışveriş yapmanın tam zamanı</h4>
-            <a href="#" class="btn btn-primary"> Ürünler </a>
+            <a href="#" class="btn btn-success"> Ürünler </a>
         </div><!-- End .container -->
     </div><!-- End .promo-section -->
-    <div class="partners-container">
+    <div class="partners-container" style="margin-bottom:0px;">
         <div class="container">
             <div class="partners-carousel owl-carousel owl-theme" style="margin-right:40px">
                 <a href="#" class="partner">
@@ -128,8 +109,5 @@
             </div><!-- End .partners-carousel -->
         </div><!-- End .container -->
     </div><!-- End .partners-container -->
-
-    @await Component.InvokeAsync("TopThreeProducts")
     <!-- End .container -->
-    <div class="mb-6"></div><!-- margin -->
 </main><!-- End .main -->

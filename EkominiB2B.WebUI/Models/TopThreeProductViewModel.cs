@@ -1,4 +1,5 @@
 ﻿using EkominiB2B.Entities;
+using EkominiB2B.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
