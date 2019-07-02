@@ -12,12 +12,14 @@
     }
 
 
+
+
     .parent-card-carousel {
         margin: 50px auto;
         height: 200px;
         position: relative;
         overflow: hidden;
-        background: #28a745;
+        background-image: linear-gradient(to right, rgb(19, 41, 47), rgb(77, 140, 82));
         border-radius: 15px;
     }
 
@@ -51,7 +53,7 @@
         .card-carousel div {
             width: 100%;
             height: 100%;
-                 
+            position: absolute;
         }
 
     .activebtncarousel {
@@ -100,7 +102,6 @@
         border-color: #f6821f;
         font-family: "Oswald",sans-serif;
     }
-
 </style>
 <main class="main">
     <div class="home-slider-container">
@@ -177,196 +178,239 @@
         </div><!-- End .tab-content -->
 
 
-        <div class="container" style="border-bottom:0px">                  
-                    <h3 class="card-carousel-header">Bazı Kampamyalar</h3>        
+        <div class="container" style="border-bottom:0px">
+            <h3 class="card-carousel-header">Bazı Kampanyalar</h3>
             <div class="parent-card-carousel" id="parentcardcarousel">
                 <div class="card-carousel" id="card-carousel">
-                 
+
                     <div class="cards">
-                        <div class="row" style="margin-left:70px;position: absolute;top:25%;">
-                            <div class="col-md-6" style="height:fit-content">
+                        <div class="row" style="margin-left:70px;position: absolute;top:25%;width:80%">
+                            <div style="height:fit-content">
+                                <span class="d-block" style="font-weight:500;font-size:16px;color: #f6821f;">Yağ Ve Bakliyatta</span>
+                                <span class="d-block" style="font-weight:600;font-size:32px;color: #ffffff;margin-bottom: 5px;"> Yazın En Çok Satanları </span>
+                                <a class="new-btn">Şimdi Gör</a>
+                            </div>
+                            <div style="height:fit-content">
+                                <img style="width: 150px;margin: auto;    float: right;" class="" src="~/images/order.png" alt="Automation">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cards">
+                        <div class="row" style="margin-left:70px;position: absolute;top:25%;width:80%">
+                            <div style="height:fit-content">
                                 <span class="d-block" style="font-weight:500;font-size:16px;color: #f6821f;">Keyfinize Keyif Katacak Çay Ürünlerinde</span>
                                 <span class="d-block" style="font-weight:600;font-size:32px;color: #ffffff;margin-bottom: 5px;"> %60'A Varan İndirimler </span>
-                                <a  class="new-btn">Şimdi Gör</a>
+                                <a class="new-btn">Şimdi Gör</a>
                             </div>
-                            <div class="col-md-6" style="height:fit-content">                           
-                                <img  style="width: 150px;margin: auto;" class="" src="~/images/order.png" alt="Automation">                                
+                            <div style="height:fit-content">
+                                <img style="width: 150px;margin: auto;    float: right;" class="" src="~/images/order.png" alt="Automation">
                             </div>
-                        </div>                     
+                        </div>
                     </div>
-             
+
+
                 </div>
                 <button id="prev" class="carouselbtn">❮</button>
                 <button id="next" class="carouselbtn">❯</button>
                 <div class="points-carousel">
                     <button class="btn-carousel"></button>
                     <button class="btn-carousel"></button>
-                    <button class="btn-carousel"></button>
-                    <button class="btn-carousel"></button>
+
                 </div>
             </div>
         </div>
-        </div><!-- End .home-product-tabs -->
-        <div class="promo-section" style="background-image: linear-gradient(to right, rgb(0, 196, 255), rgb(143, 228, 30));background-color: none">
-            @*url(/images/slider/ss.png)*@
-            <div class="container">
-                <h3>Alışveriş Zamanı</h3>
-                <h4>Şimdi Alışveriş yapmanın tam zamanı</h4>
-                <a href="#" class="btn btn-success"> Ürünler </a>
-            </div><!-- End .container -->
-        </div><!-- End .promo-section -->
-        <div class="partners-container" style="margin-bottom:0px;">
-            <div class="container">
-                <div class="partners-carousel owl-carousel owl-theme" style="margin-right:40px">
-                    <a href="#" class="partner">
-                        <img src="~/brand/cenasis.png" alt="logo">
-                    </a>
-                    <a href="#" class="partner">
-                        <img src="~/brand/ekomini.jpg" alt="logo">
-                    </a>
-                    <a href="#" class="partner">
-                        <img src="~/brand/Migros.png" alt="logo">
-                    </a>
 
-                </div><!-- End .partners-carousel -->
-            </div><!-- End .container -->
-        </div><!-- End .partners-container -->
-        <!-- End .container -->
+    </div><!-- End .home-product-tabs -->
+    <div class="promo-section" style="background-image: linear-gradient(to right, rgb(0, 196, 255), rgb(143, 228, 30));background: url(https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1500)">
+        @*url(/images/slider/ss.png)*@
+        <div class="container">
+            <h3>Alışveriş Zamanı</h3>
+            <h4>Şimdi Alışveriş yapmanın tam zamanı</h4>
+            <a href="#" class="btn btn-success"> Ürünler </a>
+        </div><!-- End .container -->
+    </div><!-- End .promo-section -->
+
+    <div class="partners-container">
+        <div class="container">
+            <div id="brand-carousel" class="partners-carousel owl-carousel owl-theme" style="padding-left:20px;padding-right:20px;">
+                <a href="#" class="partner">
+                    <img style="width:75% !important;" src="~/brand/redbul.png" alt="logo">
+                </a>
+                <a href="#" class="partner" style="margin-top:10px;">
+                    <img style="width:75% !important;" src="~/brand/Migros.png" alt="logo">
+                </a>
+                <a href="#" class="partner" style="margin-top:10px;">
+                    <img style="width:75% !important;" src="~/brand/caykur.png" alt="logo">
+                </a>
+                <a href="#" class="partner">
+                    <img src="~/brand/maret.jpg" alt="logo">
+                </a>
+                <a href="#" class="partner" style="margin-top:10px;">
+                    <img src="~/brand/pınar.jpg" alt="logo">
+                </a>
+                <a href="#" class="partner">
+                    <img src="~/brand/efes.jpg" alt="logo">
+                </a>
+                <a href="#" class="partner">
+                    <img src="~/brand/coco.jpg" alt="logo">
+                </a>
+            </div><!-- End .partners-carousel -->
+        </div><!-- End .container -->
+    </div><!-- End .partners-container -->
+    <!-- End .container -->
 </main><!-- End .main -->
 @section scripts {
     <script src="" type="text/javascript"></script>
-   <script>
-       var parentCardCarousel = document.getElementById("card-carousel"),
-           cardsCarousel = document.getElementsByClassName("cards"),
-           btnCarousel = document.getElementsByClassName("btn-carousel"),
-           btnCarousel1 = document.getElementById("next"),
-           btnCarousel2 = document.getElementById("prev"),
-           activeBtnCaousel,
-           orderBtnActiveCarousel,
-           orderBtnCarousel,
-           findOrderCarousel,
-           carouselWidth = 0,
-           carouselWidth2 = 0,
-           cardsWidth = 0,
-           cardsOrder = 0;
+    <script>
 
-       for (let i = 1; i < cardsCarousel.length; i = i + 1) {
+        var owl = $('#brand-carousel');
+        owl.owlCarousel({
+            items: 8,
+            loop: true,
+            margin: 10,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplayHoverPause: true
+        });
+        $('.play').on('click', function () {
+            owl.trigger('play.owl.autoplay', [1000])
+        })
+        $('.stop').on('click', function () {
+            owl.trigger('stop.owl.autoplay')
+        })
 
-           cardsWidth = cardsWidth + cardsCarousel[i].offsetWidth;
-           cardsCarousel[i].style.left = cardsWidth + "px";
-       }
+        var parentCardCarousel = document.getElementById("card-carousel"),
+            cardsCarousel = document.getElementsByClassName("cards"),
+            btnCarousel = document.getElementsByClassName("btn-carousel"),
+            btnCarousel1 = document.getElementById("next"),
+            btnCarousel2 = document.getElementById("prev"),
+            activeBtnCaousel,
+            orderBtnActiveCarousel,
+            orderBtnCarousel,
+            findOrderCarousel,
+            carouselWidth = 0,
+            carouselWidth2 = 0,
+            cardsWidth = 0,
+            cardsOrder = 0;
 
-       btnCarousel[cardsOrder].classList.add("activebtncarousel");
+        for (let i = 1; i < cardsCarousel.length; i = i + 1) {
 
-       for (let i = 0; i < btnCarousel.length; i = i + 1) {
+            cardsWidth = cardsWidth + cardsCarousel[i].offsetWidth;
+            cardsCarousel[i].style.left = cardsWidth + "px";
+        }
 
-           btnCarousel[i].setAttribute("data-order", i);
+        btnCarousel[cardsOrder].classList.add("activebtncarousel");
 
-           btnCarousel[i].onclick = function () {
+        for (let i = 0; i < btnCarousel.length; i = i + 1) {
 
-               activeBtnCaousel = document.querySelector(".activebtncarousel");
-               orderBtnActiveCarousel = parseInt(activeBtnCaousel.getAttribute("data-order"));
+            btnCarousel[i].setAttribute("data-order", i);
 
-               activeBtnCaousel.classList.remove("activebtncarousel");
+            btnCarousel[i].onclick = function () {
 
-               orderBtnCarousel = parseInt(this.getAttribute("data-order"));
+                activeBtnCaousel = document.querySelector(".activebtncarousel");
+                orderBtnActiveCarousel = parseInt(activeBtnCaousel.getAttribute("data-order"));
 
-               cardsOrder = orderBtnCarousel;
+                activeBtnCaousel.classList.remove("activebtncarousel");
 
-               this.classList.add("activebtncarousel");
+                orderBtnCarousel = parseInt(this.getAttribute("data-order"));
 
-               if (orderBtnActiveCarousel < orderBtnCarousel) {
+                cardsOrder = orderBtnCarousel;
 
-                   //parentCardCarousel.style.transition = "all 0.5s linear";
+                this.classList.add("activebtncarousel");
 
-                   findOrderCarousel = orderBtnCarousel - orderBtnActiveCarousel;
+                if (orderBtnActiveCarousel < orderBtnCarousel) {
 
-                   carouselWidth += cardsCarousel[0].offsetWidth * findOrderCarousel;
+                    //parentCardCarousel.style.transition = "all 0.5s linear";
 
-                   parentCardCarousel.style.right = carouselWidth + "px";
+                    findOrderCarousel = orderBtnCarousel - orderBtnActiveCarousel;
 
-               } else if (orderBtnActiveCarousel > orderBtnCarousel) {
+                    carouselWidth += cardsCarousel[0].offsetWidth * findOrderCarousel;
 
-                   parentCardCarousel.style.transition = "all 0.5s linear";
+                    parentCardCarousel.style.right = carouselWidth + "px";
 
-                   findOrderCarousel = orderBtnActiveCarousel - orderBtnCarousel;
+                } else if (orderBtnActiveCarousel > orderBtnCarousel) {
 
-                   carouselWidth -= cardsCarousel[0].offsetWidth * findOrderCarousel;
+                    parentCardCarousel.style.transition = "all 0.5s linear";
 
-                   parentCardCarousel.style.right = carouselWidth + "px";
+                    findOrderCarousel = orderBtnActiveCarousel - orderBtnCarousel;
 
-               }
+                    carouselWidth -= cardsCarousel[0].offsetWidth * findOrderCarousel;
 
-           }
+                    parentCardCarousel.style.right = carouselWidth + "px";
 
-       }
+                }
 
-       btnCarousel1.onclick = function () {
+            }
 
-           activeBtnCaousel = document.querySelector(".activebtncarousel");
-           activeBtnCaousel.classList.remove("activebtncarousel");
+        }
 
-           if (cardsOrder < btnCarousel.length - 1) {
+        btnCarousel1.onclick = function () {
 
-               //parentCardCarousel.style.transition = "all 0.5s linear";
+            activeBtnCaousel = document.querySelector(".activebtncarousel");
+            activeBtnCaousel.classList.remove("activebtncarousel");
 
-               cardsOrder = cardsOrder + 1;
+            if (cardsOrder < btnCarousel.length - 1) {
 
-               btnCarousel[cardsOrder].classList.add("activebtncarousel");
+                //parentCardCarousel.style.transition = "all 0.5s linear";
 
-               carouselWidth += cardsCarousel[0].offsetWidth;
+                cardsOrder = cardsOrder + 1;
 
-               parentCardCarousel.style.right = carouselWidth + "px";
+                btnCarousel[cardsOrder].classList.add("activebtncarousel");
 
-           } else {
+                carouselWidth += cardsCarousel[0].offsetWidth;
 
-               cardsOrder = 0;
+                parentCardCarousel.style.right = carouselWidth + "px";
 
-               btnCarousel[cardsOrder].classList.add("activebtncarousel");
+            } else {
 
-               carouselWidth = 0;
+                cardsOrder = 0;
 
-               // parentCardCarousel.style.transition = "all 0s linear";
-               parentCardCarousel.style.right = carouselWidth + "px";
+                btnCarousel[cardsOrder].classList.add("activebtncarousel");
 
-           }
+                carouselWidth = 0;
 
-       }
+                // parentCardCarousel.style.transition = "all 0s linear";
+                parentCardCarousel.style.right = carouselWidth + "px";
 
-       btnCarousel2.onclick = function () {
+            }
 
-           activeBtnCaousel = document.querySelector(".activebtncarousel");
-           activeBtnCaousel.classList.remove("activebtncarousel");
+        }
 
-           if (cardsOrder > 0) {
+        btnCarousel2.onclick = function () {
 
-               //parentCardCarousel.style.transition = "all 0.5s linear";
+            activeBtnCaousel = document.querySelector(".activebtncarousel");
+            activeBtnCaousel.classList.remove("activebtncarousel");
 
-               carouselWidth -= cardsCarousel[0].offsetWidth;
+            if (cardsOrder > 0) {
 
-               parentCardCarousel.style.right = carouselWidth + "px";
+                //parentCardCarousel.style.transition = "all 0.5s linear";
 
-               cardsOrder = cardsOrder - 1;
+                carouselWidth -= cardsCarousel[0].offsetWidth;
 
-               btnCarousel[cardsOrder].classList.add("activebtncarousel");
+                parentCardCarousel.style.right = carouselWidth + "px";
 
-           } else {
+                cardsOrder = cardsOrder - 1;
 
-               //parentCardCarousel.style.transition = "all 0s linear";
+                btnCarousel[cardsOrder].classList.add("activebtncarousel");
 
-               cardsOrder = btnCarousel.length - 1;
+            } else {
 
-               btnCarousel[cardsOrder].classList.add("activebtncarousel");
+                //parentCardCarousel.style.transition = "all 0s linear";
 
-               carouselWidth = cardsCarousel[0].offsetWidth * (btnCarousel.length - 1);
+                cardsOrder = btnCarousel.length - 1;
 
-               parentCardCarousel.style.right = carouselWidth + "px";
+                btnCarousel[cardsOrder].classList.add("activebtncarousel");
 
-               console.log("second");
+                carouselWidth = cardsCarousel[0].offsetWidth * (btnCarousel.length - 1);
 
-           }
+                parentCardCarousel.style.right = carouselWidth + "px";
 
-       }
+                console.log("second");
+
+            }
+
+        }
 
     </script>
 }
