@@ -1,114 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Anasayfa";
 }
-<link href="" rel="stylesheet" type="text/css" />
-<style>
-    .feature-box p {
-        max-width: none !important;
-    }
+<link href="~/css/site.css" rel="stylesheet" />
 
-    .promo-section::before {
-        background-color: rgba(0, 0, 0, 0.65);
-    }
-
-
-
-
-    .parent-card-carousel {
-        margin: 50px auto;
-        height: 200px;
-        position: relative;
-        overflow: hidden;
-        background-image: linear-gradient(to right, rgb(19, 41, 47), rgb(77, 140, 82));
-        border-radius: 15px;
-    }
-
-        .parent-card-carousel .carouselbtn {
-            position: absolute;
-            top: 70px;
-            background: transparent;
-            border: 0;
-            color: white;
-            font-size: 45px;
-            outline: 0;
-        }
-
-            .parent-card-carousel .carouselbtn:first-of-type {
-                left: 5px;
-            }
-
-            .parent-card-carousel .carouselbtn:last-of-type {
-                right: 5px;
-            }
-
-
-    .card-carousel {
-        width: 100%;
-        position: relative;
-        height: 100%;
-        transition: all 0.5s linear;
-        right: 0;
-    }
-
-        .card-carousel div {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-        }
-
-    .activebtncarousel {
-        background: #f6821f;
-    }
-
-    .parent-card-carousel .points-carousel {
-        text-align: center;
-        position: absolute;
-        width: 100%;
-        bottom: 10px;
-    }
-
-        .parent-card-carousel .points-carousel button {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 0;
-            margin: 5px;
-            outline: 0;
-        }
-
-
-    .card-carousel-header {
-        font-weight: 500;
-        font-size: 2.5rem;
-        color: #a5a5a5;
-        text-align: center;
-        font-family: Oswald, sans-serif;
-        letter-spacing: .01rem;
-        margin-bottom: 1.2rem;
-        text-transform: uppercase;
-    }
-
-    .new-btn {
-        padding: 0.5rem 1rem;
-        font-size: 1.2rem;
-        line-height: 1.5;
-        letter-spacing: .1rem;
-        text-transform: uppercase;
-        border-radius: 2px;
-        min-width: 124px;
-        transition: all .3s;
-        color: #ffffff !important;
-        background-color: #f6821f;
-        border-color: #f6821f;
-        font-family: "Oswald",sans-serif;
-    }
-</style>
 <main class="main">
     <div class="home-slider-container">
         <div class="home-slider owl-carousel">
             <div class="home-slide">
                 <div class="slide-bg owl-lazy" data-src="/images/slider/slider1.png"></div><!-- End .slide-bg -->
-                <div class="home-slide-content container">
+                <div class="home-slide-content container" style="    margin-left: 40px;">
                     <div class="row">
                         <div class="col-md-6 offset-md-6 col-lg-5 offset-lg-7">
                             <h4>İnanılmaz</h4>
@@ -121,7 +21,7 @@
             </div><!-- End .home-slide -->
             <div class="home-slide">
                 <div class="slide-bg owl-lazy" data-src="/images/slider/slider2.png"></div><!-- End .slide-bg -->
-                <div class="home-slide-content container">
+                <div class="home-slide-content container" style="    margin-left: 40px;">
                     <h1 style="font-size:40px">Ürünlerimizi Gördünüz mü! </h1>
                     <a asp-controller="Product" asp-action="Index" class="btn btn-warning">Git</a>
                 </div><!-- End .home-slide-content -->
@@ -158,13 +58,7 @@
         <div class="container">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="featured-products-tab" data-toggle="tab" href="#featured-products" role="tab" aria-controls="featured-products" aria-selected="true">Tavsiye Edilen Ürünler</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="latest-products-tab" data-toggle="tab" href="#latest-products" role="tab" aria-controls="latest-products" aria-selected="false">Son Eklenen Ürünler</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="top-products-tab" data-toggle="tab" href="#top-products" role="tab" aria-controls="top-products" aria-selected="false">En Çok Satılan Ürünler</a>
+                    <a class="nav-link active" id="top-products-tab" data-toggle="tab" href="#top-products" role="tab" aria-controls="top-products" aria-selected="true">En Çok Satılan Ürünler</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="campaign-products-tab" data-toggle="tab" href="#campaign-products" role="tab" aria-controls="campaign-products" aria-selected="false">Kampanyalı Ürünler</a>
@@ -172,8 +66,6 @@
             </ul>
         </div><!-- End .container -->
         <div class="tab-content" style="border-bottom:0px">
-            @await Component.InvokeAsync("FeaturedProducts")
-            @await Component.InvokeAsync("LatestProducts")
             @await Component.InvokeAsync("TopProducts", 10)
         </div><!-- End .tab-content -->
 
@@ -184,27 +76,27 @@
                 <div class="card-carousel" id="card-carousel">
 
                     <div class="cards">
-                        <div class="row" style="margin-left:70px;position: absolute;top:25%;width:80%">
+                        <div class="row campaign-head">
                             <div style="height:fit-content">
-                                <span class="d-block" style="font-weight:500;font-size:16px;color: #f6821f;">Yağ Ve Bakliyatta</span>
-                                <span class="d-block" style="font-weight:600;font-size:32px;color: #ffffff;margin-bottom: 5px;"> Yazın En Çok Satanları </span>
+                                <span class="d-block campaign-top-text">Yağ Ve Bakliyatta</span>
+                                <span class="d-block campaign-main-text"> Yazın En Çok Satanları </span>
                                 <a class="new-btn">Şimdi Gör</a>
                             </div>
-                            <div style="height:fit-content">
-                                <img style="width: 150px;margin: auto;    float: right;" class="" src="~/images/order.png" alt="Automation">
+                            <div class="d-none d-lg-block" style="height:fit-content">
+                                <img  class="campaign-image" src="~/images/order.png" alt="Automation">
                             </div>
                         </div>
                     </div>
 
                     <div class="cards">
-                        <div class="row" style="margin-left:70px;position: absolute;top:25%;width:80%">
+                        <div class="row campaign-head">
                             <div style="height:fit-content">
-                                <span class="d-block" style="font-weight:500;font-size:16px;color: #f6821f;">Keyfinize Keyif Katacak Çay Ürünlerinde</span>
-                                <span class="d-block" style="font-weight:600;font-size:32px;color: #ffffff;margin-bottom: 5px;"> %60'A Varan İndirimler </span>
+                                <span class="d-block campaign-top-text">Keyfinize Keyif Katacak Çay Ürünlerinde</span>
+                                <span class="d-block campaign-main-text"> %60'A Varan İndirimler </span>
                                 <a class="new-btn">Şimdi Gör</a>
                             </div>
-                            <div style="height:fit-content">
-                                <img style="width: 150px;margin: auto;    float: right;" class="" src="~/images/order.png" alt="Automation">
+                            <div class="d-none d-lg-block" style="height:fit-content">
+                                <img class="campaign-image" src="~/images/order.png" alt="Automation">
                             </div>
                         </div>
                     </div>
@@ -221,40 +113,59 @@
             </div>
         </div>
 
-    </div><!-- End .home-product-tabs -->
-    <div class="promo-section" style="background-image: linear-gradient(to right, rgb(0, 196, 255), rgb(143, 228, 30));background: url(https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1500)">
-        @*url(/images/slider/ss.png)*@
         <div class="container">
-            <h3>Alışveriş Zamanı</h3>
-            <h4>Şimdi Alışveriş yapmanın tam zamanı</h4>
-            <a href="#" class="btn btn-success"> Ürünler </a>
-        </div><!-- End .container -->
-    </div><!-- End .promo-section -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="featured-products-tab" data-toggle="tab" href="#featured-products" role="tab" aria-controls="featured-products" aria-selected="true">Tavsiye Edilen Ürünler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="latest-products-tab" data-toggle="tab" href="#latest-products" role="tab" aria-controls="latest-products" aria-selected="false">Son Eklenen Ürünler</a>
+                </li>
 
-    <div class="partners-container">
+            </ul>
+        </div><!-- End .container -->
+        <div class="tab-content" style="border-bottom:0px">
+            @await Component.InvokeAsync("FeaturedProducts")
+            @await Component.InvokeAsync("LatestProducts")
+        </div><!-- End .tab-content -->
+
+    </div>
+
+
+    <!-- End .home-product-tabs -->
+    @*<div class="promo-section" style="background-image: linear-gradient(to right, rgb(0, 196, 255), rgb(143, 228, 30));background: url(https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=1500)">
+
+            <div class="container">
+                <h3>Alışveriş Zamanı</h3>
+                <h4>Şimdi Alışveriş yapmanın tam zamanı</h4>
+                <a href="#" class="btn btn-success"> Ürünler </a>
+            </div><!-- End .container -->
+        </div><!-- End .promo-section -->*@
+
+    <div class="partners-container" style="    border-top: .2rem solid #e7e7e7;">
         <div class="container">
             <div id="brand-carousel" class="partners-carousel owl-carousel owl-theme" style="padding-left:20px;padding-right:20px;">
-                <a href="#" class="partner">
+                <span href="#" class="partner">
                     <img style="width:75% !important;" src="~/brand/redbul.png" alt="logo">
-                </a>
-                <a href="#" class="partner" style="margin-top:10px;">
+                </span>
+                <span href="#" class="partner" style="margin-top:10px;">
                     <img style="width:75% !important;" src="~/brand/Migros.png" alt="logo">
-                </a>
-                <a href="#" class="partner" style="margin-top:10px;">
+                </span>
+                <span href="#" class="partner" style="margin-top:10px;">
                     <img style="width:75% !important;" src="~/brand/caykur.png" alt="logo">
-                </a>
-                <a href="#" class="partner">
+                </span>
+                <span href="#" class="partner">
                     <img src="~/brand/maret.jpg" alt="logo">
-                </a>
-                <a href="#" class="partner" style="margin-top:10px;">
+                </span>
+                <span href="#" class="partner" style="margin-top:10px;">
                     <img src="~/brand/pınar.jpg" alt="logo">
-                </a>
-                <a href="#" class="partner">
+                </span>
+                <span href="#" class="partner">
                     <img src="~/brand/efes.jpg" alt="logo">
-                </a>
-                <a href="#" class="partner">
+                </span>
+                <span href="#" class="partner">
                     <img src="~/brand/coco.jpg" alt="logo">
-                </a>
+                </span>
             </div><!-- End .partners-carousel -->
         </div><!-- End .container -->
     </div><!-- End .partners-container -->
@@ -264,21 +175,49 @@
     <script src="" type="text/javascript"></script>
     <script>
 
-        var owl = $('#brand-carousel');
-        owl.owlCarousel({
-            items: 8,
-            loop: true,
-            margin: 10,
-            autoplay: true,
-            autoplayTimeout: 5000,
-            autoplayHoverPause: true
-        });
-        $('.play').on('click', function () {
-            owl.trigger('play.owl.autoplay', [1000])
-        })
-        $('.stop').on('click', function () {
-            owl.trigger('stop.owl.autoplay')
-        })
+        if ($(window).width() < 600) {
+            var owl = $('#brand-carousel');
+            owl.owlCarousel({
+                items: 2,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                dots: false,
+            });
+            $('.play').on('click', function () {
+                owl.trigger('play.owl.autoplay', [1000])
+            })
+            $('.stop').on('click', function () {
+                owl.trigger('stop.owl.autoplay')
+            })
+        }
+        else {
+            var owl = $('#brand-carousel');
+            owl.owlCarousel({
+                items: 8,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true
+            });
+            $('.play').on('click', function () {
+                owl.trigger('play.owl.autoplay', [1000])
+            })
+            $('.stop').on('click', function () {
+                owl.trigger('stop.owl.autoplay')
+            })
+        }
+
+       
+
+
+
+
+        //_________________________
+
 
         var parentCardCarousel = document.getElementById("card-carousel"),
             cardsCarousel = document.getElementsByClassName("cards"),
