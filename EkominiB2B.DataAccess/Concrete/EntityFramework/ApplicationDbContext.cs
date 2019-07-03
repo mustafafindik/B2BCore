@@ -23,7 +23,8 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
         public DbSet<OrderStatus> orderStatuses { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
- 
+        public DbSet<Announcement> Announcements { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Announcement>
+@{
+    ViewData["Title"] = "Duyurular";
+}
+
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+
+                @foreach (var item in Model)
+                {
+                <article class="entry">
+                    @if (item.CoverImage !=null)
+                    {
+                        <div class="entry-media">
+                            <a asp-controller="Announcement" asp-action="Details" asp-route-Id="@item.Id">
+                                <img src="assets/images/blog/post-3.jpg" alt="Post">
+                            </a>
+                        </div><!-- End .entry-media -->
+                    }
+
+                    <div class="entry-body">
+                        <div class="entry-date">
+                            <span class="day">@item.AnnouncementDate.Date.ToString("dd")</span>
+                            <span class="month">@item.AnnouncementDate.Date.ToString("MMMM")</span>
+                        </div><!-- End .entry-date -->
+                        <h2 class="entry-title">
+                            <a hsp-controller="Announcement" asp-action="Details" asp-route-Id="@item.Id" > @item.Title</a>
+                        </h2>
+                        <div class="entry-content">
+                            <p> @item.Description </p>
+                            <a asp-controller="Announcement" asp-action="Details" asp-route-Id="@item.Id" class="read-more"> Daha Fazla <i class="icon-angle-double-right"></i></a>
+                        </div><!-- End .entry-content -->
+                        <div class="entry-meta">
+                            <span><i class="icon-calendar"></i>@item.AnnouncementDate.Date.ToString("dd MMM yyyy")</span>
+                            <span><i class="icon-user"></i>Yazar :  <a href="#">@item.ApplicationUser.Email</a></span>
+
+                        </div><!-- End .entry-meta -->
+                    </div><!-- End .entry-body -->
+                </article><!-- End .entry -->
+                }
+
+
+                <nav class="toolbox toolbox-pagination">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link page-link-btn" href="#"><i class="icon-angle-left"></i></a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item"><span class="page-link">...</span></li>
+                        <li class="page-item">
+                            <a class="page-link page-link-btn" href="#"><i class="icon-angle-right"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div><!-- End .col-lg-9 -->
+            <aside class="sidebar col-lg-3">
+                <div class="sidebar-wrapper">
+                    <div class="widget widget-search">
+                        <form role="search" method="get" class="search-form" action="#">
+                            <input type="search" class="form-control" placeholder="Duyuru Ara" name="s" required>
+                            <button type="submit" class="search-submit" title="Ara">
+                                <i class="icon-search"></i>
+                                <span class="sr-only">Ara</span>
+                            </button>
+                        </form>
+                    </div><!-- End .widget -->
+           
+                    <div class="widget">
+                        <h4 class="widget-title">Etiketler</h4>
+                        <div class="tagcloud">
+                            <a href="#">Duyuru</a>
+                            <a href="#">Kampanya</a>
+                            <a href="#">Yeni</a>
+                            <a href="#">Ürün</a>
+                            <a href="#">Çay</a>
+                        </div><!-- End .tagcloud -->
+                    </div><!-- End .widget -->
+                    <div class="widget">
+                        <h4 class="widget-title">Arşiv</h4>
+                        <ul class="list">
+                            <li><a href="#">April 2018</a></li>
+                            <li><a href="#">March 2018</a></li>
+                            <li><a href="#">February 2018</a></li>
+                        </ul>
+                    </div><!-- End .widget -->
+
+                    @await Component.InvokeAsync("FeaturedWidget")
+                </div><!-- End .sidebar-wrapper -->
+            </aside><!-- End .col-lg-3 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+    <div class="mb-6"></div><!-- margin -->
+</main><!-- End .main -->

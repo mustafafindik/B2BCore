@@ -78,6 +78,9 @@ namespace EkominiB2B.WebUI
             services.AddTransient<IOrderLineRepository, OrderLineRepository>();
             services.AddTransient<IOrderService, OrderService>();
 
+            services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
+            services.AddTransient<IAnnouncementService, AnnouncementService>();
+
             services.AddTransient<ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("EkominiB2B.WebUI")));
             services.AddIdentity<ApplicationUser, ApplicationRole>(options =>

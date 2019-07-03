@@ -167,6 +167,7 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
                 context.Products.AddRange(products);
                 context.SaveChanges();
             }
+            
 
         }
         public static async Task CreateRootAdmin(IServiceProvider serviceProvider, IConfiguration configuration, IApplicationBuilder app)

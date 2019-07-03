@@ -45,7 +45,12 @@ namespace EkominiB2B.WebUI.Controllers
             return View();
         }
 
-     
+        public IActionResult Campaigns()
+        {
+            return View();
+        }
+
+
         public IActionResult Query(string q, int categoryId=0, int page = 1, int PageSize = 8)
         {
             var products = productService.GetAll("Category").Where(d => categoryId == 0 ? true : d.CategoryId == categoryId).ToList();

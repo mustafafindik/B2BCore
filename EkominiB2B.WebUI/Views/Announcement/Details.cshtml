@@ -1,0 +1,178 @@
+﻿@model Announcement
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item" aria-current="page">Duyurular</li>
+                <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <article class="entry single">
+                    <div class="entry-media">
+                        <div class="entry-slider owl-carousel owl-theme">
+                            <img src="/assets/images/blog/post-1.jpg" alt="Post">
+                            <img src="/assets/images/blog/post-2.jpg" alt="Post">
+                            <img src="/assets/images/blog/post-3.jpg" alt="Post">
+                        </div><!-- End .entry-slider -->
+                    </div><!-- End .entry-media -->
+                    <div class="entry-body" style="border-bottom: 0px solid #ddd;">
+                        <div class="entry-date">
+                            <span class="day">@Model.AnnouncementDate.Date.ToString("dd")</span>
+                            <span class="month">@Model.AnnouncementDate.Date.ToString("MMMM")</span>
+                        </div><!-- End .entry-date -->
+                        <h2 class="entry-title">
+                            @Model.Title
+                        </h2>
+                        <div class="entry-meta">
+                            <span><i class="icon-calendar"></i>@Model.AnnouncementDate.Date.ToString("dd MMM yyyy")</span>
+                            <span><i class="icon-user"></i>Yazar :  <a href="#">@Model.ApplicationUser.Email</a></span>
+                        </div><!-- End .entry-meta -->
+                        <div class="entry-content">
+                             @Model.Body
+                        </div><!-- End .entry-content -->
+                      
+                        <div class="entry-author">
+                            <h3><i class="icon-user"></i>Yazar</h3>
+                            <figure>
+                                <a href="#">
+                                    @if (Model.ApplicationUser.UserImage != null)
+                                    {
+                                        <img src="~/UserImages/@Model.ApplicationUser.UserImage"   alt="author">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/img/default.png" />
+                                    }
+                                </a>
+                            </figure>
+                            <div class="author-content">
+                                @if (Model.ApplicationUser.Name != null && Model.ApplicationUser.Surname != null  )
+                                {
+                                    <h4><a href="#">@Model.ApplicationUser.Name @Model.ApplicationUser.Surname</a></h4>
+                                }
+                                else
+                                {
+                                    <h4><a href="#">@Model.ApplicationUser.Email</a></h4>
+                                }
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab officia culpa corporis, quidem placeat minima unde vel veniam laboriosam et animi, inventore delectus, officiis doloribus ex amet illum ea suscipit!</p>
+                            </div><!-- End .author.content -->
+                        </div><!-- End .entry-author -->             
+                    </div><!-- End .entry-body -->
+                </article><!-- End .entry -->
+                <div class="related-posts">
+                    <h4 class="light-title">Related <strong>Posts</strong></h4>
+                    <div class="owl-carousel owl-theme related-posts-carousel">
+                        <article class="entry">                   
+                            <div class="entry-body" >
+                                <div class="entry-date">
+                                    <span class="day">29</span>
+                                    <span class="month">Jun</span>
+                                </div><!-- End .entry-date -->
+                                <h2 class="entry-title">
+                                    <a href="single.html">Post Format - Image</a>
+                                </h2>
+                                <div class="entry-content">
+                                    <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per incep tos himens.</p>
+                                    <a href="single.html" class="read-more">Read More <i class="icon-angle-double-right"></i></a>
+                                </div><!-- End .entry-content -->
+                            </div><!-- End .entry-body -->
+                        </article>
+                        <article class="entry">
+                           
+                            <div class="entry-body">
+                                <div class="entry-date">
+                                    <span class="day">23</span>
+                                    <span class="month">Mar</span>
+                                </div><!-- End .entry-date -->
+                                <h2 class="entry-title">
+                                    <a href="single.html">Post Format - Image</a>
+                                </h2>
+                                <div class="entry-content">
+                                    <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per incep tos himens.</p>
+                                    <a href="single.html" class="read-more">Read More <i class="icon-angle-double-right"></i></a>
+                                </div><!-- End .entry-content -->
+                            </div><!-- End .entry-body -->
+                        </article>
+                        <article class="entry">
+                           
+                            <div class="entry-body">
+                                <div class="entry-date">
+                                    <span class="day">14</span>
+                                    <span class="month">May</span>
+                                </div><!-- End .entry-date -->
+                                <h2 class="entry-title">
+                                    <a href="single.html">Post Format - Image</a>
+                                </h2>
+                                <div class="entry-content">
+                                    <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per incep tos himens.</p>
+                                    <a href="single.html" class="read-more">Read More <i class="icon-angle-double-right"></i></a>
+                                </div><!-- End .entry-content -->
+                            </div><!-- End .entry-body -->
+                        </article>
+                        <article class="entry">
+                    
+                            <div class="entry-body">
+                                <div class="entry-date">
+                                    <span class="day">11</span>
+                                    <span class="month">Apr</span>
+                                </div><!-- End .entry-date -->
+                                <h2 class="entry-title">
+                                    <a href="single.html">Post Format - Image</a>
+                                </h2>
+                                <div class="entry-content">
+                                    <p>Euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per incep tos himens.</p>
+                                    <a href="single.html" class="read-more">Read More <i class="icon-angle-double-right"></i></a>
+                                </div><!-- End .entry-content -->
+                            </div><!-- End .entry-body -->
+                        </article>
+                    </div><!-- End .owl-carousel -->
+                </div><!-- End .related-posts -->
+            </div><!-- End .col-lg-9 -->
+            <aside class="sidebar col-lg-3">
+                <div class="sidebar-wrapper">
+                    <div class="widget widget-search">
+                        <form role="search" method="get" class="search-form" action="#">
+                            <input type="search" class="form-control" placeholder="Duyuru Ara" name="s" required>
+                            <button type="submit" class="search-submit" title="Ara">
+                                <i class="icon-search"></i>
+                                <span class="sr-only">Ara</span>
+                            </button>
+                        </form>
+                    </div><!-- End .widget -->
+
+                    <div class="widget">
+                        <h4 class="widget-title">Etiketler</h4>
+                        <div class="tagcloud">
+                            <a href="#">Duyuru</a>
+                            <a href="#">Kampanya</a>
+                            <a href="#">Yeni</a>
+                            <a href="#">Ürün</a>
+                            <a href="#">Çay</a>
+                        </div><!-- End .tagcloud -->
+                    </div><!-- End .widget -->
+                    <div class="widget">
+                        <h4 class="widget-title">Arşiv</h4>
+                        <ul class="list">
+                            <li><a href="#">April 2018</a></li>
+                            <li><a href="#">March 2018</a></li>
+                            <li><a href="#">February 2018</a></li>
+                        </ul>
+                    </div><!-- End .widget -->
+
+                    @await Component.InvokeAsync("FeaturedWidget")
+                </div><!-- End .sidebar-wrapper -->
+            </aside><!-- End .col-lg-3 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+    <div class="mb-6"></div><!-- margin -->
+</main><!-- End .main -->
