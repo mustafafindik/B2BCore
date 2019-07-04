@@ -1,7 +1,128 @@
 ﻿
 @{
-    ViewData["Title"] = "Campaigns";
+    ViewData["Title"] = "Kampanyalar";
 }
 
-<h2>Campaigns</h2>
+<style>
+    .card-header-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+        margin-left: 5px;
+        border-bottom: 1px solid #e4e4e4;
+        padding-bottom: 20px;
+        font-weight: 600;
+    }
+    .new-btn {
+        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        letter-spacing: .1rem;
+        text-transform: uppercase;
+        border-radius: 2px;
+        min-width: 124px;
+        transition: all .3s;
+        color: #ffffff !important;
+        background-color: #6d6d6d;
+        border-color: #6d6d6d;
+        font-family: "Oswald",sans-serif;
+    }
+</style>
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 order-lg-last dashboard-content">
+                <div class="card-header-title">Tüm Kampanyalar</div>
+                <div class="card" style="border-radius:15px;background-color:#4f326b">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div style="margin-left:15px;">
+                                    <span style="display:block;font-weight: 500;font-size: 16px; color: #f6821f;"> Yağ Ve Bakliyatta</span>
+                                    <span style="display:block;font-weight: 600;font-size:28px;color: #ffffff;margin-bottom: 10px;">  Yazın En Çok Satanları </span>
+                                    <a class="new-btn">Şimdi Gör</a>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div style="margin-right:10px;">
+                                    <span style="display:block;float:right;font-size:16px;font-weight:500;color:#dadada"> Migros </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End .card-body -->
+                </div><!-- End .card -->
+                <div class="card" style="border-radius:15px;background-color:#124373">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div style="margin-left:15px;">
+                                    <span style="display:block;font-weight: 500;font-size: 16px; color: #f6821f;"> Tüm Sucuk Ürünlerinde</span>
+                                    <span style="display:block;font-weight: 600;font-size: 28px;color: #ffffff;margin-bottom: 10px;">  %30'A Varan İndirimler </span>
+                                    <a class="new-btn">Şimdi Gör</a>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div style="margin-right:10px;">
+                                    <span style="display:block;float:right;font-size:16px;font-weight:500;color:#dadada"> Maret </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End .card-body -->
+                </div><!-- End .card -->
+                <div class="card" style="border-radius:15px;background-color:#258790">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div style="margin-left:15px;">
+                                    <span style="display:block;font-weight: 500;font-size: 16px; color: #f6821f;"> Tüm Alışverişlerinizde</span>
+                                    <span style="display:block;font-weight: 600;font-size: 28px;color: #ffffff;margin-bottom: 10px;">  Süpriz İndirimler </span>
+                                    <a class="new-btn">Şimdi Gör</a>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div style="margin-right:10px;">
+                                    <span style="display:block;float:right;font-size:16px;font-weight:500;color:#dadada"> Pınar </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End .card-body -->
+                </div><!-- End .card -->
+            </div><!-- End .col-lg-9 -->
+            <aside class="sidebar-shop col-lg-3 order-lg-first">
+                <div class="sidebar-wrapper">
+                    <div class="widget">
+                        <h3 class="widget-title">
+                            <a data-toggle="collapse" href="#widget-body-1" role="button" aria-expanded="true" aria-controls="widget-body-1">Tedarikçiler</a>
+                        </h3>
+                        <div class="collapse show" id="widget-body-1">
+                            <div class="widget-body">
+                                <ul class="cat-list">
+                                    <li><a>Migros</a></li>
+                                    <li><a>Maret    </a></li>
+                                    <li><a>Pınar</a></li>
+                                    <li><a>Coca Cola</a></li>
+                                    <li><a>Bey Piliç</a></li>
+                                    <li><a>Saka</a></li>
+                                    <li><a>Migros</a></li>
+                                    <li><a>Migros</a></li>
 
+
+                                </ul>
+                            </div><!-- End .widget-body -->
+                        </div><!-- End .collapse -->
+                    </div><!-- End .widget -->
+        
+
+                </div><!-- End .sidebar-wrapper -->
+            </aside><!-- End .col-lg-3 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+    <div class="mb-5"></div><!-- margin -->
+</main><!-- End .main -->
