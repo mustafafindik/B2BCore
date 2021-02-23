@@ -1,4 +1,4 @@
-# EkominiB2B
+# B2BCore
 EkominiB2B
 
 
