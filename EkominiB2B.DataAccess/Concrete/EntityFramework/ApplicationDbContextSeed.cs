@@ -25,11 +25,11 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
             if (!context.Categories.Any())
             {
                 var category = new[] {
-                    new Category() { CategoryName = "Atıştırmalık" },
-                    new Category() { CategoryName = "Bakliyat Ve Yağ" },
-                    new Category() { CategoryName = "Bisküvi" },
-                    new Category() { CategoryName = "Çay" },
-                    new Category() { CategoryName = "Temizlik" }
+                    new Category() { CategoryName = "Android Telefonlar" },
+                    new Category() { CategoryName = "Akıllı Saatler" },
+                    new Category() { CategoryName = "Akıllı Bileklikler" },
+                    new Category() { CategoryName = "Bluetooth Kulaklıklar" },
+                    new Category() { CategoryName = "Powerbank" }
 
                 };
                 context.Categories.AddRange(category);
@@ -56,110 +56,86 @@ namespace EkominiB2B.DataAccess.Concrete.EntityFramework
             {
                 var products = new[]
             {
-                    new Product(){ ProductName="MIGROS TUZLU FISTIK 200 G", CategoryId = 1 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0.10,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/1.jpg",
-                        ShortDescription ="Migros Tuzlu Fıstık sohbetlerinize lezzet katar." ,
-                        Description ="Migros Tuzlu Fıstık sohbetlerinize lezzet katar. Tazecik tuzlu fıstığı misafirlerinize ikram edebilir, evde, parkta, istediğiniz her yerde tüketebilirsiniz. Migros kalite ve güvencesi ile üretilip paketlenmiş olan çerezi arzu ettiğiniz diğer çerezlerle karıştırarak ya da tek başına sunabilirsiniz. Yaklaşık 10 porsiyondan oluşmaktadır."
+                    new Product(){ ProductName="Oppo A91 128 GB", CategoryId = 1 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0.10,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=2799.15, Image = "/images/Product2/1.jpg",
+                        ShortDescription ="Oppo A91 Akıllı Telefonlarda Işık Çağının Kapılarını Aralıyor" ,
+                        Description ="Oppo kurulduğu günden bu yana güçlü teknik özellikleri ve şık tasarımıyla dikkat çeken akıllı telefonlar üretiyor. Kullanıcı dostu bir yaklaşımla teknoloji geliştirmeye devam eden Oppo, en ileri teknolojiye sahip akıllı telefon modellerini herkes için ulaşılır kılmak amacıyla çalışmalarını sürdürüyor. Markaya ait A serisi telefonlar da OLED yüksek ekran çözünürlüklü arka kamera ve şık tasarımlarıyla kullanıcılardan büyük ilgi görüyor. Oppo A91 128 GB hem modern ve çekici tasarımı hem de üst düzey donanımı sayesinde bir akıllı telefonla ilgili tüm beklentilerinizi fazlasıyla karşılıyor.."
                     },
 
-                    new Product(){ ProductName="MIGROS KAVRULMUŞ FINDIK 200 G	", CategoryId = 1 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=true, Price=4.15, Image = "/images/Product/2.jpg",
-                        ShortDescription ="Kavrulmuş Fındık, enfes kavrulmuş lezzeti ile atıştırmalık bir şeyler istediğiniz zamanlar için birebir. ",
-                        Description ="Kavrulmuş Fındık, enfes kavrulmuş lezzeti ile atıştırmalık bir şeyler istediğiniz zamanlar için birebir. Besleyici yağ içeriği ile fındığı çeşitli kuru yemiş ve meyvelerle bir arada tüketebilir, kalabalık buluşmalarda atıştırmalık olarak servis edebilirsiniz."
+                    new Product(){ ProductName="Xiaomi Mi 10T Pro 256 GB", CategoryId = 1 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=true, Price=6988.15, Image = "/images/Product2/2.jpg",
+                        ShortDescription ="Xiaomi Mi 10T Pro 256 GB (Xiaomi Türkiye Garantili)",
+                        Description ="Xiaomi Mi 10T Pro 256 GB (Xiaomi Türkiye Garantili)"
                     },
 
-                    new Product(){ ProductName="MIGROS KARIŞIK KURUYEMİŞ 200 G	", CategoryId = 1 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/3.jpg" ,
-                        ShortDescription ="Migros Karışık Kuru Yemiş, farklı çerezlerin oluşturduğu bir karışımdır. ",
-                        Description ="Migros Karışık Kuru Yemiş, farklı çerezlerin oluşturduğu bir karışımdır. Antep fıstığı, leblebi, beyaz leblebi, fıstık, kabak çekirdeği ve fındık karışımından oluşuyor. Bu lezzetli karışımı misafirlerinize ikram edebilir, evde, parkta, istediğiniz her yerde tüketebilirsiniz."
+                    new Product(){ ProductName="Samsung Galaxy Note 10 Lite 128 GB ", CategoryId = 1 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4000.15, Image = "/images/Product2/3.jpg" ,
+                        ShortDescription ="Avucunuzun İçinde Sinematik Bir Ekran",
+                        Description ="Samsung, kendine has konsepti sayesinde akıllı telefon tutkunlarının ilgisini çeken Galaxy Note serisini özel bir model ile taçlandırıyor. Samsung Galaxy Note 10 Lite; şık tasarımı ve amiral gemisi özellikleri ile fark yaratırken, S Pen gibi Note serisine has detaylarıyla önceki modellerin genlerini koruyor. Samsung Galaxy Note 10 Lite 128 GB fiyatları açısından ise erişilebilir düzeyde konumlandırılıyor. "
                     },
 
-                    new Product(){ ProductName="MIGROS BEYAZ LEBLEBİ 200 G	", CategoryId = 1 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0.02,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/4.jpg" ,
-                        ShortDescription ="Migros Beyaz Leblebi, sohbetlerinize lezzet katar.",
-                        Description ="Migros Beyaz Leblebi, sohbetlerinize lezzet katar.Tazecik beyaz leblebileri misafirlerinize ikram edebilir, evde, parkta, istediğiniz her yerde tüketebilirsiniz. Migros kalite ve güvencesi ile üretilip paketlenmiş olan paket, yaklaşık 7 porsiyondan oluşmaktadır. "
+                    new Product(){ ProductName="Xiaomi Redmi Note 9 Pro 128 GB", CategoryId = 1 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0.02,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=3300.15, Image = "/images/Product2/4.jpg" ,
+                        ShortDescription ="Zengin Bağlantı Olanakları, Gelişmiş Kameralar, Yerleşik Servis ve Uygulamalar",
+                        Description ="Xiaomi'nin efsane amiral gemisi Redmi Note 9 Pro serisi telefon modelleri, güçlü işletim sistemleri, gelişmiş kameraları, zengin bağlantı noktaları, multimedya özellikleri ve uzun ömürlü bataryaları ile tüm gün kesintisiz iletişim olanağının yanı sıra pek çok eğlenceli özellikler sunar. Gün boyu elinizden düşüremeyeceğiniz Redmi Note 9 Pro'nun geniş çaplı ve yüksek çözünürlüklü ekranında film ve video izleyebilir, internette dolaşabilir, bağlantı özellikleriyle veri alışverişi yapabilir, profesyonel netlik ve çözünürlükte fotoğraflar ve videolar çekebilirsiniz. DotDisplay ile simetrik bir ön ve arka tasarıma sahip olan modeller, şık görünümleri ve zengin renk seçenekleriyle göz kamaştırır. "
                     },
 
-                    new Product(){ ProductName="MİGROS PİLAVLIK İTHAL PİRİNÇ 1000 GR	", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=true, Price=4.15, Image = "/images/Product/5.jpg" ,
-                         ShortDescription ="Migros Pilavlık İthal Pirinç'in orta büyüklükteki taneleri ile leziz bir pilav hazırlayabilirsiniz. ",
-                        Description ="Migros Pilavlık İthal Pirinç'in orta büyüklükteki taneleri ile leziz bir pilav hazırlayabilirsiniz. Farklı pilav tariflerine de uygun olan bu pirinç, et ya da sebze yemeklerinin yanına çok yakışır. "
+
+
+
+                    new Product(){ ProductName="Huawei Watch GT2 46mm Sport Akıllı Saat - Siyah", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=true, Price=1200.15, Image = "/images/Product2/5.jpg" ,
+                         ShortDescription ="Dikkat Çekici Tasarım Yüksek Performansla  Huawei Watch GT 2e'de Buluşuyor",
+                        Description ="asarımından teknolojik özelliklerine kadar büyük bir titizlikle dizayn edilen Huawei Watch GT 2e, sahip olduğu çok sayıda avantaj ile kullanıcılara bambaşka bir deneyim sunuyor. Hayatı kolaylaştıran işlevsel özelliklere ağırlıklı olarak yer verilen üründe yer alan her bir detay yaşantınızı çok daha keyifli bir hâle getiriyor. "
                     },
 
-                    new Product(){ ProductName="MİGROS BALDO PİRİNÇ 1000 GR	", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/6.jpg"  ,
-                          ShortDescription ="Migros Baldo Pirinç, Migros kalite ve güvencesiyle üretilir.",
-                        Description ="Migros Baldo Pirinç, Migros kalite ve güvencesiyle üretilir. İri taneli ve kokusuz olması ile pilav yapımında ya da yemeklerin içinde sıklıkla tercih edilir. Türk mutfağında vazgeçilmez bir yeri olan pirinçle pilav çeşitlerinin yanı sıra; sarma, sütlaç yapabilir birçok çorbanın içine karıştırabilirsiniz. "
+                    new Product(){ ProductName="Samsung Galaxy Watch 3 (45mm)", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=1800.15, Image = "/images/Product2/6.jpg"  ,
+                          ShortDescription ="Samsung Galaxy Watch 3 (45mm) - Mystic Black - SM-R840NZKATUR (Samsung Türkiye Garantili)",
+                        Description ="Samsung Galaxy Watch 3 (45mm) - Mystic Black - SM-R840NZKATUR (Samsung Türkiye Garantili)  "
                     },
 
-                    new Product(){ ProductName="MİGROS DERMASON KURU FASULYE 1000 GR	", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/7.jpg"  ,
-                         ShortDescription ="Migros Dermason Kuru Fasulye, Migros kalite ve güvencesiyle üretilir.",
-                        Description ="Migros Dermason Kuru Fasulye, Migros kalite ve güvencesiyle üretilir. Kuru fasulyenin en lezzetli halini sofranıza getirir.Sofraların vazgeçilmez lezzetlerinden biri olan kuru fasulye, kuş başı et, sucuk ya da pastırma gibi et ürünleri ile ağır ağır pişirildiğinde doyurucu ve leziz bir yemek olabilir."
+                    new Product(){ ProductName="Xiaomi Mi Watch Lite Akıllı Saat - Black", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=412.15, Image = "/images/Product2/7.jpg"  ,
+                         ShortDescription ="Xiaomi Mi Watch Lite Akıllı Saat - Black",
+                        Description ="Xiaomi Mi Watch Lite Akıllı Saat - Black"
                     },
 
-                    new Product(){ ProductName="MİGROS KIRMIZI MERCİMEK 1000 GR	", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/8.jpg"  ,
-                          ShortDescription ="Migros Kırmızı Mercimek normal sürede tam olarak pişer, pişerken dağılmaz. Besin değeri oldukça yüksek olan kırmızı mercimek vücuda ve zihne güç verir. Nemden uzak olması şartıyla kırmızı mercimek uzun süre muhafaza edilebilmektedir. ",
-                        Description ="Migros bakliyat ürünleri; özenle seçilen, kalitesi ve boyutları yüksek standartlara sahip ürünlerdir. Aynı yörelerden alınmaları ürünlerin lezzet standardını sağlar. Temizleme, işlenme ve kalibrasyonu yüksek teknolojiye sahip tesislerde özenle yapılır.Fabrika içindeki sistemlerde ürün, üretim sürecinde, ürünün temizlenmesi işlenmesi ve kalibrasyonlara ayrılması süreçleri, her malda farklılık gösterir ve her mal için özelliklerine göre, ayrı makine hatları kullanılır. Mevcut kullanılan hatların oluşturduğu makine parkları son teknolojiye sahiptir. Üretim aşamaları 30 yıllık tecrübesi ile ortaya çıkan bir sistem bütünlüğüne sahiptir.Doğrudan üreticiden, tarladan gelen tüm bakliyat, fasulye, pirinç ve bulgur ürünleri için mal işleme sırası ana hatları ile şöyledir: Ön elemeden geçirilerek kaba temizlik yapılır(çöp toz v.s.). Elekten geçirilerek kalibrasyonları sağlanır(farklı çaplarda)Taş ayıklama makineleri ile ürün, taşlardan arındırılır. Hafif tane ayıklama makineleri ile delikli, boş ve hasarlı taneler ayrılır. Sortex makinelerden geçirilerek ürün, renkli, çizgili ve lekeli tanelerden temizlenir. Temizlenmiş işlenmiş kalibrasyonuna ayrılmış tertemiz ürün elde edilir. Ürünler aynı yörelerden alınan ürünlerdir ve tarım ürünü olmasına rağmen(kuraklık verim kaybı gibi doğaya bağlı etkenler) 12 ay boyunca standartlar korunmaktadır."
+                    new Product(){ ProductName="Apple Watch Seri 6 44mm GPS Space Gray	", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4000.15, Image = "/images/Product2/8.jpg"  ,
+                          ShortDescription ="Apple Watch Seri 6 44mm GPS Space Gray Alüminyum Kasa ve Siyah Spor Kordon M00H3TU/A",
+                        Description ="Apple Watch Seri 6 44mm GPS Space Gray Alüminyum Kasa ve Siyah Spor Kordon M00H3TU/A"
+
                     },
 
-                    new Product(){ ProductName="MIGROS TOZ ŞEKER 1 KG	", CategoryId =2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0.1,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/9.jpg"   ,
-                         ShortDescription ="Migros Toz Şeker, %100 şeker pancarından üretiliyor. ",
-                        Description ="Migros Toz Şeker, %100 şeker pancarından üretiliyor. El değmeden paketleniyor. Her türlü tatlıda ve tatlandırılmak istenilen içeceklerde rahatlıkla kullanılabilir. Rengi bembeyaz, kolay çözünür."
+                    new Product(){ ProductName="Apple Watch SE 40mm GPS Space Gray Alüminyum", CategoryId =2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0.1,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=2700.15, Image = "/images/Product2/9.jpg"   ,
+                         ShortDescription ="Apple Watch SE 40mm GPS Space Gray Alüminyum",
+                        Description ="Apple Watch SE 40mm GPS Space Gray Alüminyum"
                     },
 
-                    new Product(){ ProductName="MİGROS AYÇİÇEK YAĞI 1 L	", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/10.jpg"  ,
-                        ShortDescription ="Migros Ayçiçek Yağı, açık rengi, berrak görüntüsü ve doğal tadı ile farklılaşıyor.",
-                        Description ="Migros Ayçiçek Yağı, açık rengi, berrak görüntüsü ve doğal tadı ile farklılaşıyor. Bu ürünü kullanan tüketiciler* ürünün son derece hafif olduğunu, kızartmaları yağ çekmeden çıtır çıtır yaptığını düşünüyor.Sıvı yağları; ışık görmeyen, oda sıcaklığında olan bir yerde nemden uzakta ve ağzı kapalı şekilde muhafaza etmeye özen gösterin."
+               
+
+
+
+
+                    new Product(){ ProductName="Xiaomi Mi Band 5 Akıllı Bileklik", CategoryId =3 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0.01,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=2004.15, Image = "/images/Product2/16.jpg"  ,
+                         ShortDescription ="Göz Alıcı Tasarım Detayları",
+                        Description ="Teknoloji konusunda benzersiz ürün tasarımları geliştiren Xiaomi, tasarlamış olduğu yeni nesil akıllı bileklikler ile kaliteli bir deneyim sunuyor. 2020 yılında piyasaya sürülen Xiaomi Mi Band 5, özel manyetik kayış yapısı sayesinde kolunuzdan çıkarmadan şarj edilebilen özelliği ile ön plana çıkıyor. Özellikle şık tasarımı ile dikkat çeken model, spor yaparken tüm detayları kayıt altına alabilmenize ya da gün içerisindeki işlerinizi yönetebilmenize katkıda bulunuyor. Üstün performans ve pratik kullanım detayları ile ön plana çıkan Xiaomi Mi Band 5 modeli, TPU kordonu ve güçlendirilmiş plastik gövdesi ile uzun ömürlü bir kullanımı da beraberinde getiriyor. "
                     },
 
-                    new Product(){ ProductName="MİGROS FİYONK MAKARNA 500 GR	", CategoryId =2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=true, Price=4.15, Image = "/images/Product/11.jpg"   ,
-                          ShortDescription ="Migros Fiyonk Makarna, ismini şeklinden alan, lezzetli bir makarna cinsidir. Fiyonk makarna özellikle kıymalı soslarla çok yakışır. ",
-                        Description ="Migros Fiyonk Makarna, ismini şeklinden alan, lezzetli bir makarna cinsidir. Fiyonk makarna özellikle kıymalı soslarla çok yakışır. Makarnanızı her zamankinden farklı bir şekilde sunmak isterseniz, haşladığınız makarnayı soğuttuktan sonra salatalarınıza katabilirsiniz. Böylece salataları daha besleyici hale getirebilirsiniz. "
+                    new Product(){ ProductName="Huawei Honor Band 5i Akıllı Bileklik - Siyah", CategoryId = 3 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=234.15, Image = "/images/Product2/17.jpg"  ,
+                          ShortDescription ="Farklı kablolar ve şarj cihazlarından sizi özgür kılar. HUAWEI honor bandının dahili USB fişi 5i genel USB şarj cihazlarına uyar, böylece herhangi bir yerde ve herhangi bir zamanda şarj edersiniz. Tek bir şarj, bandı 6 günden fazla kullanım süresiyle güçlendirir.",
+                           Description ="Farklı kablolar ve şarj cihazlarından sizi özgür kılar. HUAWEI honor bandının dahili USB fişi 5i genel USB şarj cihazlarına uyar, böylece herhangi bir yerde ve herhangi bir zamanda şarj edersiniz. Tek bir şarj, bandı 6 günden fazla kullanım süresiyle güçlendirir."
                     },
 
-                    new Product(){ ProductName="MİGROS SPAGETTİ MAKARNA 500 GR	", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=true, Price=4.15, Image = "/images/Product/12.jpg"   ,
-                         ShortDescription ="Migros Spagetti Makarna, İtalyan mutfağının en sevilen lezzetini sofralarınıza getiriyor. ",
-                        Description ="Migros Spagetti Makarna, İtalyan mutfağının en sevilen lezzetini sofralarınıza getiriyor. Lezzetli mi lezzetli, tam kıvamında bir spagetti için pakette belirtilen pişirme talimatlarını uygulayabilir, çeşitli soslarla makarnanızı çok daha lezzetli kılabilirsiniz. "
+
+
+                    new Product(){ ProductName="Apple Airpods Pro Bluetooth Kulaklık MWP22TU/A (Apple Türkiye Garantili)", CategoryId =4 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=2004.15, Image = "/images/Product2/18.jpg"  ,
+                         ShortDescription ="Apple Airpods Pro Bluetooth Kulaklık MWP22TU/A (Apple Türkiye Garantili)",
+                        Description ="Apple Airpods Pro Bluetooth Kulaklık MWP22TU/A (Apple Türkiye Garantili)"
                     },
 
-                    new Product(){ ProductName="MİGROS BURGU MAKARNA 500GR	", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0.05,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/13.jpg"  ,
-                          ShortDescription ="Migros Burgu Makarna, lezzetli ve pratik öğünlerin vazgeçilmez lezzeti makarna, Migros kalitesi ile sizinle buluşuyor. ",
-                        Description ="Farklı soslarla denediğinizde lezzetine lezzet katacağınız burgu makarna ile İtalyan mutfağının en özel tariflerini deneyebilir ya da geleneksel tariflerle sofranızı taçlandırabilirsiniz. "
+
+
+                    new Product(){ ProductName="Xiaomi Redmi 20000 Mah Taşınabilir Hızlı Şarj Cihazı - USB-C - 18W 2 Çıkışlı Powerbank - Beyaz", CategoryId =5 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=140.15, Image = "/images/Product2/19.jpg"  ,
+                          ShortDescription ="Xiaomi Redmi 20000 Mah Taşınabilir Hızlı Şarj Cihazı - USB-C - 18W 2 Çıkışlı Powerbank - Beyaz",
+                        Description ="Xiaomi Redmi 20000 Mah Taşınabilir Hızlı Şarj Cihazı - USB-C - 18W 2 Çıkışlı Powerbank - Beyaz"
+
                     },
 
-                    new Product(){ ProductName="MİGROS ARPA ŞEHRİYE 500GR	", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/14.jpg"  ,
-                          ShortDescription ="Migros Arpa Şehriye, pilavlara ve çorbalara çok yakıştığı gibi, yalnız başına da tüketilebilir. ",
-                        Description ="Migros Arpa Şehriye, pilavlara ve çorbalara çok yakıştığı gibi, yalnız başına da tüketilebilir. Arpa şehriyeyi aynı pilav gibi pişirebilir, içine çeşitli sebzeler ekleyerek lezzetini katlayabilirsiniz. Arpa şehriye pilavı özellikle et yemekleri ile çok yakışıyor. "
-                    },
-
-                    new Product(){ ProductName="MİGROS TEL ŞEHRİYE 500GR	", CategoryId = 2 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0.04,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=true, Price=4.15, Image = "/images/Product/15.jpg"   ,
-                          ShortDescription ="Migros Tel Şehriye, pilavların ve çorbaların olmazsa olmaz lezzetlerindendir. ",
-                        Description ="Migros Tel Şehriye, pilavların ve çorbaların olmazsa olmaz lezzetlerindendir. Tel şehriyeyi her zaman alıştığınız gibi tavuk çorbasına katabilir ya da farklı çorba tariflerine ekleyerek, yumuşak bir kıvam elde edebilirsiniz. "
-                    },
-
-                    new Product(){ ProductName="MİGROS ÇİKOLATA KAPLAMALI SANDVİÇ 30G	", CategoryId =3 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0.01,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/16.jpg"  ,
-                         ShortDescription ="Migros Çikolata Kaplamalı Sandviç çikolata arası bisküviyi sevenlerin tercihidir.",
-                        Description ="Migros Çikolata Kaplamalı Sandviç çikolata arası bisküviyi sevenlerin tercihidir.Bisküvilerin tazeliğini koruması için nemden uzak ağzı sıkı kapatılmış bir şekilde serin ve kuru bir yerde saklamalısınız. "
-                    },
-
-                    new Product(){ ProductName="MIGROS KAKAO KREMALI SANDVİÇ BİSKÜVİ 10'LU 300 G	", CategoryId = 3 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/17.jpg"  ,
-                          ShortDescription ="Migros Çikolata Kaplamalı Sandviç çikolata arası bisküviyi sevenlerin tercihidir.",
-                        Description ="Migros Çikolata Kaplamalı Sandviç çikolata arası bisküviyi sevenlerin tercihidir.Bisküvilerin tazeliğini koruması için nemden uzak ağzı sıkı kapatılmış bir şekilde serin ve kuru bir yerde saklamalısınız. "
-                    },
-
-                    new Product(){ ProductName="MİGROS RİZE ÇAY 1000 G	", CategoryId =4 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/18.jpg"  ,
-                         ShortDescription ="Migros Rize Çay Rize'nin en taze ve en güzel çay filizlerinden elde edilir. Tamamen doğal olan bu ürün, hoş bir kokuya sahiptir ve damakta güzel bir lezzet bırakır. ",
-                        Description ="Migros Rize Çay Rize'nin en taze ve en güzel çay filizlerinden elde edilir. Tamamen doğal olan bu ürün, hoş bir kokuya sahiptir ve damakta güzel bir lezzet bırakır.Demlemede taze, kireçsiz su ve porselen demlik tercih edin. Demleyeceğiniz miktara göre her bardak çay için bir çay kaşığı Migros Çay koyun. Demliği kaynayan su üzerinde ısıttıktan sonra taze kaynamış suyu ilave edin. Demini alması için kaynayan suyun üzerinde 10-15 dakika bekletin. Demlenen çayınızı lezzetini kaybetmeden için."
-                    },
-
-                    new Product(){ ProductName="MİGROS 72 Lİ ISLAK HAVLU	", CategoryId =5 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/19.jpg"  ,
-                          ShortDescription ="Migros Islak Havlu, bebeklerin hassas cildine özel olarak formülize edilmiştir. ",
-                        Description ="Migros Islak Havlu, bebeklerin hassas cildine özel olarak formülize edilmiştir. Yumuşacık dokusu ile hassas bir temizlik sağlar. Alt değiştirme esnasında popo temizliği için, mama yedirirken bebeğin ellerini, yüzünü temizlemek için kullanılabilir. "
-                    },
-
-                    new Product(){ ProductName="MINIES MAXI 4 NUMARA 7-18 KG 44 ADET	", CategoryId = 5 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=true, UpdatedAt = DateTime.Now, IsInSlider=false, Price=4.15, Image = "/images/Product/20.jpg" ,
-                          ShortDescription ="Minies 4 No Maxi Bebek Bezi 7-18 kg., uzun süre kuru kalmaya yardımcı hassas yüzeye ve ergonomik bir yapıya sahiptir. ",
-                        Description ="Minies 4 No Maxi Bebek Bezi 7-18 kg., uzun süre kuru kalmaya yardımcı hassas yüzeye ve ergonomik bir yapıya sahiptir. Minies bebek bezi, bebeğinizi huzurlu sizi mutlu kılacak. "
-                    },
-
-                    new Product(){ ProductName="MINIES JUNIOR 5 NUMARA 11-25 KG 32 ADET	", CategoryId = 5 ,CreatedBy="Seed" , CreatedAt=DateTime.Now , IsActive=true, DiscountRatio=0,UpdatedBy="Seed", IsFeatured=false, UpdatedAt = DateTime.Now, IsInSlider=true, Price=4.15, Image = "/images/Product/21.jpg" ,
-                        ShortDescription ="Minies 5 No Junior Bebek Bezi 11-25 kg., kuru, hassas yüzeyi ile bebeğinizin konforlu hissetmesini sağlar. ",
-                        Description ="Minies 5 No Junior Bebek Bezi 11-25 kg., kuru, hassas yüzeyi ile bebeğinizin konforlu hissetmesini sağlar. Esnek yan bantlar ve hassas yüzeyi ile bebeğinizin hareketlerini kısıtlamadan yüksek koruma sağlar. "
-                    },
+                
 
 
 
